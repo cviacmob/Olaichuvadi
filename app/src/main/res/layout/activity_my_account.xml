@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_my_account"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp"
+    tools:context="com.cviac.olaichuvadi.activities.MyAccountActivity">
+
+    <RelativeLayout
+        android:id="@+id/accdet"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true">
+
+        <ImageView
+            android:id="@+id/profimg"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@mipmap/profl" />
+
+        <TextView
+            android:id="@+id/uname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/profimg"
+            android:paddingLeft="10dp"
+            android:text="Textview" />
+
+        <TextView
+            android:id="@+id/umail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/uname"
+            android:layout_toRightOf="@+id/profimg"
+            android:paddingLeft="10dp"
+            android:text="Textview" />
+
+        <TextView
+            android:id="@+id/uphone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/umail"
+            android:layout_toRightOf="@+id/profimg"
+            android:paddingLeft="10dp"
+            android:text="Textview" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/exitbtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <Button
+            android:id="@+id/exit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/roundcolorbtn"
+            android:text="LogOut"
+            android:textColor="#ffffff" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/textarea"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/exitbtn"
+        android:layout_below="@+id/accdet">
+
+    </RelativeLayout>
+
+</RelativeLayout>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_categories"
+            android:icon="@mipmap/cate"
+            android:title="Categories" />
+        <item
+            android:id="@+id/nav_library"
+            android:icon="@mipmap/lib"
+            android:title="My Library" />
+        <item
+            android:id="@+id/nav_community"
+            android:icon="@mipmap/comm"
+            android:title="My Community" />
+    </group>
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_cart"
+            android:icon="@mipmap/cart"
+            android:title="My Cart" />
+        <item
+            android:id="@+id/nav_account"
+            android:icon="@mipmap/account"
+            android:title="My Account" />
+        <item
+            android:id="@+id/nav_orders"
+            android:icon="@mipmap/orders"
+            android:title="My Orders" />
+        <item
+            android:id="@+id/nav_logout"
+            android:icon="@mipmap/logout"
+            android:title="Log Out" />
+    </group>
+</menu>

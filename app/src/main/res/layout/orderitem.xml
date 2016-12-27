@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp">
+
+    <TextView
+        android:text="Your Order ID:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/ordrhd" />
+
+    <TextView
+        android:text="ID Number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/ordrhd"
+        android:layout_toEndOf="@+id/ordrhd"
+        android:layout_marginLeft="10dp"
+        android:id="@+id/ordrno" />
+
+    <ImageView
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        app:srcCompat="@mipmap/ic"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/ordrhd"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/ordimg" />
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/ordrtit"
+        android:layout_alignTop="@+id/ordimg"
+        android:layout_toRightOf="@+id/ordimg"/>
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/ordrsta"
+        android:layout_below="@+id/ordrtit"
+        android:layout_toRightOf="@+id/ordimg"
+        android:layout_toEndOf="@+id/ordimg" />
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/ordrdat"
+        android:layout_below="@+id/ordrsta"
+        android:layout_toRightOf="@+id/ordimg"
+        android:layout_toEndOf="@+id/ordimg" />
+</RelativeLayout>
