@@ -17,8 +17,8 @@
 
         <ImageView
             android:id="@+id/profimg"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
             android:src="@mipmap/profl" />
 
         <TextView
@@ -50,29 +50,35 @@
     </RelativeLayout>
 
     <RelativeLayout
-        android:id="@+id/exitbtn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
-
-        <Button
-            android:id="@+id/exit"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/roundcolorbtn"
-            android:text="LogOut"
-            android:textColor="#ffffff" />
-
-    </RelativeLayout>
-
-    <RelativeLayout
         android:id="@+id/textarea"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/exitbtn"
         android:layout_below="@+id/accdet">
+
+        <TextView
+            android:id="@+id/addtit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Your Saved Addresses"
+            android:textStyle="bold" />
+
+        <ListView
+            android:id="@+id/addlst"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/addbtn"
+            android:layout_below="@+id/addtit">
+        </ListView>
+
+        <Button
+            android:id="@+id/addbtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/roundcolorbtn"
+            android:text="Add Address"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
 
     </RelativeLayout>
 

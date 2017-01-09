@@ -7,6 +7,8 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -14,15 +16,32 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.cviac.olaichuvadi.R;
+import com.cviac.olaichuvadi.adapters.RecyclerViewAdapter;
+import com.cviac.olaichuvadi.datamodels.ItemObjects;
 import com.cviac.olaichuvadi.utilities.Prefs;
 
-public class HomeActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+import java.util.ArrayList;
+import java.util.List;
+
+public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+
+    private GridLayoutManager lLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+        List<ItemObjects> rowListItem = getAllItemList();
+        lLayout = new GridLayoutManager(HomeActivity.this, 3);
+
+        RecyclerView rView = (RecyclerView) findViewById(R.id.recycler_view);
+        rView.setHasFixedSize(true);
+        rView.setLayoutManager(lLayout);
+
+        RecyclerViewAdapter rcAdapter = new RecyclerViewAdapter(HomeActivity.this, rowListItem);
+        rView.setAdapter(rcAdapter);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -35,6 +54,28 @@ public class HomeActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         setUserdetails(navigationView);
+    }
+
+    private List<ItemObjects> getAllItemList() {
+
+        List<ItemObjects> allItems = new ArrayList<ItemObjects>();
+        allItems.add(new ItemObjects("Book-1", R.mipmap.ic));
+        allItems.add(new ItemObjects("Book-2", R.mipmap.ic));
+        allItems.add(new ItemObjects("Book-3", R.mipmap.ic));
+        allItems.add(new ItemObjects("Book-4", R.mipmap.ic));
+        allItems.add(new ItemObjects("Book-5", R.mipmap.ic));
+        allItems.add(new ItemObjects("Book-6", R.mipmap.ic));
+        allItems.add(new ItemObjects("Book-7", R.mipmap.ic));
+        allItems.add(new ItemObjects("Book-8", R.mipmap.ic));
+        allItems.add(new ItemObjects("Book-9", R.mipmap.ic));
+        allItems.add(new ItemObjects("Book-10", R.mipmap.ic));
+        allItems.add(new ItemObjects("Book-11", R.mipmap.ic));
+        allItems.add(new ItemObjects("Book-12", R.mipmap.ic));
+        allItems.add(new ItemObjects("Book-13", R.mipmap.ic));
+        allItems.add(new ItemObjects("Book-14", R.mipmap.ic));
+        allItems.add(new ItemObjects("Book-15", R.mipmap.ic));
+
+        return allItems;
     }
 
     private void setUserdetails(NavigationView navigationView) {
@@ -59,7 +100,6 @@ public class HomeActivity extends AppCompatActivity
         }
     }
 
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -75,6 +115,7 @@ public class HomeActivity extends AppCompatActivity
         if (id == R.id.action_settings) {
             return true;
         } else if (id == R.id.cart) {
+            return true;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -86,6 +127,9 @@ public class HomeActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_categories) {
+
+            Intent cat = new Intent(HomeActivity.this, CategoryList_Activity.class);
+            startActivity(cat);
 
         } else if (id == R.id.nav_library) {
 
@@ -118,6 +162,7 @@ public class HomeActivity extends AppCompatActivity
             logout();
             Intent lgot = new Intent(HomeActivity.this, LoginActivity.class);
             startActivity(lgot);
+            finish();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

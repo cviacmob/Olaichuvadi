@@ -1,6 +1,7 @@
 package com.cviac.olaichuvadi.activities;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
 import android.os.Bundle;
@@ -10,7 +11,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.cviac.olaichuvadi.R;
 import com.cviac.olaichuvadi.adapters.CartAdapter;
@@ -26,7 +26,7 @@ public class MyCartActivity extends AppCompatActivity {
     List<CartInfo> cartitms;
     Button proc;
     private LayerDrawable mCartMenuIcon;
-    private int mCartCount=1;
+    private int mCartCount = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,8 +34,6 @@ public class MyCartActivity extends AppCompatActivity {
         setContentView(R.layout.activity_my_cart);
         setTitle("My Cart");
         loadcrtitms();
-
-
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -47,8 +45,8 @@ public class MyCartActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                Toast.makeText(getApplicationContext(), "Will be Proceeded to Pre-Payment", Toast.LENGTH_SHORT).show();
-
+                Intent prd = new Intent(MyCartActivity.this, PaymentActivity.class);
+                startActivity(prd);
             }
         });
     }
@@ -68,23 +66,23 @@ public class MyCartActivity extends AppCompatActivity {
         cartitms.add(c5);
         CartInfo c6 = new CartInfo(R.mipmap.ic, "Title 6", "Desc 6", "$ 45");
         cartitms.add(c6);
+
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
 
-        mCartCount=cartitms.size();
+        mCartCount = cartitms.size();
         getMenuInflater().inflate(R.menu.cart, menu);
         mCartMenuIcon = (LayerDrawable) menu.findItem(R.id.cart).getIcon();
         setBadgeCount(this, mCartMenuIcon, String.valueOf(mCartCount++));
         return true;
     }
+
     public static void setBadgeCount(Context context, LayerDrawable icon, String count) {
 
         BadgeDrawable badge;
 
-        // Reuse drawable if possible
         Drawable reuse = icon.findDrawableByLayerId(R.id.ic_cart_badge);
         if (reuse != null && reuse instanceof BadgeDrawable) {
             badge = (BadgeDrawable) reuse;
@@ -99,16 +97,14 @@ public class MyCartActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
+
         int id = item.getItemId();
         onBackPressed();
 
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
         } else if (id == R.id.cart) {
+            return true;
         }
         return super.onOptionsItemSelected(item);
     }

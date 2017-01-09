@@ -30,8 +30,8 @@
         android:layout_alignParentEnd="true"
         android:id="@+id/crtprc" />
 
-    <Button
-        android:text="Delete"
+    <ImageButton
+        android:background="@mipmap/delete"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/crtprc"

@@ -12,8 +12,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Your Orders History :"
-        android:textStyle="bold"/>
+        android:textStyle="bold" />
+
     <ListView
+        android:id="@+id/ordrlist"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/ordr" />

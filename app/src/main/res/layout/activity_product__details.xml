@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_product__details"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp"
+    tools:context="com.cviac.olaichuvadi.activities.Product_Details">
+
+    <ImageView
+        android:id="@+id/prd_img"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:src="@mipmap/ic" />
+
+    <TextView
+        android:id="@+id/tit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/prd_img"
+        android:layout_marginTop="10dp"
+        android:text="TITLE :" />
+
+    <TextView
+        android:id="@+id/prz"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tit"
+        android:layout_marginTop="10dp"
+        android:text="PRICE :" />
+
+    <TextView
+        android:id="@+id/cat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/prz"
+        android:layout_marginTop="10dp"
+        android:text="CATEGORY :" />
+
+    <TextView
+        android:id="@+id/desc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/cat"
+        android:layout_marginTop="10dp"
+        android:text="DESCRIPTION :" />
+
+    <TextView
+        android:id="@+id/desc_det"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/desc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/ptit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/tit"
+        android:layout_marginLeft="80dp"
+        android:layout_toRightOf="@+id/tit"
+        android:text="Title" />
+
+    <TextView
+        android:id="@+id/pprz"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/ptit"
+        android:layout_alignTop="@+id/prz"
+        android:text="Price" />
+
+    <TextView
+        android:id="@+id/pcat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/ptit"
+        android:layout_alignTop="@+id/cat"
+        android:text="Category" />
+
+    <Button
+        android:id="@+id/cartbtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_toLeftOf="@+id/buybtn"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/roundcolorbtn"
+        android:text="Add to Cart" />
+
+    <Button
+        android:id="@+id/buybtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:background="@drawable/roundcolorbtn"
+        android:text="BUY NOW" />
+
+</RelativeLayout>

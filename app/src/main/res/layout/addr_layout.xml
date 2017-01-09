@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginLeft="10dp"
+    android:padding="5dp">
+
+    <TextView
+        android:id="@+id/addname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="sample_name" />
+
+    <TextView
+        android:id="@+id/drst"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/addname"
+        android:text="sample_door no/st." />
+
+    <TextView
+        android:id="@+id/cty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/drst"
+        android:text="Sample_city" />
+
+    <TextView
+        android:id="@+id/dist"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/drst"
+        android:layout_toRightOf="@+id/cty"
+        android:paddingLeft="5dp"
+        android:text="sample_dist" />
+
+    <TextView
+        android:id="@+id/stt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/cty"
+        android:text="sample_state" />
+
+    <TextView
+        android:id="@+id/pin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/dist"
+        android:layout_toRightOf="@+id/stt"
+        android:paddingLeft="5dp"
+        android:text="sample_pin" />
+
+    <TextView
+        android:id="@+id/mbl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/stt"
+        android:text="sample_mobile" />
+
+    <ImageButton
+        android:id="@+id/delbtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/cty"
+        android:layout_alignParentEnd="true"
+        android:background="@mipmap/delete" />
+
+    <ImageButton
+        android:id="@+id/edtbtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/cty"
+        android:layout_toLeftOf="@+id/delbtn"
+        android:background="@mipmap/pencil"
+        android:paddingRight="10dp" />
+
+</RelativeLayout>

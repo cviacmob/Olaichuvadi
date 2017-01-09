@@ -5,7 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -41,8 +41,8 @@ public class CartAdapter extends BaseAdapter {
 
     public static class ViewHolder {
         public ImageView iv;
-        public TextView tv1,tv2,tv3;
-        public Button del;
+        public TextView tv1, tv2, tv3;
+        public ImageButton del;
     }
 
     @Override
@@ -50,18 +50,18 @@ public class CartAdapter extends BaseAdapter {
 
         View crt = view;
         ViewHolder holder;
-        CartInfo cinfo=crtitm.get(i);
-        if(view==null){
+        CartInfo cinfo = crtitm.get(i);
+        if (view == null) {
             LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            crt=inflater.inflate(R.layout.cartitems,null);
+            crt = inflater.inflate(R.layout.cartitems, null);
             holder = new ViewHolder();
-            holder.iv=(ImageView) crt.findViewById(R.id.crtimg);
-            holder.tv1=(TextView) crt.findViewById(R.id.crttit);
-            holder.tv2=(TextView) crt.findViewById(R.id.crtdesc);
-            holder.tv3=(TextView) crt.findViewById(R.id.crtprc);
-            holder.del=(Button) crt.findViewById(R.id.delbtn);
+            holder.iv = (ImageView) crt.findViewById(R.id.crtimg);
+            holder.tv1 = (TextView) crt.findViewById(R.id.crttit);
+            holder.tv2 = (TextView) crt.findViewById(R.id.crtdesc);
+            holder.tv3 = (TextView) crt.findViewById(R.id.crtprc);
+            holder.del = (ImageButton) crt.findViewById(R.id.delbtn);
             crt.setTag(holder);
-        } else{
+        } else {
             holder = (ViewHolder) crt.getTag();
         }
         holder.iv.setImageResource(cinfo.getPrdimg());

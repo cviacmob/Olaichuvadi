@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/lib_pur_img"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:src="@mipmap/ic" />
+
+    <TextView
+        android:id="@+id/purchtit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lib_pur_img"
+        android:layout_centerHorizontal="true"
+        android:text="Title" />
+
+    <TextView
+        android:id="@+id/purchauth"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/purchtit"
+        android:layout_centerHorizontal="true"
+        android:text="Author" />
+
+    <ImageButton
+        android:id="@+id/wish"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/lib_pur_img"
+        android:layout_below="@+id/purchauth"
+        android:background="@mipmap/wish" />
+
+    <ImageButton
+        android:id="@+id/fav"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/lib_pur_img"
+        android:layout_below="@+id/purchauth"
+        android:background="@mipmap/fav" />
+
+</RelativeLayout>

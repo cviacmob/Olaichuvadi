@@ -1,5 +1,7 @@
 package com.cviac.olaichuvadi.datamodels;
 
-public class RegInfo {
+import java.io.Serializable;
+
+public class RegInfo implements Serializable{
 
 }

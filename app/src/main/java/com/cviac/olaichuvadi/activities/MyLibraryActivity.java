@@ -16,6 +16,10 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.cviac.olaichuvadi.R;
+import com.cviac.olaichuvadi.fragments.BooksFragment;
+import com.cviac.olaichuvadi.fragments.FavouritesFragment;
+import com.cviac.olaichuvadi.fragments.PurchasedFragment;
+import com.cviac.olaichuvadi.fragments.ReviewedFragment;
 
 public class MyLibraryActivity extends AppCompatActivity {
 
@@ -131,6 +135,17 @@ public class MyLibraryActivity extends AppCompatActivity {
         public Fragment getItem(int position) {
             // getItem is called to instantiate the fragment for the given page.
             // Return a PlaceholderFragment (defined as a static inner class below).
+
+            switch (position + 1) {
+                case 1:
+                    return new BooksFragment();
+                case 2:
+                    return new PurchasedFragment();
+                case 3:
+                    return new ReviewedFragment();
+                case 4:
+                    return new FavouritesFragment();
+            }
             return PlaceholderFragment.newInstance(position + 1);
         }
 
@@ -147,9 +162,9 @@ public class MyLibraryActivity extends AppCompatActivity {
                 case 1:
                     return "PURCHASED";
                 case 2:
-                    return "FAVOURITES";
-                case 3:
                     return "REVIEWED";
+                case 3:
+                    return "FAVOURITES";
             }
             return null;
         }

@@ -1,4 +1,6 @@
 package com.cviac.olaichuvadi.datamodels;
 
-public class LogInfo {
+import java.io.Serializable;
+
+public class LogInfo implements Serializable{
 }

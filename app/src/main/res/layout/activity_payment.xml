@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_prepayment"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp"
+    tools:context="com.cviac.olaichuvadi.activities.PaymentActivity">
+
+    <TextView
+        android:id="@+id/payname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Username" />
+
+    <TextView
+        android:id="@+id/payaddr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/payname"
+        android:text="Door No./St." />
+
+    <TextView
+        android:id="@+id/payaddr1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/payaddr"
+        android:text="City" />
+
+    <TextView
+        android:id="@+id/payaddr2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/payaddr"
+        android:layout_toRightOf="@+id/payaddr1"
+        android:paddingLeft="5dp"
+        android:text="Dist." />
+
+    <TextView
+        android:id="@+id/payaddr3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/payaddr1"
+        android:text="State" />
+
+    <TextView
+        android:id="@+id/payaddr4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/payaddr1"
+        android:layout_toRightOf="@+id/payaddr3"
+        android:paddingLeft="5dp"
+        android:text="Pincode" />
+
+    <TextView
+        android:id="@+id/paymbl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/payaddr3"
+        android:text="Mobile No" />
+
+    <Button
+        android:id="@+id/chngadd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/paymbl"
+        android:layout_alignParentEnd="true"
+        android:background="@drawable/roundcolorbtn"
+        android:text="Change Address" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/price"
+        android:layout_below="@+id/chngadd">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.cviac.olaichuvadi.utilities.NonScrollListView
+                android:id="@+id/crtitms"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/chngadd" />
+
+            <Button
+                android:id="@+id/paybutn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/crtitms"
+                android:background="@drawable/roundcolorbtn"
+                android:text="PAY NOW" />
+
+            <RadioGroup
+                android:id="@+id/paygrp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/paybutn">
+
+                <RadioButton
+                    android:id="@+id/debitpay"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Debit Card" />
+
+                <RadioButton
+                    android:id="@+id/creditpay"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Credit Card" />
+
+                <RadioButton
+                    android:id="@+id/netpay"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Net Banking" />
+
+                <RadioButton
+                    android:id="@+id/emipay"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="EMI" />
+            </RadioGroup>
+        </RelativeLayout>
+
+    </ScrollView>
+
+    <TextView
+        android:id="@+id/price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:text="Total Amount Payable :"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/priceamnt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@+id/price"
+        android:paddingLeft="10dp"
+        android:text="Total Amount"
+        android:textStyle="bold" />
+
+</RelativeLayout>

@@ -16,6 +16,10 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.cviac.olaichuvadi.R;
+import com.cviac.olaichuvadi.fragments.AuthorsFragment;
+import com.cviac.olaichuvadi.fragments.PublishersFragment;
+import com.cviac.olaichuvadi.fragments.ReadingclubFragment;
+import com.cviac.olaichuvadi.fragments.SharedFragment;
 
 public class MyCommunityActivity extends AppCompatActivity {
 
@@ -130,6 +134,17 @@ public class MyCommunityActivity extends AppCompatActivity {
         public Fragment getItem(int position) {
             // getItem is called to instantiate the fragment for the given page.
             // Return a PlaceholderFragment (defined as a static inner class below).
+
+            switch (position + 1) {
+                case 1:
+                    return new SharedFragment();
+                case 2:
+                    return new ReadingclubFragment();
+                case 3:
+                    return new AuthorsFragment();
+                case 4:
+                    return new PublishersFragment();
+            }
             return PlaceholderFragment.newInstance(position + 1);
         }
 
@@ -144,11 +159,12 @@ public class MyCommunityActivity extends AppCompatActivity {
                 case 0:
                     return "SHARED";
                 case 1:
-                    return "AUTHORS";
-                case 2:
-                    return "PUBLISHERS";
-                case 3:
                     return "READING CLUB";
+                case 2:
+                    return "AUTHORS";
+                case 3:
+                    return "PUBLISHERS";
+
             }
             return null;
         }

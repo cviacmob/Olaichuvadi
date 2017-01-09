@@ -5,9 +5,9 @@
         android:drawable="@drawable/cart"
         android:gravity="center">
     </item>
-<item
+    <item
     android:id="@+id/ic_cart_badge"
     android:drawable="@drawable/cart">
-</item>
+    </item>
 
 </layer-list>

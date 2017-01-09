@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/fav_imggg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:paddingTop="8dp"
+        android:src="@mipmap/ic" />
+
+    <TextView
+        android:id="@+id/titl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/fav_imggg"
+        android:layout_below="@+id/fav_imggg"
+        android:paddingBottom="8dp"
+        android:text="Title :" />
+
+    <TextView
+        android:id="@+id/tit2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/fav_imggg"
+        android:layout_toRightOf="@+id/titl"
+        android:paddingBottom="8dp"
+        android:paddingLeft="5dp"
+        android:text="Book Title" />
+
+    <TextView
+        android:id="@+id/auth1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/fav_imggg"
+        android:layout_below="@+id/titl"
+        android:paddingBottom="5dp"
+        android:text="Author :" />
+
+    <TextView
+        android:id="@+id/auth2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/titl"
+        android:layout_toRightOf="@+id/auth1"
+        android:paddingBottom="5dp"
+        android:paddingLeft="5dp"
+        android:text="Author Name" />
+
+</RelativeLayout>
