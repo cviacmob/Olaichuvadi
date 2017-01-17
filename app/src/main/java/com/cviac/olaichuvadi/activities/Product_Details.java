@@ -1,41 +1,214 @@
 package com.cviac.olaichuvadi.activities;
 
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Paint;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.LayerDrawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.cviac.olaichuvadi.R;
+import com.cviac.olaichuvadi.datamodels.AddToCartResponse;
+import com.cviac.olaichuvadi.datamodels.GetCartItemsResponse;
+import com.cviac.olaichuvadi.datamodels.Product;
+import com.cviac.olaichuvadi.datamodels.ProductDetail;
+import com.cviac.olaichuvadi.datamodels.Productdetailresponse;
+import com.cviac.olaichuvadi.services.OpencartAPIs;
+import com.cviac.olaichuvadi.utilities.BadgeDrawable;
+import com.cviac.olaichuvadi.utilities.Prefs;
+import com.squareup.picasso.Picasso;
+
+import retrofit.Call;
+import retrofit.Callback;
+import retrofit.GsonConverterFactory;
+import retrofit.Response;
+import retrofit.Retrofit;
 
 public class Product_Details extends AppCompatActivity {
 
-    Button crt,buy;
+    private Button crt, buy;
+    private TextView tv, tv1, tv3, tv4, tv5;
+    private ImageView iv;
+    ProductDetail prdetail = null;
+    private LayerDrawable mcartMenuIcon;
+    private int mCartCount = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_product__details);
+        setContentView(R.layout.activity_productdetails);
         setTitle("Product Details");
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        Intent i = getIntent();
+        Product probj = (Product) i.getSerializableExtra("productobj");
+        String tit = probj.getName();
+
+        setTitle(tit);
+
+        tv = (TextView) findViewById(R.id.tit);
+        iv = (ImageView) findViewById(R.id.prd_img);
+        tv1 = (TextView) findViewById(R.id.prz);
+        tv3 = (TextView) findViewById(R.id.pprz);
+        tv4 = (TextView) findViewById(R.id.desc);
+        tv5 = (TextView) findViewById(R.id.desc_det);
         crt = (Button) findViewById(R.id.cartbtn);
         buy = (Button) findViewById(R.id.buybtn);
 
+        tv3.setPaintFlags(tv3.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+        crt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                addToCart(prdetail.getProduct_id(), "1");
+            }
+        });
         buy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent buyitm=new Intent(Product_Details.this,PaymentActivity.class);
+                Intent buyitm = new Intent(Product_Details.this, PaymentActivity.class);
                 startActivity(buyitm);
             }
         });
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("http://nheart.cviac.com")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        OpencartAPIs api = retrofit.create(OpencartAPIs.class);
+
+        Call<Productdetailresponse> call = api.getProductdetails(probj.getProduct_id());
+        call.enqueue(new Callback<Productdetailresponse>() {
+
+            public void onResponse(Response<Productdetailresponse> response, Retrofit retrofit) {
+                Productdetailresponse rsp = response.body();
+                prdetail = rsp.getProduct().get(0);
+                String detail = prdetail.getDescription();
+                tv5.setText(detail);
+                tv.setText(prdetail.getName());
+                tv1.setText(prdetail.getPrice());
+                tv3.setText(prdetail.getSpecial());
+
+                String url = prdetail.getThumb();
+                Picasso.with(Product_Details.this).load(url).resize(500, 500).into(iv);
+            }
+
+            @Override
+            public void onFailure(Throwable t) {
+                prdetail = null;
+            }
+        });
+    }
+
+    private void addToCart(String prodId, String quantity) {
+        String token = Prefs.getString("token", null);
+        if (token != null) {
+            Retrofit retrofit = new Retrofit.Builder()
+                    .baseUrl("http://nheart.cviac.com")
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build();
+
+            OpencartAPIs api = retrofit.create(OpencartAPIs.class);
+
+            final Call<AddToCartResponse> call = api.addToCart(token, prodId, quantity);
+            call.enqueue(new Callback<AddToCartResponse>() {
+                @Override
+                public void onResponse(Response<AddToCartResponse> response, Retrofit retrofit) {
+                    AddToCartResponse rsp = response.body();
+                    getAndSetCartCount();
+                    Toast.makeText(Product_Details.this, "Product Added to Cart", Toast.LENGTH_LONG).show();
+                }
+
+                @Override
+                public void onFailure(Throwable t) {
+                    t.printStackTrace();
+                    Toast.makeText(Product_Details.this, "Server Error", Toast.LENGTH_LONG).show();
+                }
+            });
+        }
+    }
+
+    private void getAndSetCartCount() {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("http://nheart.cviac.com")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        OpencartAPIs api = retrofit.create(OpencartAPIs.class);
+
+        String token = Prefs.getString("token", null);
+        Call<GetCartItemsResponse> call = api.getCartItems(token);
+        call.enqueue(new Callback<GetCartItemsResponse>() {
+
+            public void onResponse(Response<GetCartItemsResponse> response, Retrofit retrofit) {
+                GetCartItemsResponse rsp = response.body();
+                if (rsp != null) {
+                    mCartCount = rsp.getProducts().size();
+                    setBadgeCount(Product_Details.this, mcartMenuIcon, mCartCount + "");
+                }
+            }
+
+            @Override
+            public void onFailure(Throwable t) {
+                t.printStackTrace();
+            }
+        });
+    }
+
+    public static void setBadgeCount(Context context, LayerDrawable icon, String count) {
+
+        BadgeDrawable badge;
+
+        // Reuse drawable if possible
+        Drawable reuse = icon.findDrawableByLayerId(R.id.ic_cart_badge);
+        if (reuse != null && reuse instanceof BadgeDrawable) {
+            badge = (BadgeDrawable) reuse;
+        } else {
+            badge = new BadgeDrawable(context);
+        }
+
+        badge.setCount(count);
+        icon.mutate();
+        icon.setDrawableByLayerId(R.id.ic_cart_badge, badge);
+    }
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        menu.findItem(R.id.action_settings).setVisible(false);
+
+        super.onPrepareOptionsMenu(menu);
+
+        return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         onBackPressed();
+        switch (item.getItemId()) {
+            case R.id.cart:
+                Intent h = new Intent(Product_Details.this, MyCartActivity.class);
+                startActivity(h);
+
+                break;
+        }
+        return true;
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.cart, menu);
+        mcartMenuIcon = (LayerDrawable) menu.findItem(R.id.cart).getIcon();
+        setBadgeCount(this, mcartMenuIcon, "");
+        getAndSetCartCount();
         return true;
     }
 }

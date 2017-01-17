@@ -11,17 +11,16 @@
         android:id="@+id/listlay"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
+        android:layout_above="@+id/itemslay"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_above="@+id/itemslay">
+        android:layout_alignParentTop="true">
 
         <ListView
             android:id="@+id/cartlist"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/amnt">
-        </ListView>
+            android:layout_above="@+id/amnt" />
 
     </RelativeLayout>
 
@@ -35,32 +34,31 @@
 
         <TextView
             android:id="@+id/amnt"
-            android:text="TOTAL AMOUNT :"
-            android:textSize="12sp"
-            android:textStyle="bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true" />
+            android:layout_alignParentStart="true"
+            android:text="Total Amount Payable :"
+            android:textSize="14sp"
+            android:textStyle="bold" />
 
         <TextView
-            android:text="PRICE"
-            android:textSize="12sp"
-            android:textStyle="bold"
+            android:id="@+id/netamnt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/amnt"
-            android:layout_marginLeft="3dp"
-            android:id="@+id/textView3" />
+            android:layout_alignParentEnd="true"
+            android:text="Price"
+            android:textSize="14sp"
+            android:textStyle="bold" />
 
         <Button
-            android:text="BUY NOW"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/roundcolorbtn"
             android:id="@+id/paybtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/netamnt"
+            android:layout_centerHorizontal="true"
             android:layout_marginTop="10dp"
-            android:layout_below="@+id/textView3"
-            android:layout_centerHorizontal="true" />
+            android:background="@drawable/roundcolorbtn"
+            android:text="BUY NOW" />
 
     </RelativeLayout>
 

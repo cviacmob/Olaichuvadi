@@ -8,8 +8,8 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.cviac.olaichuvadi.R;
-import com.cviac.olaichuvadi.adapters.CartAdapter;
-import com.cviac.olaichuvadi.datamodels.CartInfo;
+import com.cviac.olaichuvadi.adapters.CartItemAdapter;
+import com.cviac.olaichuvadi.datamodels.ProductCartInfo;
 import com.cviac.olaichuvadi.utilities.NonScrollListView;
 
 import java.util.ArrayList;
@@ -20,7 +20,7 @@ import butterknife.InjectView;
 
 public class PaymentActivity extends AppCompatActivity {
 
-    List<CartInfo> cartitms;
+    List<ProductCartInfo> cartProducts;
     Button pay;
 
     @InjectView(R.id.crtitms)
@@ -35,7 +35,7 @@ public class PaymentActivity extends AppCompatActivity {
         ButterKnife.inject(this);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        CartAdapter adapter = new CartAdapter(PaymentActivity.this, cartitms);
+        CartItemAdapter adapter = new CartItemAdapter(PaymentActivity.this, cartProducts);
         nonScrollListView = (NonScrollListView) findViewById(R.id.crtitms);
         nonScrollListView.setAdapter(adapter);
         pay = (Button) findViewById(R.id.paybutn);
@@ -54,20 +54,20 @@ public class PaymentActivity extends AppCompatActivity {
     }
 
     private void loadcrtitms() {
-        cartitms = new ArrayList<>();
+        cartProducts = new ArrayList<>();
 
-        CartInfo c1 = new CartInfo(R.mipmap.ic, "Title 1", "Desc 1", "$ 50");
-        cartitms.add(c1);
-        CartInfo c2 = new CartInfo(R.mipmap.ic, "Title 2", "Desc 2", "$ 65");
-        cartitms.add(c2);
-        CartInfo c3 = new CartInfo(R.mipmap.ic, "Title 3", "Desc 3", "$ 70");
-        cartitms.add(c3);
-        CartInfo c4 = new CartInfo(R.mipmap.ic, "Title 4", "Desc 4", "$ 60");
-        cartitms.add(c4);
-        CartInfo c5 = new CartInfo(R.mipmap.ic, "Title 5", "Desc 5", "$ 55");
-        cartitms.add(c5);
-        CartInfo c6 = new CartInfo(R.mipmap.ic, "Title 6", "Desc 6", "$ 45");
-        cartitms.add(c6);
+        ProductCartInfo c1 = new ProductCartInfo(R.mipmap.ic, "Title 1", "Desc 1", "$ 50");
+        cartProducts.add(c1);
+        ProductCartInfo c2 = new ProductCartInfo(R.mipmap.ic, "Title 2", "Desc 2", "$ 65");
+        cartProducts.add(c2);
+        ProductCartInfo c3 = new ProductCartInfo(R.mipmap.ic, "Title 3", "Desc 3", "$ 70");
+        cartProducts.add(c3);
+        ProductCartInfo c4 = new ProductCartInfo(R.mipmap.ic, "Title 4", "Desc 4", "$ 60");
+        cartProducts.add(c4);
+        ProductCartInfo c5 = new ProductCartInfo(R.mipmap.ic, "Title 5", "Desc 5", "$ 55");
+        cartProducts.add(c5);
+        ProductCartInfo c6 = new ProductCartInfo(R.mipmap.ic, "Title 6", "Desc 6", "$ 45");
+        cartProducts.add(c6);
 
     }
 }

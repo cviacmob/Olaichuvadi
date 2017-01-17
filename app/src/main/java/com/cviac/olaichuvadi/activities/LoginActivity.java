@@ -60,7 +60,7 @@ public class LoginActivity extends AppCompatActivity {
                     Prefs.edit();
                     Prefs.putString("isregistered", "true");
 
-                    login(lmail,lpwd);
+                    login(lmail, lpwd);
 
                 } else {
                     Toast.makeText(getApplicationContext(),
@@ -93,7 +93,7 @@ public class LoginActivity extends AppCompatActivity {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         OpencartAPIs api = retrofit.create(OpencartAPIs.class);
-        Call<LogininfoResponse> call = api.login(lmail,lpwd);
+        Call<LogininfoResponse> call = api.login(lmail, lpwd);
         call.enqueue(new Callback<LogininfoResponse>() {
             @Override
             public void onResponse(Response<LogininfoResponse> response, Retrofit retrofit) {
@@ -108,10 +108,11 @@ public class LoginActivity extends AppCompatActivity {
                             "Login Failed: " + rsp.getCode(), Toast.LENGTH_LONG).show();
                 }
             }
+
             @Override
             public void onFailure(Throwable t) {
                 Toast.makeText(LoginActivity.this,
-                        "Login Failed: "+t.getLocalizedMessage(), Toast.LENGTH_LONG).show();
+                        "Login Failed: " + t.getLocalizedMessage(), Toast.LENGTH_LONG).show();
             }
         });
     }

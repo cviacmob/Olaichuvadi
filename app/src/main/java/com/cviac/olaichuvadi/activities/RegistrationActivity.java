@@ -86,16 +86,6 @@ public class RegistrationActivity extends AppCompatActivity {
         });
     }
 
-    protected boolean isValidEmail(String email) {
-
-        String EMAILPATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
-                + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
-
-        Pattern pattern = Pattern.compile(EMAILPATTERN);
-        Matcher matcher = pattern.matcher(email);
-        return matcher.matches();
-    }
-
     public void register(String firstname, String lastname, String email1, String mob, String pswd, String cpswd) {
 
         Retrofit retrofit = new Retrofit.Builder()
@@ -124,5 +114,14 @@ public class RegistrationActivity extends AppCompatActivity {
                         "Registration Failed: "+t.getLocalizedMessage(), Toast.LENGTH_LONG).show();
             }
         });
+    }
+    protected boolean isValidEmail(String email) {
+
+        String EMAILPATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+                + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+
+        Pattern pattern = Pattern.compile(EMAILPATTERN);
+        Matcher matcher = pattern.matcher(email);
+        return matcher.matches();
     }
 }

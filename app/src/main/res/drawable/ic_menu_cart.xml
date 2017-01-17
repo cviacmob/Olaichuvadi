@@ -2,12 +2,12 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:drawable="@drawable/cart"
+        android:drawable="@drawable/cartw"
         android:gravity="center">
     </item>
     <item
     android:id="@+id/ic_cart_badge"
-    android:drawable="@drawable/cart">
+    android:drawable="@drawable/cartw">
     </item>
 
 </layer-list>

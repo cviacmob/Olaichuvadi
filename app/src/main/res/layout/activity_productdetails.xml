@@ -31,60 +31,49 @@
         android:text="PRICE :" />
 
     <TextView
-        android:id="@+id/cat"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/prz"
-        android:layout_marginTop="10dp"
-        android:text="CATEGORY :" />
-
-    <TextView
-        android:id="@+id/desc"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/cat"
-        android:layout_marginTop="10dp"
-        android:text="DESCRIPTION :" />
-
-    <TextView
-        android:id="@+id/desc_det"
-        android:layout_marginTop="10dp"
-        android:layout_below="@+id/desc"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
-    <TextView
-        android:id="@+id/ptit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/tit"
-        android:layout_marginLeft="80dp"
-        android:layout_toRightOf="@+id/tit"
-        android:text="Title" />
-
-    <TextView
         android:id="@+id/pprz"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/ptit"
         android:layout_alignTop="@+id/prz"
+        android:layout_toEndOf="@+id/prz"
+        android:paddingLeft="10dp"
         android:text="Price" />
 
-    <TextView
-        android:id="@+id/pcat"
-        android:layout_width="wrap_content"
+    <ScrollView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/ptit"
-        android:layout_alignTop="@+id/cat"
-        android:text="Category" />
+        android:layout_above="@+id/cartbtn"
+        android:layout_below="@+id/prz">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/desc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/prz"
+                android:layout_marginTop="10dp"
+                android:text="DESCRIPTION :" />
+
+            <TextView
+                android:id="@+id/desc_det"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/desc"
+                android:layout_marginTop="10dp" />
+
+        </RelativeLayout>
+    </ScrollView>
 
     <Button
         android:id="@+id/cartbtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_toLeftOf="@+id/buybtn"
-        android:layout_marginRight="10dp"
+        android:layout_alignParentStart="true"
         android:background="@drawable/roundcolorbtn"
         android:text="Add to Cart" />
 

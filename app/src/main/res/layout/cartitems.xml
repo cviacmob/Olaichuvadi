@@ -6,46 +6,68 @@
     android:padding="10dp">
 
     <ImageView
+        android:id="@+id/crtimg"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:id="@+id/crtimg" />
+        android:src="@mipmap/ic" />
 
     <TextView
-        android:text="TextView"
+        android:id="@+id/crttit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
+        android:layout_toLeftOf="@+id/crtprc"
         android:layout_toRightOf="@+id/crtimg"
-        android:layout_toEndOf="@+id/crtimg"
-        android:layout_marginLeft="13dp"
-        android:layout_marginStart="13dp"
-        android:id="@+id/crttit" />
+        android:maxLines="2"
+        android:paddingRight="5dp"
+        android:text="Product Name" />
 
     <TextView
-        android:text="TextView"
+        android:id="@+id/crtprc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:id="@+id/crtprc" />
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:text="Price Amount" />
 
     <ImageButton
-        android:background="@mipmap/delete"
+        android:id="@+id/delbtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/crtprc"
-        android:layout_alignParentRight="true"
+        android:layout_alignBottom="@+id/crtimg"
         android:layout_alignParentEnd="true"
-        android:id="@+id/delbtn" />
+        android:layout_alignParentRight="true"
+        android:background="@mipmap/delete" />
 
     <TextView
-        android:text="TextView"
+        android:id="@+id/numcounts"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/crtdesc"
-        android:layout_below="@+id/crttit"
-        android:layout_alignLeft="@+id/crttit"
-        android:layout_alignStart="@+id/crttit" />
+        android:layout_alignBottom="@+id/crtimg"
+        android:layout_toRightOf="@+id/delprd"
+        android:paddingLeft="2dp"
+        android:paddingRight="2dp"
+        android:text="count" />
+
+    <ImageButton
+        android:id="@+id/delprd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/crtimg"
+        android:layout_alignStart="@+id/crttit"
+        android:background="@mipmap/minus"
+        android:paddingLeft="2dp"
+        android:paddingRight="2dp" />
+
+    <ImageButton
+        android:id="@+id/addprd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/crtimg"
+        android:layout_toRightOf="@+id/numcounts"
+        android:background="@mipmap/plus"
+        android:paddingLeft="2dp"
+        android:paddingRight="2dp" />
 
 </RelativeLayout>
