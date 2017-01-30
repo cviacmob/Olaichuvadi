@@ -79,6 +79,8 @@ public class EditaddressActivity extends AppCompatActivity {
 
                 String adrs_body = getAddress(fname, lname, address, aacty, pin_no, mobile, pay_state, pay_city);
 
+                String ins_addrs = passAddr(fname, lname, address, aacty, pin_no, mobile, pay_state, pay_city);
+
                 Intent sbmt = new Intent();
                 sbmt.putExtra("Address", adrs_body);
                 setResult(2, sbmt);
@@ -93,26 +95,22 @@ public class EditaddressActivity extends AppCompatActivity {
                 finish();
             }
         });
+    }
 
-//        state.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-//            @Override
-//            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-//
-//                adapterView.getItemAtPosition(i);
-//
-//                String dist_pos = "dist_" + i;
-//                int resID = getId(dist_pos, R.array.class);
-//                final String[] dists = view.getContext().getResources().getStringArray(resID);
-//                ArrayAdapter<CharSequence> adapter = new ArrayAdapter(view.getContext(), android.R.layout.simple_spinner_item, dists);
-//                scity.setAdapter(adapter);
-//            }
-//
-//            @Override
-//            public void onNothingSelected(AdapterView<?> adapterView) {
-//
-//            }
-//        });
+    private String passAddr(String fname, String lname, String address, String aacty, String pin_no, String mobile, String pay_state, String pay_city) {
 
+        AddressInfo addr = new AddressInfo(fname, lname, address, aacty, pay_city, pay_state, pin_no, mobile);
+
+        addr.setFname(fname);
+        addr.setLname(lname);
+        addr.setAddr(address);
+        addr.setCity(aacty);
+        addr.setPin_code(pin_no);
+        addr.setMobileno(mobile);
+        addr.setState(pay_state);
+        addr.setDist(pay_city);
+
+        return addr.toString();
     }
 
     private String getAddress(String fname, String lname, String address, String aacty, String pin_no, String mobile, String pay_state, String pay_city) {

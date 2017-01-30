@@ -39,8 +39,8 @@ public class AddressAdapter extends BaseAdapter {
     }
 
     public static class ViewHolder {
-        public TextView tv1, tv2, tv3, tv4, tv5, tv6, tv7;
-        public ImageButton edt, del;
+        public TextView tv1, tv2, tv3, tv4, tv5, tv6, tv7, tv8;
+        public ImageButton del;
     }
 
     @Override
@@ -52,25 +52,27 @@ public class AddressAdapter extends BaseAdapter {
             LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             ord = inflater.inflate(R.layout.addr_layout, null);
             holder = new AddressAdapter.ViewHolder();
-            holder.tv6 = (TextView) ord.findViewById(R.id.addname);
-            holder.tv1 = (TextView) ord.findViewById(R.id.drst);
-            holder.tv2 = (TextView) ord.findViewById(R.id.cty);
-            holder.tv3 = (TextView) ord.findViewById(R.id.dist);
-            holder.tv4 = (TextView) ord.findViewById(R.id.stt);
-            holder.tv5 = (TextView) ord.findViewById(R.id.pin);
-            holder.tv7 = (TextView) ord.findViewById(R.id.mbl);
+            holder.tv1 = (TextView) ord.findViewById(R.id.addname);
+            holder.tv2 = (TextView) ord.findViewById(R.id.addlname);
+            holder.tv3 = (TextView) ord.findViewById(R.id.drst);
+            holder.tv4 = (TextView) ord.findViewById(R.id.cty);
+            holder.tv5 = (TextView) ord.findViewById(R.id.dist);
+            holder.tv6 = (TextView) ord.findViewById(R.id.stt);
+            holder.tv7 = (TextView) ord.findViewById(R.id.pin);
+            holder.tv8 = (TextView) ord.findViewById(R.id.mbl);
             holder.del = (ImageButton) ord.findViewById(R.id.delbtn);
             ord.setTag(holder);
         } else {
             holder = (ViewHolder) ord.getTag();
         }
-//        holder.tv6.setText(adinfo.getUname());
-//        holder.tv1.setText(adinfo.getDoor_st());
-        holder.tv2.setText(adinfo.getCity());
-        holder.tv3.setText(adinfo.getDist());
-        holder.tv4.setText(adinfo.getState());
-        holder.tv5.setText(adinfo.getPin_code());
-        holder.tv7.setText(adinfo.getMobileno());
+        holder.tv1.setText(adinfo.getFname());
+        holder.tv2.setText(adinfo.getLname());
+        holder.tv3.setText(adinfo.getAddr());
+        holder.tv4.setText(adinfo.getCity());
+        holder.tv5.setText(adinfo.getDist());
+        holder.tv6.setText(adinfo.getState());
+        holder.tv7.setText(adinfo.getPin_code());
+        holder.tv8.setText(adinfo.getMobileno());
         return ord;
     }
 }

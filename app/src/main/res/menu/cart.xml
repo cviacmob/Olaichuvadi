@@ -8,14 +8,12 @@
         app:showAsAction="never" />
     <item
         android:id="@+id/english"
-        android:icon="@mipmap/tamil"
-        android:showAsAction="always"
-        android:title="English" />
+        android:showAsAction="never"
+        android:title="@string/english_language" />
     <item
         android:id="@+id/tamil"
-        android:icon="@mipmap/english"
-        android:showAsAction="always"
-        android:title="Tamil" />
+        android:showAsAction="never"
+        android:title="@string/tamil_language" />
     <item
         android:id="@+id/cart"
         android:icon="@drawable/ic_menu_cart"

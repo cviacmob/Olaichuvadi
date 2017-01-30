@@ -9,7 +9,15 @@
         android:id="@+id/addname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="sample_name" />
+        android:text="sample_fname" />
+
+    <TextView
+        android:id="@+id/addlname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/addname"
+        android:paddingLeft="5dp"
+        android:text="sample_lname" />
 
     <TextView
         android:id="@+id/drst"
