@@ -19,7 +19,7 @@
             android:id="@+id/namebox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Email-ID"
+            android:hint="@string/edit_email"
             android:inputType="textEmailAddress" />
     </android.support.design.widget.TextInputLayout>
 
@@ -34,8 +34,8 @@
             android:id="@+id/pwdbox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Password"
-            android:inputType="textPassword"/>
+            android:hint="@string/edit_pwd"
+            android:inputType="textPassword" />
     </android.support.design.widget.TextInputLayout>
 
     <Button
@@ -45,8 +45,8 @@
         android:layout_below="@+id/pwd"
         android:layout_centerHorizontal="true"
         android:background="@drawable/roundcolorbtn"
-        android:text="Register"
-        android:textColor="#ffffff"/>
+        android:text="@string/register"
+        android:textColor="#ffffff" />
 
     <Button
         android:id="@+id/login"
@@ -56,7 +56,7 @@
         android:layout_alignParentRight="true"
         android:layout_below="@+id/pwd"
         android:background="@drawable/roundcolorbtn"
-        android:text="Login"
-        android:textColor="#ffffff"/>
+        android:text="@string/login"
+        android:textColor="#ffffff" />
 
 </RelativeLayout>

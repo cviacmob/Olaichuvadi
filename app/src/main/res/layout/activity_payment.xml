@@ -66,7 +66,7 @@
         android:layout_alignBottom="@+id/paymbl"
         android:layout_alignParentEnd="true"
         android:background="@drawable/roundcolorbtn"
-        android:text="Change Address" />
+        android:text="@string/txt_addr" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -90,7 +90,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/crtitms"
                 android:background="@drawable/roundcolorbtn"
-                android:text="PAY NOW" />
+                android:text="@string/txt_pay" />
 
             <RadioGroup
                 android:id="@+id/paygrp"

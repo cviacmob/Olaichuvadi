@@ -2,6 +2,9 @@ package com.cviac.olaichuvadi.activities;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
+import android.content.res.Resources;
+import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
 import android.os.Bundle;
@@ -11,6 +14,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.DisplayMetrics;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -30,6 +34,7 @@ import com.cviac.olaichuvadi.utilities.Prefs;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import retrofit.Call;
 import retrofit.Callback;
@@ -39,6 +44,7 @@ import retrofit.Retrofit;
 
 public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
+    private Locale myLocale;
     GridView gv;
     List<Product> rowListItem;
     ProductsAdapter adapter;
@@ -68,6 +74,8 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         setUserdetails(navigationView);
+
+        Typeface tf = Typeface.createFromAsset(getAssets(), "fonts/bamini.TTF");
 
         getSetToken();
 
@@ -141,12 +149,14 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     }
 
     private void setUserdetails(NavigationView navigationView) {
+
         View hview = navigationView.getHeaderView(0);
+
         TextView un = (TextView) hview.findViewById(R.id.nav_name);
         TextView um = (TextView) hview.findViewById(R.id.nav_mail);
 
-        String name = Prefs.getString("Name", "");
-        String phne = Prefs.getString("Mail", "");
+        String name = Prefs.getString("Regname", "User_Name");
+        String phne = Prefs.getString("Regmail", "User_Email");
 
         un.setText(name);
         um.setText(phne);
@@ -217,12 +227,21 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
         int id = item.getItemId();
         switch (id) {
             case R.id.cart:
                 Intent h = new Intent(HomeActivity.this, MyCartActivity.class);
                 startActivity(h);
+                break;
+            case R.id.tamil:
+                setLocale("ta");
+                break;
+            case R.id.english:
+                setLocale("en");
+                break;
+            case R.id.action_settings:
+//                Intent set = new Intent(HomeActivity.this, SettingsActivity.class);
+//                startActivity(set);
                 break;
         }
         return super.onOptionsItemSelected(item);
@@ -243,6 +262,19 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             }
         }
         super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    public void setLocale(String lang) {
+
+        myLocale = new Locale(lang);
+        Resources res = getResources();
+        DisplayMetrics dm = res.getDisplayMetrics();
+        Configuration conf = res.getConfiguration();
+        conf.locale = myLocale;
+        res.updateConfiguration(conf, dm);
+        Intent refresh = new Intent(this, HomeActivity.class);
+        startActivity(refresh);
+        finish();
     }
 
     @SuppressWarnings("StatementWithEmptyBody")

@@ -4,17 +4,19 @@ import java.io.Serializable;
 
 public class AddressInfo implements Serializable {
 
-    private String uname;
-    private String door_st;
+    private String fname;
+    private String lname;
+    private String addr;
     private String city;
     private String dist;
     private String state;
     private String pin_code;
     private String mobileno;
 
-    public AddressInfo(String uname, String door_st, String city, String dist, String state, String pin_code, String mobileno) {
-        this.uname = uname;
-        this.door_st = door_st;
+    public AddressInfo(String fname, String lname, String addr, String city, String dist, String state, String pin_code, String mobileno) {
+        this.fname = fname;
+        this.lname = lname;
+        this.addr = addr;
         this.city = city;
         this.dist = dist;
         this.state = state;
@@ -22,28 +24,28 @@ public class AddressInfo implements Serializable {
         this.mobileno = mobileno;
     }
 
-    public String getUname() {
-        return uname;
+    public String getFname() {
+        return fname;
     }
 
-    public void setUname(String uname) {
-        this.uname = uname;
+    public void setFname(String fname) {
+        this.fname = fname;
     }
 
-    public String getMobileno() {
-        return mobileno;
+    public String getLname() {
+        return lname;
     }
 
-    public void setMobileno(String mobileno) {
-        this.mobileno = mobileno;
+    public void setLname(String lname) {
+        this.lname = lname;
     }
 
-    public String getDoor_st() {
-        return door_st;
+    public String getAddr() {
+        return addr;
     }
 
-    public void setDoor_st(String door_st) {
-        this.door_st = door_st;
+    public void setAddr(String addr) {
+        this.addr = addr;
     }
 
     public String getCity() {
@@ -76,5 +78,13 @@ public class AddressInfo implements Serializable {
 
     public void setPin_code(String pin_code) {
         this.pin_code = pin_code;
+    }
+
+    public String getMobileno() {
+        return mobileno;
+    }
+
+    public void setMobileno(String mobileno) {
+        this.mobileno = mobileno;
     }
 }

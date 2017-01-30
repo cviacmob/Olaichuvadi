@@ -19,7 +19,7 @@
             android:id="@+id/namebox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="User Name"
+            android:hint="@string/edit_uname"
             android:inputType="text" />
     </android.support.design.widget.TextInputLayout>
 
@@ -34,7 +34,7 @@
             android:id="@+id/mailbox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Email-ID" />
+            android:hint="@string/edit_email" />
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
@@ -48,7 +48,7 @@
             android:id="@+id/phonebox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Mobile Number"
+            android:hint="@string/edit_mob"
             android:inputType="number" />
     </android.support.design.widget.TextInputLayout>
 
@@ -63,7 +63,7 @@
             android:id="@+id/pwdbox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Password"
+            android:hint="@string/edit_pwd"
             android:inputType="textPassword" />
     </android.support.design.widget.TextInputLayout>
 
@@ -78,7 +78,7 @@
             android:id="@+id/cnfpwdbox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Confirm Password"
+            android:hint="@string/edit_cnfpwd"
             android:inputType="textPassword" />
     </android.support.design.widget.TextInputLayout>
 
@@ -89,7 +89,7 @@
         android:layout_below="@+id/cnfpwd"
         android:layout_centerHorizontal="true"
         android:background="@drawable/roundcolorbtn"
-        android:text="Register"
-        android:textColor="#ffffff"/>
+        android:text="@string/register"
+        android:textColor="#ffffff" />
 
 </RelativeLayout>

@@ -1,21 +1,21 @@
 package com.cviac.olaichuvadi.adapters;
 
-import android.content.Context;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.BaseAdapter;
-import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.TextView;
+        import android.content.Context;
+        import android.util.Log;
+        import android.view.LayoutInflater;
+        import android.view.View;
+        import android.view.ViewGroup;
+        import android.widget.BaseAdapter;
+        import android.widget.ImageButton;
+        import android.widget.ImageView;
+        import android.widget.TextView;
 
-import com.cviac.olaichuvadi.R;
-import com.cviac.olaichuvadi.activities.PaymentActivity;
-import com.cviac.olaichuvadi.datamodels.CartInfo;
-import com.cviac.olaichuvadi.datamodels.ProductCartInfo;
+        import com.cviac.olaichuvadi.R;
+        import com.cviac.olaichuvadi.activities.PaymentActivity;
+        import com.cviac.olaichuvadi.datamodels.CartInfo;
+        import com.cviac.olaichuvadi.datamodels.ProductCartInfo;
 
-import java.util.List;
+        import java.util.List;
 
 public class CartItemAdapter extends BaseAdapter {
 
@@ -79,7 +79,7 @@ public class CartItemAdapter extends BaseAdapter {
                     tv2.setText(stringVal);
                 }
             });
-            ImageButton txtminus = (ImageButton) crt.findViewById(R.id.delprd);
+            final ImageButton txtminus = (ImageButton) crt.findViewById(R.id.delprd);
             txtminus.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -87,7 +87,8 @@ public class CartItemAdapter extends BaseAdapter {
                     counter--;
                     stringVal = Integer.toString(counter);
                     tv2.setText(stringVal);
-                    if (counter < 0) {
+                    if (counter <= 0) {
+                        txtminus.setEnabled(false);
                         tv2.setText("0");
                     }
                 }
@@ -96,6 +97,9 @@ public class CartItemAdapter extends BaseAdapter {
         } else {
             holder = (ViewHolder) crt.getTag();
         }
+//        String pz1 = cinfo.getTotal().substring(1);
+//        int p1 = Integer.parseInt(pz1);
+//        int przz = p1 * counter;
         holder.tv4.setText(cinfo.getTotal());
         holder.tv1.setText(cinfo.getName());
         holder.tv2.setText(cinfo.getQuantity());

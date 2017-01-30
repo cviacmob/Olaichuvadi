@@ -61,17 +61,7 @@
         android:id="@+id/delbtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/cty"
         android:layout_alignParentEnd="true"
-        android:background="@mipmap/delete" />
-
-    <ImageButton
-        android:id="@+id/edtbtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/cty"
-        android:layout_toLeftOf="@+id/delbtn"
-        android:background="@mipmap/pencil"
-        android:paddingRight="10dp" />
+        android:background="@mipmap/remcart" />
 
 </RelativeLayout>

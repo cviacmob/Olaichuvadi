@@ -38,7 +38,7 @@
         android:layout_alignBottom="@+id/crtimg"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:background="@mipmap/delete" />
+        android:background="@mipmap/remcart" />
 
     <TextView
         android:id="@+id/numcounts"

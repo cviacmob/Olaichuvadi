@@ -11,7 +11,7 @@
         android:id="@+id/ordr"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Your Orders History :"
+        android:text="@string/txt_orders"
         android:textStyle="bold" />
 
     <ListView

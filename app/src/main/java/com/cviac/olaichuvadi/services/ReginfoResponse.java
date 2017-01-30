@@ -2,9 +2,9 @@ package com.cviac.olaichuvadi.services;
 
 public class ReginfoResponse {
 
-    private int code;
-    private String desc;
-    private int customer_id;
+    private int code=-1;
+    private String desc="";
+    private int customer_id=-1;
 
     public int getCustomer_id() {
         return customer_id;

@@ -75,7 +75,7 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
         android:background="@drawable/roundcolorbtn"
-        android:text="Add to Cart" />
+        android:text="@string/txt_add2cart" />
 
     <Button
         android:id="@+id/buybtn"
@@ -84,6 +84,6 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
         android:background="@drawable/roundcolorbtn"
-        android:text="BUY NOW" />
+        android:text="@string/txt_buy" />
 
 </RelativeLayout>

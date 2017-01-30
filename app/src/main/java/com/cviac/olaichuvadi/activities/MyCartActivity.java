@@ -48,7 +48,7 @@ public class MyCartActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_cart);
-        setTitle("My Cart");
+        setTitle(R.string.My_Cart);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         cartProducts = new ArrayList<>();

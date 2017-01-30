@@ -59,14 +59,13 @@ public class AddressAdapter extends BaseAdapter {
             holder.tv4 = (TextView) ord.findViewById(R.id.stt);
             holder.tv5 = (TextView) ord.findViewById(R.id.pin);
             holder.tv7 = (TextView) ord.findViewById(R.id.mbl);
-            holder.edt = (ImageButton) ord.findViewById(R.id.edtbtn);
             holder.del = (ImageButton) ord.findViewById(R.id.delbtn);
             ord.setTag(holder);
         } else {
             holder = (ViewHolder) ord.getTag();
         }
-        holder.tv6.setText(adinfo.getUname());
-        holder.tv1.setText(adinfo.getDoor_st());
+//        holder.tv6.setText(adinfo.getUname());
+//        holder.tv1.setText(adinfo.getDoor_st());
         holder.tv2.setText(adinfo.getCity());
         holder.tv3.setText(adinfo.getDist());
         holder.tv4.setText(adinfo.getState());

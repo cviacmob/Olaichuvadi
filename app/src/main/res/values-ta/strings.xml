@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">ஓலைச்சுவடி</string>
+
+    <string name="action_settings">அமைப்புகள்</string>
+
+    <string name="Categories">பிரிவுகள்</string>
+    <string name="My_Library">என் நூலகம்</string>
+    <string name="My_Community">என் சமூகம்</string>
+    <string name="My_Cart">சேமித்த பொருட்கள்</string>
+    <string name="My_Account">என் கணக்கு</string>
+    <string name="My_Orders">நான் வாங்கியவை</string>
+    <string name="Logout">வெளியேறு</string>
+
+    <string name="title_categories">ஒரு பிரிவை தேர்வு செய்க</string>
+
+    <string name="login">உள் நுழை</string>
+    <string name="register">புதிய பதிவு</string>
+    <string name="txt_orders">நான் வாங்கிய பொருட்கள் :</string>
+    <string name="txt_addr">உங்கள் முகவரியை மாற்ற</string>
+    <string name="txt_pay">இப்போது செலுத்த</string>
+    <string name="txt_buy">இப்போது வாங்க</string>
+    <string name="txt_add2cart">பெட்டகத்தில் சேர்</string>
+    <string name="txt_savdaddr">உங்கள் சேமிக்கப்பட்ட முகவரிகள்</string>
+    <string name="txt_addaddr">முகவரியை சேர்க்க</string>
+
+
+    <string name="edit_email">மின்னஞ்சல் முகவரி</string>
+    <string name="edit_pwd">கடவுச்சொல்</string>
+    <string name="edit_cnfpwd">கடவுச்சொல்லை உறுதிப்படுத்தவும்</string>
+    <string name="edit_mob">கைப்பேசி எண்</string>
+    <string name="edit_uname">பயனர்பெயர்</string>
+    <string name="edit_fname">முதல் பெயர்</string>
+    <string name="edit_lname">கடந்த பெயர்</string>
+    <string name="edit_addr">முகவரி</string>
+    <string name="edit_cty">நகரம்</string>
+    <string name="edit_pin">அஞ்சல் குறியீடு</string>
+    <string name="edit_dist">மாவட்டம்</string>
+    <string name="edit_sname">மாநிலம்</string>
+
+    <string name="btn_sub">சமர்ப்பிக்க</string>
+    <string name="btn_cncl">ரத்து செய்</string>
+
+</resources>

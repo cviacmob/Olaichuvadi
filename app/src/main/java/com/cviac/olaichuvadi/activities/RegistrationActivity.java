@@ -34,6 +34,7 @@ public class RegistrationActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
+        setTitle(getString(R.string.register));
 
         name = (EditText) findViewById(R.id.namebox);
         mail = (EditText) findViewById(R.id.mailbox);
@@ -73,9 +74,9 @@ public class RegistrationActivity extends AppCompatActivity {
                 if (app.isNetworkStatus()) {
 
                     Prefs.edit();
-                    Prefs.putString("Name", dname);
-                    Prefs.putString("Mail", dmail);
-                    Prefs.putString("Phone", dphone);
+                    Prefs.putString("Regname", dname);
+                    Prefs.putString("Regmail", dmail);
+                    Prefs.putString("Regphone", dphone);
 
                     register(dname, dname, dmail, dphone, dpwd, dcnfpwd);
                 } else {
@@ -89,7 +90,7 @@ public class RegistrationActivity extends AppCompatActivity {
     public void register(String firstname, String lastname, String email1, String mob, String pswd, String cpswd) {
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://nheart.cviac.com")
+                .baseUrl("http://olaichuvadi.cviac.com")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         OpencartAPIs api = retrofit.create(OpencartAPIs.class);
@@ -108,13 +109,15 @@ public class RegistrationActivity extends AppCompatActivity {
                             "Registration Failed: " + rsp.getCode(), Toast.LENGTH_LONG).show();
                 }
             }
+
             @Override
             public void onFailure(Throwable t) {
                 Toast.makeText(RegistrationActivity.this,
-                        "Registration Failed: "+t.getLocalizedMessage(), Toast.LENGTH_LONG).show();
+                        "Registration Failed: " + t.getLocalizedMessage(), Toast.LENGTH_LONG).show();
             }
         });
     }
+
     protected boolean isValidEmail(String email) {
 
         String EMAILPATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"

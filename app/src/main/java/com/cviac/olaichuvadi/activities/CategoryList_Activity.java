@@ -33,7 +33,7 @@ public class CategoryList_Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_category_list);
-        setTitle("Select a Category");
+        setTitle(getString(R.string.title_categories));
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 

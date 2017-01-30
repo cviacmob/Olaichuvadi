@@ -58,7 +58,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="10dp"
             android:background="@drawable/roundcolorbtn"
-            android:text="BUY NOW" />
+            android:text="@string/txt_buy" />
 
     </RelativeLayout>
 

@@ -46,7 +46,7 @@ public class MyLibraryActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbarl);
         setSupportActionBar(toolbar);
 
-        setTitle("My Library");
+        setTitle(getString(R.string.My_Library));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.

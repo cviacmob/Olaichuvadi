@@ -46,7 +46,7 @@ public class MyCommunityActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbarc);
         setSupportActionBar(toolbar);
 
-        setTitle("My Community");
+        setTitle(R.string.My_Community);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
