@@ -878,4 +878,13 @@
     <string name="pref_title_vibrate">Vibrate</string>
     <string name="tamil_language">தமிழ்</string>
     <string name="english_language">English</string>
+
+    <string name="tab_shared">SHARED</string>
+    <string name="tab_readclubs">READING CLUB</string>
+    <string name="tab_authors">AUTHORS</string>
+    <string name="tab_pub">PUBLISHERS</string>
+    <string name="tab_books">BOOKS</string>
+    <string name="tab_purch">PURCHASED</string>
+    <string name="tab_rev">REVIEWED</string>
+    <string name="tab_fav">FAVOURITES</string>
 </resources>

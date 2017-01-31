@@ -157,14 +157,13 @@ public class MyCommunityActivity extends AppCompatActivity {
         public CharSequence getPageTitle(int position) {
             switch (position) {
                 case 0:
-                    return "SHARED";
+                    return getString(R.string.tab_shared);
                 case 1:
-                    return "READING CLUB";
+                    return getString(R.string.tab_readclubs);
                 case 2:
-                    return "AUTHORS";
+                    return getString(R.string.tab_authors);
                 case 3:
-                    return "PUBLISHERS";
-
+                    return getString(R.string.tab_pub);
             }
             return null;
         }

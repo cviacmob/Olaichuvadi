@@ -39,4 +39,13 @@
 
     <string name="btn_sub">जमा करें</string>
     <string name="btn_cncl">रद्द करना</string>
+
+    <string name="tab_shared">साझा</string>
+    <string name="tab_readclubs">पढ़ने के समूह</string>
+    <string name="tab_authors">लेखकों</string>
+    <string name="tab_pub">प्रकाशकों</string>
+    <string name="tab_books">पुस्तकें</string>
+    <string name="tab_purch">खरीदा</string>
+    <string name="tab_rev">समीक्षा</string>
+    <string name="tab_fav">पसंदीदा</string>
 </resources>

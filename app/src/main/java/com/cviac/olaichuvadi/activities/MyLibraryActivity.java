@@ -158,13 +158,13 @@ public class MyLibraryActivity extends AppCompatActivity {
         public CharSequence getPageTitle(int position) {
             switch (position) {
                 case 0:
-                    return "BOOKS";
+                    return getString(R.string.tab_books);
                 case 1:
-                    return "PURCHASED";
+                    return getString(R.string.tab_purch);
                 case 2:
-                    return "REVIEWED";
+                    return getString(R.string.tab_rev);
                 case 3:
-                    return "FAVOURITES";
+                    return getString(R.string.tab_fav);
             }
             return null;
         }

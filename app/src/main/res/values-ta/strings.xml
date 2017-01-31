@@ -42,4 +42,13 @@
     <string name="btn_sub">சமர்ப்பிக்க</string>
     <string name="btn_cncl">ரத்து செய்</string>
 
+    <string name="tab_shared">பகிர்வு</string>
+    <string name="tab_readclubs">வாசிப்பு குழு</string>
+    <string name="tab_authors">ஆசிரியர்கள்</string>
+    <string name="tab_pub">வெளியீட்டாளர்கள்</string>
+    <string name="tab_books">புத்தகங்கள்</string>
+    <string name="tab_purch">வாங்கியவை</string>
+    <string name="tab_rev">விமர்சனம்</string>
+    <string name="tab_fav">பிடித்தவை</string>
+
 </resources>
