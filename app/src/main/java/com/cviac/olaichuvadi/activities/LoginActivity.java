@@ -99,7 +99,6 @@ public class LoginActivity extends AppCompatActivity {
             public void onResponse(Response<LogininfoResponse> response, Retrofit retrofit) {
                 LogininfoResponse rsp = response.body();
                 if (rsp.getCode() == 0) {
-                    //Prefs.putString("Customer_ID",rsp.getCustomer().getCustomer_id());
                     Intent logn = new Intent(LoginActivity.this, HomeActivity.class);
                     startActivity(logn);
                     finish();

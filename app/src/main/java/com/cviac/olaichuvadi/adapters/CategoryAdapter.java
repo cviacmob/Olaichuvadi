@@ -60,9 +60,16 @@ public class CategoryAdapter extends BaseAdapter {
         } else {
             holder = (CategoryAdapter.ViewHolder) shr.getTag();
         }
-        String url = "http://nheart.cviac.com//image//cache//catalog//ring22-500x500.jpg";
-        Picasso.with(shr.getContext()).load(url).resize(50, 50).into(holder.iv);
+//        String url = "http://nheart.cviac.com//image//cache//catalog//ring22-500x500.jpg";
+//        Picasso.with(shr.getContext()).load(url).resize(50, 50).into(holder.iv);
         holder.tv.setText(cinfo.getName());
+        String url = cinfo.getImage();
+        url = url.replace("localhost", "192.168.1.8");
+        try {
+            Picasso.with(shr.getContext()).load(url).resize(50, 50).into(holder.iv);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return shr;
     }
 }

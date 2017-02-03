@@ -15,6 +15,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -31,6 +32,11 @@ import com.cviac.olaichuvadi.datamodels.Product;
 import com.cviac.olaichuvadi.services.OpencartAPIs;
 import com.cviac.olaichuvadi.utilities.BadgeDrawable;
 import com.cviac.olaichuvadi.utilities.Prefs;
+import com.daimajia.slider.library.Animations.DescriptionAnimation;
+import com.daimajia.slider.library.SliderLayout;
+import com.daimajia.slider.library.SliderTypes.BaseSliderView;
+import com.daimajia.slider.library.SliderTypes.TextSliderView;
+import com.daimajia.slider.library.Tricks.ViewPagerEx;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,9 +48,10 @@ import retrofit.GsonConverterFactory;
 import retrofit.Response;
 import retrofit.Retrofit;
 
-public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, BaseSliderView.OnSliderClickListener, ViewPagerEx.OnPageChangeListener {
 
     private Locale myLocale;
+    private SliderLayout imageSlider;
     GridView gv;
     List<Product> rowListItem;
     ProductsAdapter adapter;
@@ -59,8 +66,12 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
         rowListItem = new ArrayList<Product>();
         gv = (GridView) findViewById(R.id.prdts);
+        gv.setFastScrollEnabled(true);
         adapter = new ProductsAdapter(HomeActivity.this, rowListItem);
         gv.setAdapter(adapter);
+
+        imageSlider = (SliderLayout) findViewById(R.id.slider);
+
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -80,7 +91,10 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         getSetToken();
 
         refresh("61");
+        slider("61");
+
     }
+
 
     private void getSetToken() {
         String token = Prefs.getString("token", null);
@@ -125,7 +139,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 CategoryProductsResponse rsp = response.body();
                 rowListItem.clear();
                 rowListItem.addAll(rsp.getProducts());
-                //adapter.notifyDataSetChanged();
+//                adapter.notifyDataSetChanged();
                 adapter.notifyDataSetInvalidated();
             }
 
@@ -145,7 +159,55 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 startActivity(prd);
             }
         });
+    }
 
+    public void slider(String catId) {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("http://nheart.cviac.com")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        OpencartAPIs api = retrofit.create(OpencartAPIs.class);
+
+        final Call<CategoryProductsResponse> call = api.getProducts(catId);
+        call.enqueue(new Callback<CategoryProductsResponse>() {
+            @Override
+            public void onResponse(Response<CategoryProductsResponse> response, Retrofit retrofit) {
+                CategoryProductsResponse rsp = response.body();
+
+                for (int i = 0; i < rsp.getProducts().size(); i++) {
+
+                    Product prdct = rsp.getProducts().get(i);
+
+                    TextSliderView textSliderView = new TextSliderView(HomeActivity.this);
+
+                    // initialize a SliderLayout
+                    textSliderView
+                            .description(prdct.getName())
+                            .image(prdct.getThumb())
+                            .setScaleType(BaseSliderView.ScaleType.Fit)
+                            .setOnSliderClickListener(HomeActivity.this);
+
+                    Bundle data = new Bundle();
+                    data.putSerializable("Prdobj", prdct);
+
+                    textSliderView.bundle(data);
+
+                    imageSlider.addSlider(textSliderView);
+                }
+
+                imageSlider.setPresetTransformer(SliderLayout.Transformer.Accordion);
+                imageSlider.setPresetIndicator(SliderLayout.PresetIndicators.Center_Bottom);
+                imageSlider.setCustomAnimation(new DescriptionAnimation());
+                imageSlider.setDuration(2000);
+                imageSlider.addOnPageChangeListener(HomeActivity.this);
+            }
+
+            @Override
+            public void onFailure(Throwable t) {
+            }
+
+        });
     }
 
     private void setUserdetails(NavigationView navigationView) {
@@ -226,6 +288,37 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     }
 
     @Override
+    protected void onStop() {
+        // To prevent a memory leak on rotation, make sure to call stopAutoCycle() on the slider before activity or fragment is destroyed
+        imageSlider.stopAutoCycle();
+        super.onStop();
+    }
+
+    @Override
+    public void onSliderClick(BaseSliderView slider) {
+        Bundle datas = slider.getBundle();
+
+        Product prd = (Product) datas.getSerializable("Prdobj");
+
+        Intent prdss = new Intent(HomeActivity.this, Product_Details.class);
+        prdss.putExtra("productobj", prd);
+        startActivity(prdss);
+    }
+
+    @Override
+    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+    }
+
+    @Override
+    public void onPageSelected(int position) {
+        Log.e("Slider Demo", "Page Changed: " + position);
+    }
+
+    @Override
+    public void onPageScrollStateChanged(int state) {
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         switch (id) {
@@ -240,8 +333,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 setLocale("en");
                 break;
             case R.id.action_settings:
-//                Intent set = new Intent(HomeActivity.this, SettingsActivity.class);
-//                startActivity(set);
                 break;
         }
         return super.onOptionsItemSelected(item);

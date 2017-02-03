@@ -15,6 +15,12 @@
         android:showAsAction="never"
         android:title="@string/tamil_language" />
     <item
+        android:id="@+id/action_search"
+        android:icon="@mipmap/magnifyy"
+        android:title="Search"
+        app:actionViewClass="android.support.v7.widget.SearchView"
+        app:showAsAction="always|collapseActionView" />
+    <item
         android:id="@+id/cart"
         android:icon="@drawable/ic_menu_cart"
         android:title="cart"
