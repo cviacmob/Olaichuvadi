@@ -7,6 +7,7 @@ import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Html;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -93,7 +94,7 @@ public class Product_Details extends AppCompatActivity {
                 Productdetailresponse rsp = response.body();
                 prdetail = rsp.getProduct().get(0);
                 String detail = prdetail.getDescription();
-                tv5.setText(detail);
+                tv5.setText(Html.fromHtml(Html.fromHtml(detail).toString()));
                 tv.setText(prdetail.getName());
                 tv1.setText(prdetail.getPrice());
                 tv3.setText(prdetail.getSpecial());

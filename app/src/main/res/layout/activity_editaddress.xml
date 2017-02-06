@@ -124,7 +124,8 @@
         android:layout_marginRight="5dp"
         android:layout_toLeftOf="@+id/cnclbtn"
         android:background="@drawable/roundcolorbtn"
-        android:text="@string/btn_sub" />
+        android:text="@string/btn_sub"
+        android:textColor="#ffffff" />
 
     <Button
         android:id="@+id/cnclbtn"
@@ -133,6 +134,7 @@
         android:layout_alignParentEnd="true"
         android:layout_below="@+id/mobile"
         android:background="@drawable/roundcolorbtn"
-        android:text="@string/btn_cncl" />
+        android:text="@string/btn_cncl"
+        android:textColor="#ffffff" />
 
 </RelativeLayout>
