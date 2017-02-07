@@ -34,12 +34,11 @@ public class SplashScreenActivity extends AppCompatActivity {
             public void run() {
 
                 if (str_reg_test != null
-                        && !str_reg_test.toString().trim().equals("")){
+                        && !str_reg_test.toString().trim().equals("")) {
                     Intent log = new Intent(SplashScreenActivity.this, HomeActivity.class);
                     startActivity(log);
                     finish();
-                }
-                else {
+                } else {
                     Intent send = new Intent(getApplicationContext(),
                             LoginActivity.class);
                     startActivity(send);

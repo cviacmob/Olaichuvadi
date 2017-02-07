@@ -44,7 +44,7 @@ public class CategoryList_Activity extends AppCompatActivity {
         lv.setAdapter(adapter);
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://nheart.cviac.com")
+                .baseUrl("http://olaichuvadi.cviac.com")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
@@ -56,7 +56,7 @@ public class CategoryList_Activity extends AppCompatActivity {
             public void onResponse(Response<CategoriesResponse> response, Retrofit retrofit) {
                 CategoriesResponse rsp = response.body();
                 categoryList.addAll(rsp.getCategories());
-                // adapter.notifyDataSetChanged();
+//                adapter.notifyDataSetChanged();
                 adapter.notifyDataSetInvalidated();
 
             }

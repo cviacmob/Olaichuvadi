@@ -37,6 +37,7 @@ import com.daimajia.slider.library.SliderLayout;
 import com.daimajia.slider.library.SliderTypes.BaseSliderView;
 import com.daimajia.slider.library.SliderTypes.TextSliderView;
 import com.daimajia.slider.library.Tricks.ViewPagerEx;
+import com.squareup.okhttp.Credentials;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -90,11 +91,10 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
         getSetToken();
 
-        refresh("61");
-        slider("61");
+        refresh("93");
+        slider("94");
 
     }
-
 
     private void getSetToken() {
         String token = Prefs.getString("token", null);
@@ -125,14 +125,18 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     }
 
     public void refresh(String catId) {
+
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://nheart.cviac.com")
+                .baseUrl("http://olaichuvadi.cviac.com")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
-
+        String credentials = Credentials.basic("olaichuvadi", "cviac");
         OpencartAPIs api = retrofit.create(OpencartAPIs.class);
 
-        final Call<CategoryProductsResponse> call = api.getProducts(catId);
+       /* Map<String, String> map = new HashMap<>();
+        map.put("Authorization",credentials);*/
+        final Call<CategoryProductsResponse> call = api.getProducts(credentials, catId);
+
         call.enqueue(new Callback<CategoryProductsResponse>() {
             @Override
             public void onResponse(Response<CategoryProductsResponse> response, Retrofit retrofit) {
@@ -163,13 +167,15 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
     public void slider(String catId) {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://nheart.cviac.com")
+                .baseUrl("http://olaichuvadi.cviac.com")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
+        String credentials = Credentials.basic("olaichuvadi", "cviac");
+
         OpencartAPIs api = retrofit.create(OpencartAPIs.class);
 
-        final Call<CategoryProductsResponse> call = api.getProducts(catId);
+        final Call<CategoryProductsResponse> call = api.getProducts(credentials, catId);
         call.enqueue(new Callback<CategoryProductsResponse>() {
             @Override
             public void onResponse(Response<CategoryProductsResponse> response, Retrofit retrofit) {

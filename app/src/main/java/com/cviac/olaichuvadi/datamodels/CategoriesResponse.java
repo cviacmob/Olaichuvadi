@@ -1,9 +1,8 @@
 package com.cviac.olaichuvadi.datamodels;
 
-import java.io.Serializable;
 import java.util.List;
 
-public class CategoriesResponse implements Serializable {
+public class CategoriesResponse {
     private List<Category> categories;
 
     public List<Category> getCategories() {

@@ -81,7 +81,7 @@ public class Product_Details extends AppCompatActivity {
         });
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://nheart.cviac.com")
+                .baseUrl("http://olaichuvadi.cviac.com")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
