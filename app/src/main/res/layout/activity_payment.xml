@@ -59,20 +59,18 @@
         android:layout_below="@+id/payaddr3"
         android:text="Mobile No" />
 
-    <Button
-        android:id="@+id/chngadd"
+    <ImageView
+        android:id="@+id/edtadd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/paymbl"
         android:layout_alignParentEnd="true"
-        android:background="@drawable/roundcolorbtn"
-        android:text="@string/txt_addr" />
+        android:src="@mipmap/pencil" />
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/price"
-        android:layout_below="@+id/chngadd">
+        android:layout_below="@+id/paymbl">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -90,7 +88,8 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/crtitms"
                 android:background="@drawable/roundcolorbtn"
-                android:text="@string/txt_pay" />
+                android:text="@string/txt_pay"
+                android:textColor="#ffffff" />
 
             <RadioGroup
                 android:id="@+id/paygrp"
@@ -116,11 +115,6 @@
                     android:layout_height="wrap_content"
                     android:text="Net Banking" />
 
-                <RadioButton
-                    android:id="@+id/emipay"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="EMI" />
             </RadioGroup>
         </RelativeLayout>
 

@@ -2,13 +2,15 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:padding="5dp">
 
     <ImageView
         android:id="@+id/prd_img"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:src="@mipmap/bookgrd" />
 
     <TextView
         android:id="@+id/pname"
@@ -49,26 +51,5 @@
         android:textColor="#D30875"
         android:textSize="12sp"
         android:textStyle="normal" />
-
-    <ImageView
-        android:id="@+id/wshlst"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
-        android:background="@mipmap/wishmt"
-        android:paddingRight="10dp" />
-
-    <RatingBar
-        android:id="@+id/rating"
-        style="@android:style/Widget.DeviceDefault.Light.RatingBar.Small"
-        android:layout_width="80dp"
-        android:layout_height="20dp"
-        android:layout_below="@+id/oldprice"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="5dp"
-        android:numStars="5"
-        android:rating="2.5" />
 
 </RelativeLayout>
