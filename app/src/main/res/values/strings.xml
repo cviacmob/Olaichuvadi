@@ -889,4 +889,5 @@
     <string name="tab_fav">FAVOURITES</string>
     <string name="title_activity_my_comm__shared">MyComm_SharedActivity</string>
     <string name="title_activity_my_comm__readingclub">MyComm_Readingclub</string>
+    <string name="prddet_desc">DESCRIPTION :</string>
 </resources>

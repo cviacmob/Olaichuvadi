@@ -198,7 +198,6 @@ public class Product_Details extends AppCompatActivity {
             case R.id.cart:
                 Intent h = new Intent(Product_Details.this, MyCartActivity.class);
                 startActivity(h);
-
                 break;
         }
         return true;

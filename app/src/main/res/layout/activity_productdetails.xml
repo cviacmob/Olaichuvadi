@@ -56,7 +56,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/prz"
                 android:layout_marginTop="10dp"
-                android:text="DESCRIPTION :" />
+                android:text="@string/prddet_desc" />
 
             <TextView
                 android:id="@+id/desc_det"
