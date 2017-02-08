@@ -3,7 +3,7 @@ package com.cviac.olaichuvadi.utilities;
 import android.app.Application;
 import android.content.ContextWrapper;
 
-public class OlaichuvadiApp  extends Application {
+public class OlaichuvadiApp extends Application {
 
     private boolean networkStatus = true;
 
@@ -32,23 +32,4 @@ public class OlaichuvadiApp  extends Application {
                 .setUseDefaultSharedPreference(true)
                 .build();
     }
-
-//    public void sendEmail(String emailid, String subject, String msgBody) {
-//
-//        Retrofit retrofit = new Retrofit.Builder()
-//                .baseUrl("http://apps.cviac.com")
-//                .addConverterFactory(GsonConverterFactory.create())
-//                .build();
-//        CVIACApi api = retrofit.create(CVIACApi.class);
-//        EmailInfo emailinfo = new EmailInfo(emailid, subject, msgBody);
-//
-//        Call<SendEmailResponse> call = api.sendEmail(emailinfo);
-//        call.enqueue(new Callback<SendEmailResponse>() {
-//            @Override
-//            public void onResponse(Response<SendEmailResponse> response, Retrofit retrofit) {
-//                SendEmailResponse rsp = response.body();
-////                Toast.makeText(PoojariApp.this,
-////                        "Send Email Success", Toast.LENGTH_LONG).show();
-//
-//            }
 }

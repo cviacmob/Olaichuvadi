@@ -27,6 +27,7 @@ import retrofit.Retrofit;
 public class RegistrationActivity extends AppCompatActivity {
 
     EditText name, mail, phone, pwd, cnfpwd;
+    String dname, dmail, dphone, dpwd, dcnfpwd;
     Button regist;
     ProgressDialog progressDialog = null;
 
@@ -34,6 +35,7 @@ public class RegistrationActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
+
         setTitle(getString(R.string.register));
 
         name = (EditText) findViewById(R.id.namebox);
@@ -46,11 +48,11 @@ public class RegistrationActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                String dname = name.getText().toString();
-                String dmail = mail.getText().toString();
-                String dphone = phone.getText().toString();
-                String dpwd = pwd.getText().toString();
-                String dcnfpwd = cnfpwd.getText().toString();
+                dname = name.getText().toString();
+                dmail = mail.getText().toString();
+                dphone = phone.getText().toString();
+                dpwd = pwd.getText().toString();
+                dcnfpwd = cnfpwd.getText().toString();
 
                 if (name.length() < 1) {
                     name.setError("Enter Valid Name");
@@ -73,10 +75,6 @@ public class RegistrationActivity extends AppCompatActivity {
                 OlaichuvadiApp app = (OlaichuvadiApp) RegistrationActivity.this.getApplication();
                 if (app.isNetworkStatus()) {
 
-                    Prefs.edit();
-                    Prefs.putString("Regname", dname);
-                    Prefs.putString("Regmail", dmail);
-                    Prefs.putString("Regphone", dphone);
 
                     register(dname, dname, dmail, dphone, dpwd, dcnfpwd);
                 } else {
@@ -89,6 +87,13 @@ public class RegistrationActivity extends AppCompatActivity {
 
     public void register(String firstname, String lastname, String email1, String mob, String pswd, String cpswd) {
 
+        progressDialog = new ProgressDialog(RegistrationActivity.this,
+                R.style.AppTheme_Dark_Dialog);
+        progressDialog.setIndeterminate(true);
+        progressDialog.setMessage("Registering...");
+        progressDialog.setCancelable(false);
+        progressDialog.show();
+
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("http://nheart.cviac.com")
                 .addConverterFactory(GsonConverterFactory.create())
@@ -99,8 +104,16 @@ public class RegistrationActivity extends AppCompatActivity {
             @Override
             public void onResponse(Response<ReginfoResponse> response, Retrofit retrofit) {
                 ReginfoResponse rsp = response.body();
+                if (progressDialog != null) {
+                    progressDialog.dismiss();
+                }
                 if (rsp.getCode() == 0) {
-                    //Prefs.putString("Customer_ID",rsp.getCustomer().getCustomer_id());
+
+                    Prefs.edit();
+                    Prefs.putString("Regname", dname);
+                    Prefs.putString("Regmail", dmail);
+                    Prefs.putString("Regphone", dphone);
+
                     Intent logn = new Intent(RegistrationActivity.this, LoginActivity.class);
                     startActivity(logn);
                     finish();

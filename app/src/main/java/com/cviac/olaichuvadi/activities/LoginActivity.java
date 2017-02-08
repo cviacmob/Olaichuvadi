@@ -56,12 +56,7 @@ public class LoginActivity extends AppCompatActivity {
 
                 OlaichuvadiApp app = (OlaichuvadiApp) LoginActivity.this.getApplication();
                 if (app.isNetworkStatus()) {
-
-                    Prefs.edit();
-                    Prefs.putString("isregistered", "true");
-
                     login(lmail, lpwd);
-
                 } else {
                     Toast.makeText(getApplicationContext(),
                             "Please Check Your Internet Connection and try again", Toast.LENGTH_LONG).show();
@@ -75,6 +70,9 @@ public class LoginActivity extends AppCompatActivity {
 
                 OlaichuvadiApp app = (OlaichuvadiApp) LoginActivity.this.getApplication();
                 if (app.isNetworkStatus()) {
+                    Prefs.edit();
+                    Prefs.putString("isregistered", "true");
+
                     Intent reg = new Intent(LoginActivity.this, RegistrationActivity.class);
                     startActivity(reg);
                     finish();
@@ -88,6 +86,13 @@ public class LoginActivity extends AppCompatActivity {
 
     private void login(String lmail, String lpwd) {
 
+        progressDialog = new ProgressDialog(LoginActivity.this,
+                R.style.AppTheme_Dark_Dialog);
+        progressDialog.setIndeterminate(true);
+        progressDialog.setMessage("Logging in...");
+        progressDialog.setCancelable(false);
+        progressDialog.show();
+
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("http://nheart.cviac.com")
                 .addConverterFactory(GsonConverterFactory.create())
@@ -98,6 +103,9 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onResponse(Response<LogininfoResponse> response, Retrofit retrofit) {
                 LogininfoResponse rsp = response.body();
+                if (progressDialog != null) {
+                    progressDialog.dismiss();
+                }
                 if (rsp.getCode() == 0) {
                     Intent logn = new Intent(LoginActivity.this, HomeActivity.class);
                     startActivity(logn);
