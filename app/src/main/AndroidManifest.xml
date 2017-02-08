@@ -29,20 +29,23 @@
         </activity>
         <activity android:name=".activities.LoginActivity" />
         <activity android:name=".activities.RegistrationActivity" />
-        <activity
-            android:name=".activities.MyLibraryActivity"
-            android:label="@string/title_activity_my_library"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".activities.MyCommunityActivity"
-            android:label="@string/title_activity_my_community"
-            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".activities.EditaddressActivity" />
         <activity android:name=".activities.Product_Details" />
         <activity android:name=".activities.PaymentActivity" />
         <activity
             android:name=".activities.SettingsActivity"
-            android:label="@string/title_activity_settings"></activity>
+            android:label="@string/title_activity_settings" />
+        <activity
+            android:name=".activities.MyComm_Readingclub"
+            android:label="@string/title_activity_my_comm__readingclub"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".activities.MyComm_Authors" />
+        <activity android:name=".activities.MyComm_Publ" />
+        <activity android:name=".activities.MyLib_Books" />
+        <activity android:name=".activities.MyLib_Purchased" />
+        <activity android:name=".activities.MyLib_Reviewed" />
+        <activity android:name=".activities.MyLib_Favourites" />
+        <activity android:name=".activities.MyComm_Shared"></activity>
     </application>
 
 </manifest>

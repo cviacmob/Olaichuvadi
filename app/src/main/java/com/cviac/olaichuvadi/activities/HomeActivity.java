@@ -377,7 +377,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
         int id = item.getItemId();
 
         if (id == R.id.nav_categories) {
@@ -385,15 +384,45 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             Intent cat = new Intent(HomeActivity.this, CategoryList_Activity.class);
             startActivityForResult(cat, 1000);
 
-        } else if (id == R.id.nav_library) {
+        } else if (id == R.id.nav_lib_books) {
 
-            Intent lib = new Intent(HomeActivity.this, MyLibraryActivity.class);
-            startActivity(lib);
+            Intent libb = new Intent(HomeActivity.this, MyLib_Books.class);
+            startActivity(libb);
 
-        } else if (id == R.id.nav_community) {
+        } else if (id == R.id.nav_lib_prchsd) {
 
-            Intent com = new Intent(HomeActivity.this, MyCommunityActivity.class);
-            startActivity(com);
+            Intent libb = new Intent(HomeActivity.this, MyLib_Purchased.class);
+            startActivity(libb);
+
+        } else if (id == R.id.nav_lib_rev) {
+
+            Intent libb = new Intent(HomeActivity.this, MyLib_Reviewed.class);
+            startActivity(libb);
+
+        } else if (id == R.id.nav_lib_fav) {
+
+            Intent libb = new Intent(HomeActivity.this, MyLib_Favourites.class);
+            startActivity(libb);
+
+        } else if (id == R.id.nav_com_shared) {
+
+            Intent libb = new Intent(HomeActivity.this, MyComm_Shared.class);
+            startActivity(libb);
+
+        } else if (id == R.id.nav_com_club) {
+
+            Intent libb = new Intent(HomeActivity.this, MyComm_Readingclub.class);
+            startActivity(libb);
+
+        } else if (id == R.id.nav_com_auth) {
+
+            Intent libb = new Intent(HomeActivity.this, MyComm_Authors.class);
+            startActivity(libb);
+
+        } else if (id == R.id.nav_com_publ) {
+
+            Intent libb = new Intent(HomeActivity.this, MyComm_Publ.class);
+            startActivity(libb);
 
         } else if (id == R.id.nav_cart) {
 

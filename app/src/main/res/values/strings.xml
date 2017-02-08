@@ -9,13 +9,13 @@
     <string name="section_format">Hello World from section: %1$d</string>
     <string name="title_activity_my_community">MyCommunity</string>
 
-    <string name="Categories">Categories</string>
-    <string name="My_Library">My Library</string>
-    <string name="My_Community">My Community</string>
-    <string name="My_Cart">My Cart</string>
-    <string name="My_Account">My Account</string>
-    <string name="My_Orders">My Orders</string>
-    <string name="Logout">Logout</string>
+    <string name="Categories">CATEGORIES</string>
+    <string name="My_Library">MY LIBRARY</string>
+    <string name="My_Community">MY COMMUNITY</string>
+    <string name="My_Cart">MY CART</string>
+    <string name="My_Account">MY ACCOUNT</string>
+    <string name="My_Orders">MY ORDERS</string>
+    <string name="Logout">LOGOUT</string>
 
     <string name="title_categories">Choose a Category</string>
 
@@ -879,12 +879,14 @@
     <string name="tamil_language">தமிழ்</string>
     <string name="english_language">English</string>
 
-    <string name="tab_shared">SHARED</string>
+    <string name="tab_shared">SHARED BOOKS</string>
     <string name="tab_readclubs">READING CLUB</string>
     <string name="tab_authors">AUTHORS</string>
     <string name="tab_pub">PUBLISHERS</string>
-    <string name="tab_books">BOOKS</string>
+    <string name="tab_books">MY BOOKS</string>
     <string name="tab_purch">PURCHASED</string>
     <string name="tab_rev">REVIEWED</string>
     <string name="tab_fav">FAVOURITES</string>
+    <string name="title_activity_my_comm__shared">MyComm_SharedActivity</string>
+    <string name="title_activity_my_comm__readingclub">MyComm_Readingclub</string>
 </resources>

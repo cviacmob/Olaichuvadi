@@ -39,9 +39,6 @@ public class MyAccountActivity extends AppCompatActivity {
         tv1 = (TextView) findViewById(R.id.uname);
         tv2 = (TextView) findViewById(R.id.umail);
         tv3 = (TextView) findViewById(R.id.uphone);
-//        AddressAdapter adapter = new AddressAdapter(MyAccountActivity.this, addhis);
-//        String[] items = {"Apple", "BlackBerry", "Android"};
-//        itemList = new ArrayList<String>(Arrays.asList(items));
 
         lv = (ListView) findViewById(R.id.addlst);
 

@@ -8,20 +8,11 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.cviac.olaichuvadi.R;
-import com.cviac.olaichuvadi.fragments.AuthorsFragment;
-import com.cviac.olaichuvadi.fragments.PublishersFragment;
-import com.cviac.olaichuvadi.fragments.ReadingclubFragment;
-import com.cviac.olaichuvadi.fragments.SharedFragment;
 
-public class MyCommunityActivity extends AppCompatActivity {
+public class MyComm_Readingclub extends AppCompatActivity {
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -41,12 +32,13 @@ public class MyCommunityActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_my_community);
+        setContentView(R.layout.activity_my_comm__readingclub);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbarc);
+        setTitle(R.string.tab_readclubs);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        setTitle(R.string.My_Community);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
@@ -56,19 +48,19 @@ public class MyCommunityActivity extends AppCompatActivity {
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabsc);
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabsre);
         tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
         tabLayout.setupWithViewPager(mViewPager);
 
     }
 
 
-    @Override
+/*    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_my_community, menu);
+        getMenuInflater().inflate(R.menu.menu_my_comm__readingclub, menu);
         return true;
-    }
+    }*/
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -78,9 +70,9 @@ public class MyCommunityActivity extends AppCompatActivity {
         int id = item.getItemId();
         onBackPressed();
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+       /* if (id == R.id.action_settings) {
             return true;
-        }
+        }*/
         return super.onOptionsItemSelected(item);
     }
 
@@ -109,14 +101,14 @@ public class MyCommunityActivity extends AppCompatActivity {
             return fragment;
         }
 
-        @Override
+   /*     @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_my_community, container, false);
+            View rootView = inflater.inflate(R.layout.fragment_my_comm__readingclub, container, false);
             TextView textView = (TextView) rootView.findViewById(R.id.section_label);
             textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
             return rootView;
-        }
+        }*/
     }
 
     /**
@@ -131,38 +123,26 @@ public class MyCommunityActivity extends AppCompatActivity {
 
         @Override
         public Fragment getItem(int position) {
-            // getItem is called to instantiate the fragment for the given page.
-            // Return a PlaceholderFragment (defined as a static inner class below).
 
             switch (position + 1) {
-                case 1:
-                    return new SharedFragment();
-                case 2:
-                    return new ReadingclubFragment();
-                case 3:
-                    return new AuthorsFragment();
-                case 4:
-                    return new PublishersFragment();
             }
             return PlaceholderFragment.newInstance(position + 1);
         }
 
         @Override
         public int getCount() {
-            return 4;
+            return 3;
         }
 
         @Override
         public CharSequence getPageTitle(int position) {
             switch (position) {
                 case 0:
-                    return getString(R.string.tab_shared);
+                    return "RECOMMENDED";
                 case 1:
-                    return getString(R.string.tab_readclubs);
+                    return "MEMBERED";
                 case 2:
-                    return getString(R.string.tab_authors);
-                case 3:
-                    return getString(R.string.tab_pub);
+                    return "YOUR'S";
             }
             return null;
         }

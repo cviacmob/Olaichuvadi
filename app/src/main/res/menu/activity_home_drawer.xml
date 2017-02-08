@@ -2,37 +2,95 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <group android:checkableBehavior="single">
+    <group
+        android:id="@+id/catgrp"
+        android:checkableBehavior="single"
+        android:enabled="true"
+        android:visible="true">
         <item
             android:id="@+id/nav_categories"
             android:icon="@mipmap/cate"
             android:title="@string/Categories" />
-        <item
-            android:id="@+id/nav_library"
-            android:icon="@mipmap/lib"
-            android:title="@string/My_Library" />
-        <item
-            android:id="@+id/nav_community"
-            android:icon="@mipmap/comm"
-            android:title="@string/My_Community" />
     </group>
-
-    <group android:checkableBehavior="single">
+    <item android:title="@string/My_Library">
+        <menu>
+            <item
+                android:id="@+id/nav_lib_books"
+                android:icon="@mipmap/libbooks"
+                android:title="@string/tab_books" />
+            <item
+                android:id="@+id/nav_lib_prchsd"
+                android:icon="@mipmap/libpurchsd"
+                android:title="@string/tab_purch" />
+            <item
+                android:id="@+id/nav_lib_rev"
+                android:icon="@mipmap/librev"
+                android:title="@string/tab_rev" />
+            <item
+                android:id="@+id/nav_lib_fav"
+                android:icon="@mipmap/libfavs"
+                android:title="@string/tab_fav" />
+        </menu>
+    </item>
+    <item android:title="@string/My_Community">
+        <menu>
+            <item
+                android:id="@+id/nav_com_shared"
+                android:icon="@mipmap/comshare"
+                android:title="@string/tab_shared" />
+            <item
+                android:id="@+id/nav_com_club"
+                android:icon="@mipmap/comread"
+                android:title="@string/tab_readclubs" />
+            <item
+                android:id="@+id/nav_com_auth"
+                android:icon="@mipmap/comauth"
+                android:title="@string/tab_authors" />
+            <item
+                android:id="@+id/nav_com_publ"
+                android:icon="@mipmap/compub"
+                android:title="@string/tab_pub" />
+        </menu>
+    </item>
+    <group
+        android:id="@+id/grp1"
+        android:checkableBehavior="single"
+        android:enabled="true"
+        android:visible="true">
         <item
             android:id="@+id/nav_cart"
             android:icon="@mipmap/cart"
             android:title="@string/My_Cart" />
+    </group>
+    <group
+        android:id="@+id/grp2"
+        android:checkableBehavior="single"
+        android:enabled="true"
+        android:visible="true">
         <item
             android:id="@+id/nav_account"
             android:icon="@mipmap/account"
             android:title="@string/My_Account" />
+    </group>
+    <group
+        android:id="@+id/grp3"
+        android:checkableBehavior="single"
+        android:enabled="true"
+        android:visible="true">
         <item
             android:id="@+id/nav_orders"
             android:icon="@mipmap/orders"
             android:title="@string/My_Orders" />
+    </group>
+    <group
+        android:id="@+id/grp4"
+        android:checkableBehavior="single"
+        android:enabled="true"
+        android:visible="true">
         <item
             android:id="@+id/nav_logout"
             android:icon="@mipmap/logout"
             android:title="@string/Logout" />
     </group>
+
 </menu>
