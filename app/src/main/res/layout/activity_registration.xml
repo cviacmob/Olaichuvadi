@@ -13,14 +13,19 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:padding="5dp">
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp">
 
         <EditText
             android:id="@+id/namebox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:drawableLeft="@mipmap/account"
+            android:drawablePadding="5dp"
             android:hint="@string/edit_uname"
-            android:inputType="text" />
+            android:inputType="text"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp" />
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
@@ -28,13 +33,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/name"
-        android:padding="5dp">
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp">
 
         <EditText
             android:id="@+id/mailbox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/edit_email" />
+            android:drawableLeft="@mipmap/email"
+            android:drawablePadding="5dp"
+            android:hint="@string/edit_email"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp" />
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
@@ -42,14 +52,19 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/mail"
-        android:padding="5dp">
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp">
 
         <EditText
             android:id="@+id/phonebox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:drawableLeft="@mipmap/phone"
+            android:drawablePadding="5dp"
             android:hint="@string/edit_mob"
-            android:inputType="number" />
+            android:inputType="number"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp" />
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
@@ -57,14 +72,19 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/phone"
-        android:padding="5dp">
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp">
 
         <EditText
             android:id="@+id/pwdbox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:drawableLeft="@mipmap/lock"
+            android:drawablePadding="5dp"
             android:hint="@string/edit_pwd"
-            android:inputType="textPassword" />
+            android:inputType="textPassword"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp" />
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
@@ -72,14 +92,19 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/pwd"
-        android:padding="5dp">
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp">
 
         <EditText
             android:id="@+id/cnfpwdbox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:drawableLeft="@mipmap/lock"
+            android:drawablePadding="5dp"
             android:hint="@string/edit_cnfpwd"
-            android:inputType="textPassword" />
+            android:inputType="textPassword"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp" />
     </android.support.design.widget.TextInputLayout>
 
     <Button
