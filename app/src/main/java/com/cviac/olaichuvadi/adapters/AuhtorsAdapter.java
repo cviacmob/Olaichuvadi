@@ -60,7 +60,6 @@ public class AuhtorsAdapter extends BaseAdapter {
         } else {
             holder = (AuhtorsAdapter.ViewHolder) shr.getTag();
         }
-        holder.iv.setImageResource(cinfo.getAuthor_img());
         holder.tv1.setText(cinfo.getAuthor_tit());
         return shr;
     }

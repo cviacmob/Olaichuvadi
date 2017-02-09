@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.cviac.olaichuvadi.R;
@@ -26,8 +27,9 @@ import retrofit.Retrofit;
 
 public class LoginActivity extends AppCompatActivity {
 
-    Button log, reg;
+    Button log;
     EditText mail, pwd;
+    TextView clk;
     ProgressDialog progressDialog = null;
 
     @Override
@@ -39,8 +41,9 @@ public class LoginActivity extends AppCompatActivity {
 
         mail = (EditText) findViewById(R.id.namebox);
         pwd = (EditText) findViewById(R.id.pwdbox);
-        reg = (Button) findViewById(R.id.register);
+//        reg = (Button) findViewById(R.id.register);
         log = (Button) findViewById(R.id.login);
+        clk = (TextView) findViewById(R.id.reg2);
 
         log.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,6 +59,7 @@ public class LoginActivity extends AppCompatActivity {
 
                 OlaichuvadiApp app = (OlaichuvadiApp) LoginActivity.this.getApplication();
                 if (app.isNetworkStatus()) {
+
                     login(lmail, lpwd);
                 } else {
                     Toast.makeText(getApplicationContext(),
@@ -64,14 +68,28 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        reg.setOnClickListener(new View.OnClickListener() {
+     /*   reg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 OlaichuvadiApp app = (OlaichuvadiApp) LoginActivity.this.getApplication();
                 if (app.isNetworkStatus()) {
-                    Prefs.edit();
-                    Prefs.putString("isregistered", "true");
+
+                    Intent reg = new Intent(LoginActivity.this, RegistrationActivity.class);
+                    startActivity(reg);
+                    finish();
+                } else {
+                    Toast.makeText(getApplicationContext(),
+                            "Please Check Your Internet Connection and try again", Toast.LENGTH_LONG).show();
+                }
+            }
+        });*/
+
+        clk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                OlaichuvadiApp app = (OlaichuvadiApp) LoginActivity.this.getApplication();
+                if (app.isNetworkStatus()) {
 
                     Intent reg = new Intent(LoginActivity.this, RegistrationActivity.class);
                     startActivity(reg);
@@ -103,14 +121,21 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onResponse(Response<LogininfoResponse> response, Retrofit retrofit) {
                 LogininfoResponse rsp = response.body();
-                if (progressDialog != null) {
-                    progressDialog.dismiss();
-                }
+
                 if (rsp.getCode() == 0) {
+
+                    Prefs.edit();
+                    Prefs.putString("isregistered", "true");
+
+                    progressDialog.dismiss();
+
                     Intent logn = new Intent(LoginActivity.this, HomeActivity.class);
                     startActivity(logn);
                     finish();
                 } else {
+
+                    progressDialog.dismiss();
+
                     Toast.makeText(LoginActivity.this,
                             "Login Failed: " + rsp.getCode(), Toast.LENGTH_LONG).show();
                 }
@@ -118,6 +143,9 @@ public class LoginActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Throwable t) {
+
+                progressDialog.dismiss();
+
                 Toast.makeText(LoginActivity.this,
                         "Login Failed: " + t.getLocalizedMessage(), Toast.LENGTH_LONG).show();
             }

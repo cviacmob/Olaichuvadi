@@ -104,9 +104,7 @@ public class RegistrationActivity extends AppCompatActivity {
             @Override
             public void onResponse(Response<ReginfoResponse> response, Retrofit retrofit) {
                 ReginfoResponse rsp = response.body();
-                if (progressDialog != null) {
-                    progressDialog.dismiss();
-                }
+
                 if (rsp.getCode() == 0) {
 
                     Prefs.edit();
@@ -114,10 +112,15 @@ public class RegistrationActivity extends AppCompatActivity {
                     Prefs.putString("Regmail", dmail);
                     Prefs.putString("Regphone", dphone);
 
+                    progressDialog.dismiss();
+
                     Intent logn = new Intent(RegistrationActivity.this, LoginActivity.class);
                     startActivity(logn);
                     finish();
                 } else {
+
+                    progressDialog.dismiss();
+
                     Toast.makeText(RegistrationActivity.this,
                             "Registration Failed: " + rsp.getCode(), Toast.LENGTH_LONG).show();
                 }
@@ -125,6 +128,9 @@ public class RegistrationActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Throwable t) {
+
+                progressDialog.dismiss();
+
                 Toast.makeText(RegistrationActivity.this,
                         "Registration Failed: " + t.getLocalizedMessage(), Toast.LENGTH_LONG).show();
             }

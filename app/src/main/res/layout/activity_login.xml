@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_login"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:padding="5dp"
     tools:context="com.cviac.olaichuvadi.activities.LoginActivity">
 
@@ -13,14 +13,17 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:padding="5dp">
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp">
 
         <EditText
             android:id="@+id/namebox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/edit_email"
-            android:inputType="textEmailAddress" />
+            android:inputType="textEmailAddress"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp" />
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
@@ -28,35 +31,58 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/name"
-        android:padding="5dp">
+        android:layout_centerHorizontal="true"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp">
 
         <EditText
             android:id="@+id/pwdbox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/edit_pwd"
-            android:inputType="textPassword" />
+            android:inputType="textPassword"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp" />
     </android.support.design.widget.TextInputLayout>
-
-    <Button
-        android:id="@+id/register"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/pwd"
-        android:layout_centerHorizontal="true"
-        android:background="@drawable/roundcolorbtn"
-        android:text="@string/register"
-        android:textColor="#ffffff" />
 
     <Button
         android:id="@+id/login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
         android:layout_below="@+id/pwd"
+        android:layout_centerHorizontal="true"
         android:background="@drawable/roundcolorbtn"
         android:text="@string/login"
         android:textColor="#ffffff" />
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/login"
+        android:layout_centerHorizontal="true">
+
+        <TextView
+            android:id="@+id/reg1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/login"
+            android:paddingTop="30dp"
+            android:text="Not Registered Yet.?"
+            android:textColor="@color/colorPrimary"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/reg2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/login"
+            android:layout_toRightOf="@+id/reg1"
+            android:paddingLeft="5dp"
+            android:paddingTop="30dp"
+            android:text="@string/clk_to_reg"
+            android:textColor="@color/colorAccent"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
 
 </RelativeLayout>

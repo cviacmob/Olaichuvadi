@@ -9,17 +9,12 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.cviac.olaichuvadi.R;
-import com.cviac.olaichuvadi.fragments.AuthorsFragment;
-import com.cviac.olaichuvadi.fragments.PublishersFragment;
-import com.cviac.olaichuvadi.fragments.ReadingclubFragment;
-import com.cviac.olaichuvadi.fragments.SharedFragment;
 
 public class MyCommunityActivity extends AppCompatActivity {
 
@@ -63,12 +58,12 @@ public class MyCommunityActivity extends AppCompatActivity {
     }
 
 
-    @Override
+  /*  @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_my_community, menu);
         return true;
-    }
+    }*/
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -134,7 +129,7 @@ public class MyCommunityActivity extends AppCompatActivity {
             // getItem is called to instantiate the fragment for the given page.
             // Return a PlaceholderFragment (defined as a static inner class below).
 
-            switch (position + 1) {
+            /*switch (position + 1) {
                 case 1:
                     return new SharedFragment();
                 case 2:
@@ -143,7 +138,7 @@ public class MyCommunityActivity extends AppCompatActivity {
                     return new AuthorsFragment();
                 case 4:
                     return new PublishersFragment();
-            }
+            }*/
             return PlaceholderFragment.newInstance(position + 1);
         }
 

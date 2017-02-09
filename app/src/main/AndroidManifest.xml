@@ -20,7 +20,9 @@
         <activity android:name=".activities.MyCartActivity" />
         <activity android:name=".activities.MyAccountActivity" />
         <activity android:name=".activities.MyOrdersActivity" />
-        <activity android:name=".activities.SplashScreenActivity">
+        <activity
+            android:name=".activities.SplashScreenActivity"
+            android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

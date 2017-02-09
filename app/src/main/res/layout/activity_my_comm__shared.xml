@@ -7,14 +7,4 @@
     android:padding="5dp"
     tools:context="com.cviac.olaichuvadi.activities.MyComm_Shared">
 
-    <TextView
-        android:id="@+id/sample"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:text="OLAICHUVADI"
-        android:textColor="@color/colorPrimaryDark"
-        android:textStyle="bold" />
-
 </RelativeLayout>
