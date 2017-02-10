@@ -138,11 +138,11 @@ public class MyComm_Readingclub extends AppCompatActivity {
         public CharSequence getPageTitle(int position) {
             switch (position) {
                 case 0:
-                    return "RECOMMENDED";
+                    return getString(R.string.tab_rdcb1);
                 case 1:
-                    return "MEMBERED";
+                    return getString(R.string.tab_rdcb2);
                 case 2:
-                    return "YOUR'S";
+                    return getString(R.string.tab_rdcb3);
             }
             return null;
         }

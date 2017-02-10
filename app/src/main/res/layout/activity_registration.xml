@@ -12,10 +12,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentTop="true"
-        android:gravity="center"
+        android:layout_centerHorizontal="true"
         android:descendantFocusability="beforeDescendants"
         android:focusableInTouchMode="true"
-        android:layout_centerHorizontal="true">
+        android:gravity="center">
 
         <android.support.design.widget.TextInputLayout
             android:id="@+id/name"
@@ -122,12 +122,12 @@
             android:id="@+id/regist"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/cnfpwd"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="48dp"
             android:background="@drawable/roundcolorbtn"
             android:text="@string/register"
-            android:textColor="#ffffff"
-            android:layout_marginTop="48dp"
-            android:layout_below="@+id/cnfpwd"
-            android:layout_centerHorizontal="true" />
+            android:textColor="#ffffff" />
 
     </RelativeLayout>
 </RelativeLayout>

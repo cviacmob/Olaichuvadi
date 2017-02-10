@@ -50,4 +50,8 @@
     <string name="tab_fav">पसंदीदा</string>
 
     <string name="prddet_desc">विवरण :</string>
+
+    <string name="tab_rdcb1">RECOMMENDED</string>
+    <string name="tab_rdcb2">MEMBERED</string>
+    <string name="tab_rdcb3">YOUR'S</string>
 </resources>
