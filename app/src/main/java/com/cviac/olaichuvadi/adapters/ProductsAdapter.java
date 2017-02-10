@@ -19,6 +19,7 @@ public class ProductsAdapter extends BaseAdapter {
 
     private Context mContext;
     private List<Product> rowListItem;
+    int [] imageId;
 
     public ProductsAdapter(Context mContext, List<Product> rowListItem) {
         this.mContext = mContext;
@@ -69,7 +70,8 @@ public class ProductsAdapter extends BaseAdapter {
         String url = oinfo.getThumb();
         url = url.replace("localhost", "192.168.1.16");
         try {
-            Picasso.with(ord.getContext()).load(url).resize(500, 500).into(holder.iv);
+           Picasso.with(ord.getContext()).load(url).resize(500, 500).into(holder.iv);
+
         } catch (Exception e) {
             e.printStackTrace();
         }

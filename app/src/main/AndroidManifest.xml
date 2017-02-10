@@ -7,11 +7,19 @@
 
     <application
         android:name=".utilities.OlaichuvadiApp"
-        android:allowBackup="true"
         android:icon="@mipmap/ic"
         android:label="@string/app_name"
-        android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
+        <activity
+            android:name=".activities.SplashScreenActivity"
+            android:theme="@style/SplashTheme"
+            >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".activities.HomeActivity"
             android:label="@string/app_name"
@@ -20,15 +28,7 @@
         <activity android:name=".activities.MyCartActivity" />
         <activity android:name=".activities.MyAccountActivity" />
         <activity android:name=".activities.MyOrdersActivity" />
-        <activity
-            android:name=".activities.SplashScreenActivity"
-            android:theme="@style/SplashTheme">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
         <activity android:name=".activities.LoginActivity" />
         <activity android:name=".activities.RegistrationActivity" />
         <activity android:name=".activities.EditaddressActivity" />

@@ -13,43 +13,52 @@
         android:src="@mipmap/bookgrd" />
 
     <TextView
-        android:id="@+id/pname"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/prd_img"
-        android:layout_weight="1"
-        android:maxLines="2"
-        android:paddingLeft="5dp"
-        android:paddingRight="5dp"
-        android:text="TextView"
-        android:textColor="#080200" />
-
-    <TextView
         android:id="@+id/newprice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/oldprice"
-        android:layout_toEndOf="@+id/t2"
-        android:layout_toRightOf="@+id/t2"
-        android:paddingLeft="10dp"
+
         android:text="TextView"
-        android:textColor="#D30875"
+        android:textColor="#ad7201"
         android:textIsSelectable="false"
         android:textSize="15sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+
+        android:layout_alignBottom="@+id/textView6"
+        android:layout_toLeftOf="@+id/textView6"
+        android:layout_toStartOf="@+id/textView6" />
 
     <TextView
         android:id="@+id/oldprice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/pname"
-        android:layout_toRightOf="@+id/newprice"
-        android:paddingLeft="10dp"
+android:paddingLeft="3dp"
         android:text="TextView"
-        android:textColor="#D30875"
+        android:textColor="#ad7201"
         android:textSize="12sp"
-        android:textStyle="normal" />
+        android:textStyle="normal"
+        android:layout_alignBaseline="@+id/textView6"
+        android:layout_alignBottom="@+id/textView6"
+        android:layout_toRightOf="@+id/textView6"
+        android:layout_toEndOf="@+id/textView6" />
+
+    <TextView
+        android:text=""
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView6"
+        android:layout_below="@+id/pname"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:id="@+id/pname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:maxLines="2"
+        android:text="TextView"
+        android:textColor="#080200"
+        android:gravity="center"
+        android:layout_below="@+id/prd_img"
+        android:layout_centerHorizontal="true" />
+     />
 
 </RelativeLayout>
