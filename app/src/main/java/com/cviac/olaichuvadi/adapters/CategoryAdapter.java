@@ -64,11 +64,13 @@ public class CategoryAdapter extends BaseAdapter {
 //        Picasso.with(shr.getContext()).load(url).resize(50, 50).into(holder.iv);
         holder.tv.setText(cinfo.getName());
         String url = cinfo.getImage();
-        url = url.replace("localhost", "192.168.1.8");
-        try {
-            Picasso.with(shr.getContext()).load(url).resize(50, 50).into(holder.iv);
-        } catch (Exception e) {
-            e.printStackTrace();
+        if (url != null) {
+            url = url.replace("localhost", "192.168.1.8");
+            try {
+                Picasso.with(shr.getContext()).load(url).resize(50, 50).into(holder.iv);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
         return shr;
     }

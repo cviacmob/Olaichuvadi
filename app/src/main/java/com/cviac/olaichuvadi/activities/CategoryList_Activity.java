@@ -33,7 +33,7 @@ public class CategoryList_Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_category_list);
-        setTitle(getString(R.string.title_categories));
+        setTitle(getString(R.string.Categories));
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -58,7 +58,6 @@ public class CategoryList_Activity extends AppCompatActivity {
                 categoryList.addAll(rsp.getCategories());
 //                adapter.notifyDataSetChanged();
                 adapter.notifyDataSetInvalidated();
-
             }
 
             @Override

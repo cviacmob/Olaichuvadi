@@ -13,32 +13,32 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
         android:descendantFocusability="beforeDescendants"
-        android:focusableInTouchMode="true"
-        android:layout_centerHorizontal="true">
+        android:focusableInTouchMode="true">
 
         <TextView
-            android:text="ஓலைச்சுவடி"
-            android:textColor="@color/colorPrimary"
-            android:textStyle="bold"
-            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:id="@+id/textView4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/imageView3"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="15dp"
-            android:id="@+id/textView4" />
+            android:text="ஓலைச்சுவடி"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/colorPrimary"
+            android:textStyle="bold" />
 
         <TextView
-            android:text="- புத்தகக்கடை "
+            android:id="@+id/textView5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:id="@+id/textView5"
-            android:textColor="#183a67"
-            android:layout_below="@+id/textView4"
+            android:layout_alignEnd="@+id/textView4"
             android:layout_alignRight="@+id/textView4"
-            android:layout_alignEnd="@+id/textView4" />
+            android:layout_below="@+id/textView4"
+            android:text="- புத்தகக்கடை "
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="#183a67" />
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -100,49 +100,47 @@
                 android:textColor="#ffffff" />
 
             <TextView
-                android:text=""
+                android:id="@+id/textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/login"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="27dp"
-                android:id="@+id/textView" />
+                android:text="" />
 
             <TextView
-                android:text="Not yet Registered...?"
-                android:textColor="@color/colorAccent"
-                android:textStyle="bold"
+                android:id="@+id/textView2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignBottom="@+id/textView"
                 android:layout_toLeftOf="@+id/textView"
                 android:layout_toStartOf="@+id/textView"
-                android:id="@+id/textView2" />
+                android:text="Not yet Registered...?"
+                android:textColor="@color/colorAccent"
+                android:textStyle="bold" />
 
             <TextView
-                android:text="@string/clk_to_reg"
-                android:textColor="@color/colorPrimary"
-                android:textStyle="bold"
+                android:id="@+id/textView3"
                 android:layout_width="wrap_content"
-                android:paddingLeft="3dp"
                 android:layout_height="wrap_content"
                 android:layout_alignBottom="@+id/textView"
-                android:layout_toRightOf="@+id/textView"
                 android:layout_toEndOf="@+id/textView"
-                android:id="@+id/textView3" />
+                android:layout_toRightOf="@+id/textView"
+                android:paddingLeft="3dp"
+                android:text="@string/clk_to_reg"
+                android:textColor="@color/colorPrimary"
+                android:textStyle="bold" />
 
         </RelativeLayout>
 
         <ImageView
+            android:id="@+id/imageView3"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            app:srcCompat="@mipmap/log"
-            android:id="@+id/imageView3"
-            android:layout_marginTop="12dp"
             android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true" />
-
-
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="12dp"
+            app:srcCompat="@mipmap/log" />
     </RelativeLayout>
 
 </RelativeLayout>

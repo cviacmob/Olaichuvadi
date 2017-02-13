@@ -42,7 +42,7 @@ public class LoginActivity extends AppCompatActivity {
         mail = (EditText) findViewById(R.id.namebox);
         pwd = (EditText) findViewById(R.id.pwdbox);
         log = (Button) findViewById(R.id.login);
-        clk = (TextView) findViewById(R.id.reg2);
+        clk = (TextView) findViewById(R.id.textView3);
 
         log.setOnClickListener(new View.OnClickListener() {
             @Override

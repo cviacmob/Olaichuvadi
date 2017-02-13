@@ -16,8 +16,6 @@
     <string name="Logout">LOGOUT</string>
     <string name="tit_pay">Payment</string>
 
-    <string name="title_categories">Choose a Category</string>
-
     <string name="login">Login</string>
     <string name="register">Register</string>
     <string name="txt_addr">Change Your Address</string>

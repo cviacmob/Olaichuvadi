@@ -12,8 +12,6 @@
     <string name="My_Orders">अपनी खरीदी</string>
     <string name="Logout">बाहर जाएं</string>
 
-    <string name="title_categories">एक वर्ग का चयन करें</string>
-
     <string name="login">दर्ज</string>
     <string name="register">रजिस्टर</string>
     <string name="txt_orders">अपनी खरीदी गई वस्तुओं :</string>

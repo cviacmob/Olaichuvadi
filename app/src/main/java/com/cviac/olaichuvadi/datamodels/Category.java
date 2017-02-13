@@ -1,6 +1,7 @@
 package com.cviac.olaichuvadi.datamodels;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class Category implements Serializable {
     private String category_id;
@@ -8,7 +9,15 @@ public class Category implements Serializable {
     private String name;
     private String image;
     private String href;
-    private String categories;
+    private List<Category> categories;
+
+    public List<Category> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(List<Category> categories) {
+        this.categories = categories;
+    }
 
     public String getCategory_id() {
         return category_id;
@@ -50,11 +59,4 @@ public class Category implements Serializable {
         this.href = href;
     }
 
-    public String getCategories() {
-        return categories;
-    }
-
-    public void setCategories(String categories) {
-        this.categories = categories;
-    }
 }
