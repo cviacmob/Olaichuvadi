@@ -7,7 +7,7 @@
 
     <application
         android:name=".utilities.OlaichuvadiApp"
-        android:icon="@mipmap/ic"
+        android:icon="@mipmap/log"
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
 
