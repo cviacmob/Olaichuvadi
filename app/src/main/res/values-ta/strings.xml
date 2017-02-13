@@ -53,4 +53,8 @@
 
     <string name="prddet_desc">விளக்கம் :</string>
 
+    <string name="tab_rdcb1">பரிந்துரைக்கப்படுகிறது</string>
+    <string name="tab_rdcb2">உறுப்பினர் </string>
+    <string name="tab_rdcb3">உங்களுடைய</string>
+
 </resources>

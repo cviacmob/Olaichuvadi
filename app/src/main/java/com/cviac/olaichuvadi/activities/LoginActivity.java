@@ -41,9 +41,8 @@ public class LoginActivity extends AppCompatActivity {
 
         mail = (EditText) findViewById(R.id.namebox);
         pwd = (EditText) findViewById(R.id.pwdbox);
-//        reg = (Button) findViewById(R.id.register);
         log = (Button) findViewById(R.id.login);
-        clk = (TextView) findViewById(R.id.textView3);
+        clk = (TextView) findViewById(R.id.reg2);
 
         log.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,23 +66,6 @@ public class LoginActivity extends AppCompatActivity {
                 }
             }
         });
-
-     /*   reg.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                OlaichuvadiApp app = (OlaichuvadiApp) LoginActivity.this.getApplication();
-                if (app.isNetworkStatus()) {
-
-                    Intent reg = new Intent(LoginActivity.this, RegistrationActivity.class);
-                    startActivity(reg);
-                    finish();
-                } else {
-                    Toast.makeText(getApplicationContext(),
-                            "Please Check Your Internet Connection and try again", Toast.LENGTH_LONG).show();
-                }
-            }
-        });*/
 
         clk.setOnClickListener(new View.OnClickListener() {
             @Override

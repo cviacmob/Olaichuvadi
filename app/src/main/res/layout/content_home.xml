@@ -6,6 +6,7 @@
     android:id="@+id/content_home"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@mipmap/menubg"
     android:padding="5dp"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.cviac.olaichuvadi.activities.HomeActivity"
@@ -21,24 +22,23 @@
         android:id="@+id/prdts"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@mipmap/menubg"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/custom_indicator2"
         android:numColumns="2"
-        android:paddingTop="10dp" />
+        android:paddingTop="5dp" />
 
     <com.daimajia.slider.library.SliderLayout
         android:id="@+id/slider"
         android:layout_width="200dp"
         android:layout_height="200dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
         android:gravity="center"
         custom:auto_cycle="true"
         custom:indicator_visibility="visible"
         custom:pager_animation="Accordion"
-        custom:pager_animation_span="1100"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        custom:pager_animation_span="1100" />
 
 </RelativeLayout>
