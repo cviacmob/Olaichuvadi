@@ -30,7 +30,7 @@ public class PaymentActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_payment);
-        setTitle("Payment");
+        setTitle(getString(R.string.tit_pay));
         loadcrtitms();
         ButterKnife.inject(this);
 

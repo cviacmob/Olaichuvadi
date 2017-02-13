@@ -73,7 +73,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
         imageSlider = (SliderLayout) findViewById(R.id.slider);
 
-
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -295,7 +294,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     protected void onStop() {
-        // To prevent a memory leak on rotation, make sure to call stopAutoCycle() on the slider before activity or fragment is destroyed
         imageSlider.stopAutoCycle();
         super.onStop();
     }
@@ -303,7 +301,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public void onSliderClick(BaseSliderView slider) {
         Bundle datas = slider.getBundle();
-
         Product prd = (Product) datas.getSerializable("Prdobj");
 
         Intent prdss = new Intent(HomeActivity.this, Product_Details.class);
@@ -337,8 +334,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 break;
             case R.id.english:
                 setLocale("en");
-                break;
-            case R.id.action_settings:
                 break;
         }
         return super.onOptionsItemSelected(item);

@@ -1,7 +1,6 @@
 package com.cviac.olaichuvadi.activities;
 
 import android.content.Intent;
-import android.graphics.drawable.LayerDrawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
@@ -37,12 +36,8 @@ public class MyCartActivity extends AppCompatActivity {
     CartItemAdapter adapter;
     List<CartTotalInfo> cartTotals;
     Button proc;
-    TextView total, tv, tv1;
+    TextView total;
     String s;
-    static Button notifCount;
-    static int mNotifCount = 0;
-    private LayerDrawable mCartMenuIcon;
-    private int mCartCount = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -133,45 +128,9 @@ public class MyCartActivity extends AppCompatActivity {
         });
     }
 
-/*
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-
-        mCartCount = cartProducts.size();
-        getMenuInflater().inflate(R.menu.cart, menu);
-        mCartMenuIcon = (LayerDrawable) menu.findItem(R.id.cart).getIcon();
-        setBadgeCount(this, mCartMenuIcon, String.valueOf(mCartCount++));
-        return true;
-    }
-*/
-
-//    public static void setBadgeCount(Context context, LayerDrawable icon, String count) {
-//
-//        BadgeDrawable badge;
-//
-//        Drawable reuse = icon.findDrawableByLayerId(R.id.ic_cart_badge);
-//        if (reuse != null && reuse instanceof BadgeDrawable) {
-//            badge = (BadgeDrawable) reuse;
-//        } else {
-//            badge = new BadgeDrawable(context);
-//        }
-//
-//        badge.setCount(count);
-//        icon.mutate();
-//        icon.setDrawableByLayerId(R.id.ic_cart_badge, badge);
-//    }
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
-//        int id = item.getItemId();
         onBackPressed();
-//        if (id == R.id.action_settings) {
-//            return true;
-//        } else if (id == R.id.cart) {
-//            return true;
-//        }
-//        return super.onOptionsItemSelected(item);
         return true;
     }
 }

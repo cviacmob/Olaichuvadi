@@ -181,15 +181,13 @@ public class Product_Details extends AppCompatActivity {
         icon.mutate();
         icon.setDrawableByLayerId(R.id.ic_cart_badge, badge);
     }
-
+/*
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
-        menu.findItem(R.id.action_settings).setVisible(false);
-
+//        menu.findItem(R.id.action_settings).setVisible(false);
         super.onPrepareOptionsMenu(menu);
-
         return true;
-    }
+    }*/
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

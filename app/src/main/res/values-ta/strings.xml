@@ -3,28 +3,23 @@
 
     <string name="app_name">ஓலைச்சுவடி</string>
 
-    <string name="action_settings">அமைப்புகள்</string>
-
     <string name="Categories">பிரிவுகள்</string>
     <string name="My_Library">என் நூலகம்</string>
     <string name="My_Community">என் சமூகம்</string>
-    <string name="My_Cart">சேமித்த பொருட்கள்</string>
-    <string name="My_Account">என் கணக்கு</string>
-    <string name="My_Orders">நான் வாங்கியவை</string>
+    <string name="My_Cart">புத்தகப்பை</string>
+    <string name="My_Account">என் விவரம்</string>
     <string name="Logout">வெளியேறு</string>
+    <string name="title_categories">பிரிவுகள்</string>
+    <string name="tit_pay">Payment</string>
 
-    <string name="title_categories">ஒரு பிரிவை தேர்வு செய்க</string>
-
-    <string name="login">உள் நுழை</string>
-    <string name="register">புதிய பதிவு</string>
-    <string name="txt_orders">நான் வாங்கிய பொருட்கள் :</string>
+    <string name="login">உள்ளே வாங்க</string>
+    <string name="register">பதிவு</string>
     <string name="txt_addr">உங்கள் முகவரியை மாற்ற</string>
     <string name="txt_pay">இப்போது செலுத்த</string>
-    <string name="txt_buy">இப்போது வாங்க</string>
-    <string name="txt_add2cart">பெட்டகத்தில் சேர்</string>
+    <string name="txt_buy">பில்போடு </string>
+    <string name="txt_add2cart">பைல போடு</string>
     <string name="txt_savdaddr">உங்கள் சேமிக்கப்பட்ட முகவரிகள்</string>
     <string name="txt_addaddr">முகவரியை சேர்க்க</string>
-
 
     <string name="edit_email">மின்னஞ்சல் முகவரி</string>
     <string name="edit_pwd">கடவுச்சொல்</string>
@@ -42,19 +37,18 @@
     <string name="btn_sub">சமர்ப்பிக்க</string>
     <string name="btn_cncl">ரத்து செய்</string>
 
-    <string name="tab_shared">பகிர்வு</string>
-    <string name="tab_readclubs">வாசிப்பு குழு</string>
-    <string name="tab_authors">ஆசிரியர்கள்</string>
-    <string name="tab_pub">வெளியீட்டாளர்கள்</string>
-    <string name="tab_books">புத்தகங்கள்</string>
-    <string name="tab_purch">வாங்கியவை</string>
-    <string name="tab_rev">விமர்சனம்</string>
-    <string name="tab_fav">பிடித்தவை</string>
+    <string name="tab_shared">பகிர்வு புத்தகங்கள்</string>
+    <string name="tab_readclubs">புத்தக வாசிப்பு சங்கம்</string>
+    <string name="tab_authors">எழுத்தாளர்</string>
+    <string name="tab_pub">பதிப்பகம்</string>
+    <string name="tab_books">என் புத்தகங்கள்</string>
+    <string name="tab_purch">வாங்கிய புத்தகங்கள்</string>
+    <string name="tab_rev">விமர்சனம் செய்த புத்தகங்கள்</string>
+    <string name="tab_fav">பிடித்த புத்தகங்கள்</string>
+    <string name="tab_rdcb1">பரிந்துரைக்கப்படுகிறது</string>
+    <string name="tab_rdcb2">உறுப்பினர்கள்</string>
+    <string name="tab_rdcb3">உங்களுடைய</string>
 
     <string name="prddet_desc">விளக்கம் :</string>
-
-    <string name="tab_rdcb1">பரிந்துரைக்கப்படுகிறது</string>
-    <string name="tab_rdcb2">உறுப்பினர் </string>
-    <string name="tab_rdcb3">உங்களுடைய</string>
 
 </resources>
