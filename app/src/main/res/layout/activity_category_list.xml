@@ -7,7 +7,7 @@
     android:padding="5dp"
     tools:context="com.cviac.olaichuvadi.activities.CategoryList_Activity">
 
-    <ListView
+    <ExpandableListView
         android:id="@+id/catlist"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

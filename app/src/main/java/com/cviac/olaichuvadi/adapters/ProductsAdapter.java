@@ -18,17 +18,20 @@ import java.util.List;
 public class ProductsAdapter extends BaseAdapter {
 
     private Context mContext;
-    private List<Product> rowListItem;
-    int [] imageId;
+    private List<Product> prdcts;
+    int[] imageId;
 
     public ProductsAdapter(Context mContext, List<Product> rowListItem) {
         this.mContext = mContext;
-        this.rowListItem = rowListItem;
+        this.prdcts = rowListItem;
     }
 
     @Override
     public int getCount() {
-        return rowListItem.size();
+        if (prdcts != null) {
+            return prdcts.size();
+        }
+        return 0;
     }
 
     @Override
@@ -50,7 +53,7 @@ public class ProductsAdapter extends BaseAdapter {
     public View getView(int i, View view, ViewGroup viewGroup) {
         View ord = view;
         ProductsAdapter.ViewHolder holder;
-        Product oinfo = rowListItem.get(i);
+        Product oinfo = prdcts.get(i);
         if (view == null) {
             LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             ord = inflater.inflate(R.layout.card_view_list, null);
@@ -70,7 +73,7 @@ public class ProductsAdapter extends BaseAdapter {
         String url = oinfo.getThumb();
         url = url.replace("localhost", "192.168.1.16");
         try {
-           Picasso.with(ord.getContext()).load(url).resize(500, 500).into(holder.iv);
+            Picasso.with(ord.getContext()).load(url).resize(500, 500).into(holder.iv);
 
         } catch (Exception e) {
             e.printStackTrace();

@@ -429,12 +429,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             Intent acc = new Intent(HomeActivity.this, MyAccountActivity.class);
             startActivity(acc);
 
-        } /*else if (id == R.id.nav_orders) {
-
-            Intent order = new Intent(HomeActivity.this, MyOrdersActivity.class);
-            startActivity(order);
-
-        }*/ else if (id == R.id.nav_logout) {
+        } else if (id == R.id.nav_logout) {
 
             logout();
             Intent lgot = new Intent(HomeActivity.this, LoginActivity.class);

@@ -5,8 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ListView;
+import android.widget.ExpandableListView;
 
 import com.cviac.olaichuvadi.R;
 import com.cviac.olaichuvadi.adapters.CategoryAdapter;
@@ -25,7 +24,7 @@ import retrofit.Retrofit;
 
 public class CategoryList_Activity extends AppCompatActivity {
 
-    ListView lv;
+    ExpandableListView lv;
     List<Category> categoryList;
     CategoryAdapter adapter;
 
@@ -39,7 +38,7 @@ public class CategoryList_Activity extends AppCompatActivity {
 
         categoryList = new ArrayList<Category>();
 
-        lv = (ListView) findViewById(R.id.catlist);
+        lv = (ExpandableListView) findViewById(R.id.catlist);
         adapter = new CategoryAdapter(this, categoryList);
         lv.setAdapter(adapter);
 
@@ -66,14 +65,34 @@ public class CategoryList_Activity extends AppCompatActivity {
             }
         });
 
-        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        lv.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int pos, long l) {
-                Category cta = categoryList.get(pos);
-                Intent cat = new Intent();
-                cat.putExtra("categoryid", cta.getCategory_id());
-                setResult(1000, cat);
-                finish();
+            public boolean onGroupClick(ExpandableListView parent, View v, int groupPosition, long id) {
+                List<Category> childs = categoryList.get(groupPosition).getCategories();
+
+                if (childs != null && childs.size() > 0) {
+                    //No Action
+                } else {
+                    Category ct = categoryList.get(groupPosition);
+                    Intent cat = new Intent(CategoryList_Activity.this, SearchResultActivity.class);
+                    cat.putExtra("categoryid", ct.getCategory_id());
+                    startActivity(cat);
+                }
+                return false;
+            }
+        });
+
+        lv.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
+            @Override
+            public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
+                List<Category> childs = categoryList.get(groupPosition).getCategories();
+                if (childs != null) {
+                    Category ct = childs.get(childPosition);
+                    Intent cat = new Intent(CategoryList_Activity.this, SearchResultActivity.class);
+                    cat.putExtra("categoryid", ct.getCategory_id());
+                    startActivity(cat);
+                }
+                return false;
             }
         });
     }

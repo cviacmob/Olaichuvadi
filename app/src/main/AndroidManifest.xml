@@ -10,12 +10,12 @@
         android:icon="@mipmap/log"
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
-
         <activity
             android:name=".activities.SplashScreenActivity"
             android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -27,7 +27,6 @@
         <activity android:name=".activities.MyCartActivity" />
         <activity android:name=".activities.MyAccountActivity" />
         <activity android:name=".activities.MyOrdersActivity" />
-
         <activity android:name=".activities.LoginActivity" />
         <activity android:name=".activities.RegistrationActivity" />
         <activity android:name=".activities.EditaddressActivity" />
@@ -46,7 +45,8 @@
         <activity android:name=".activities.MyLib_Purchased" />
         <activity android:name=".activities.MyLib_Reviewed" />
         <activity android:name=".activities.MyLib_Favourites" />
-        <activity android:name=".activities.MyComm_Shared"></activity>
+        <activity android:name=".activities.MyComm_Shared" />
+        <activity android:name=".activities.SearchResultActivity"></activity>
     </application>
 
 </manifest>
