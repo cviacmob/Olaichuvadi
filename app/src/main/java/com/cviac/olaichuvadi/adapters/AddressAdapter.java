@@ -15,8 +15,12 @@ import com.cviac.olaichuvadi.datamodels.AddressInfo;
 import com.cviac.olaichuvadi.datamodels.GeneralResponse;
 import com.cviac.olaichuvadi.services.OpencartAPIs;
 import com.cviac.olaichuvadi.utilities.Prefs;
+import com.squareup.okhttp.OkHttpClient;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import retrofit.Call;
 import retrofit.Callback;
@@ -51,7 +55,7 @@ public class AddressAdapter extends BaseAdapter {
 
     public static class ViewHolder {
         public TextView tv1, tv2, tv4, tv5, tv6, tv7, tv8;
-        public ImageButton del;
+        public ImageButton edt, del;
     }
 
     @Override
@@ -71,6 +75,7 @@ public class AddressAdapter extends BaseAdapter {
             holder.tv7 = (TextView) ord.findViewById(R.id.stat);
             holder.tv8 = (TextView) ord.findViewById(R.id.zip);
             holder.del = (ImageButton) ord.findViewById(R.id.delbtn);
+            holder.edt = (ImageButton) ord.findViewById(R.id.editaddr);
             ord.setTag(holder);
         } else {
             holder = (ViewHolder) ord.getTag();
@@ -89,6 +94,30 @@ public class AddressAdapter extends BaseAdapter {
                 String add_id = adinfo.getAddress_id();
                 int c_id = Prefs.getInt("customer_id", -1);
                 deleteAddress(add_id, c_id + "");
+            }
+        });
+        holder.edt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String add_id = adinfo.getAddress_id();
+                int c_id = Prefs.getInt("customer_id", -1);
+
+                ArrayList<HashMap<String, String>> arrayList = new ArrayList<HashMap<String, String>>();
+                HashMap<String, String> hashfields = new HashMap<String, String>();
+
+                hashfields.put("First_Name", adinfo.getFirstname());
+                hashfields.put("Last_Name", adinfo.getLastname());
+                hashfields.put("Company", adinfo.getCompany());
+                hashfields.put("Address_1", adinfo.getAddress_1());
+                hashfields.put("Address_2", adinfo.getAddress_2());
+                hashfields.put("City", adinfo.getCity());
+                hashfields.put("Pin_Code", adinfo.getPostcode());
+                hashfields.put("State", adinfo.getZone());
+                hashfields.put("Country", adinfo.getCountry());
+
+                arrayList.add(hashfields);
+
+                editAddress(add_id, c_id + " ", hashfields);
             }
         });
 
@@ -115,6 +144,33 @@ public class AddressAdapter extends BaseAdapter {
                 } else {
                     Toast.makeText(mContext, "Address Deletion Failed", Toast.LENGTH_SHORT).show();
                 }
+            }
+
+            @Override
+            public void onFailure(Throwable t) {
+                t.printStackTrace();
+            }
+        });
+    }
+
+    public void editAddress(String address_id, String cust_id, HashMap<String, String> hashfields) {
+
+        OkHttpClient okHttpClient = new OkHttpClient();
+        okHttpClient.setConnectTimeout(120000, TimeUnit.MILLISECONDS);
+        okHttpClient.setReadTimeout(120000, TimeUnit.MILLISECONDS);
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("http://nheart.cviac.com")
+                .addConverterFactory(GsonConverterFactory.create())
+                .client(okHttpClient)
+                .build();
+
+        OpencartAPIs api = retrofit.create(OpencartAPIs.class);
+
+        Call<List<AddressInfo>> call = api.editAddress(address_id, cust_id, hashfields);
+        call.enqueue(new Callback<List<AddressInfo>>() {
+
+            public void onResponse(Response<List<AddressInfo>> response, Retrofit retrofit) {
             }
 
             @Override

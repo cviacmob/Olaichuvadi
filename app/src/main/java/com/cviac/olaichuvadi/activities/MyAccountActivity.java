@@ -8,6 +8,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.cviac.olaichuvadi.R;
 import com.cviac.olaichuvadi.adapters.AddressAdapter;
@@ -87,6 +88,10 @@ public class MyAccountActivity extends AppCompatActivity {
                 arrayList.add(hashfields);
 
                 editAddress(add_id, c_id + " ", hashfields);
+
+                Toast.makeText(getApplicationContext(), "This is my Toast message!",
+                        Toast.LENGTH_LONG).show();
+
             }
         });
 

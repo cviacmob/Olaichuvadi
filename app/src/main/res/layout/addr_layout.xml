@@ -64,7 +64,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
-        android:background="@mipmap/remcart"
-        android:clickable="true" />
+        android:background="@mipmap/remcart" />
+
+    <ImageButton
+        android:id="@+id/editaddr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/city"
+        android:background="@mipmap/pencil" />
 
 </RelativeLayout>
