@@ -10,14 +10,13 @@ import android.widget.EditText;
 import com.cviac.olaichuvadi.R;
 import com.cviac.olaichuvadi.datamodels.AddressInfo;
 
-import java.lang.reflect.Field;
 import java.util.List;
 
 public class EditaddressActivity extends AppCompatActivity {
 
     List<AddressInfo> addhis;
     Button sub_btn, cncl_btn;
-    EditText first_name, last_name, adrs, city, pin, mblno, dist, state;
+    EditText first_name, last_name, cmpny, addrs1, addrs2, city, pin_code, state, country;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,68 +24,77 @@ public class EditaddressActivity extends AppCompatActivity {
         setContentView(R.layout.activity_editaddress);
         setTitle("Your Address Here");
 
-        first_name = (EditText) findViewById(R.id.afname);
-        last_name = (EditText) findViewById(R.id.alname);
-        adrs = (EditText) findViewById(R.id.aaddr);
-        city = (EditText) findViewById(R.id.acity);
-        pin = (EditText) findViewById(R.id.apin);
-        mblno = (EditText) findViewById(R.id.mob_no);
-        sub_btn = (Button) findViewById(R.id.subbtn);
-        cncl_btn = (Button) findViewById(R.id.cnclbtn);
-        dist = (EditText) findViewById(R.id.adist);
-        state = (EditText) findViewById(R.id.astate);
+        first_name = (EditText) findViewById(R.id.fname_ed);
+        last_name = (EditText) findViewById(R.id.lname_ed);
+        cmpny = (EditText) findViewById(R.id.cmpny_ed);
+        addrs1 = (EditText) findViewById(R.id.addr1_ed);
+        addrs2 = (EditText) findViewById(R.id.addr2_ed);
+        city = (EditText) findViewById(R.id.city_ed);
+        pin_code = (EditText) findViewById(R.id.pin_ed);
+        state = (EditText) findViewById(R.id.state_ed);
+        country = (EditText) findViewById(R.id.cntry_ed);
 
         sub_btn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View v) {
 
                 String fname = first_name.getText().toString();
                 String lname = last_name.getText().toString();
-                String address = adrs.getText().toString();
-                String aacty = city.getText().toString();
-                String pin_no = pin.getText().toString();
-                String mobile = mblno.getText().toString();
-                String pay_city = dist.getText().toString();
-                String pay_state = state.getText().toString();
+                String company = cmpny.getText().toString();
+                String addres1 = addrs1.getText().toString();
+                String addres2 = addrs2.getText().toString();
+                String cty = city.getText().toString();
+                String pin = pin_code.getText().toString();
+                String stt = state.getText().toString();
+                String cntry = country.getText().toString();
 
                 if (fname.length() < 1) {
-                    first_name.setError("Enter First Name");
+                    first_name.setError("Enter Valid First Name");
                     return;
-                }
-                if (lname.length() < 1) {
-                    last_name.setError("Enter Last Name");
-                }
-                if (address.length() < 1) {
-                    adrs.setError("Enter Valid Door No. / Street");
+                } else if (lname.length() < 1) {
+                    last_name.setError("Enter Valid Last Name");
                     return;
-                }
-                if (aacty.length() < 1) {
+                } else if (company.length() < 1) {
+                    cmpny.setError("Enter to Proceed");
+                    return;
+                } else if (addres1.length() < 1) {
+                    addrs1.setError("Enter Valid Address");
+                    return;
+                } else if (addres2.length() < 1) {
+                    addrs2.setError("Enter Valid Address");
+                    return;
+                } else if (cty.length() < 1) {
                     city.setError("Enter Valid City");
                     return;
+                } else if (pin.length() < 1) {
+                    pin_code.setError("Enter Valid PIN Code");
+                    return;
+                } else if (stt.length() < 1) {
+                    state.setError("Enter Valid State");
+                    return;
+                } else if (cntry.length() < 1) {
+                    country.setError("Enter Valid Country");
+                    return;
                 }
-                if (pin_no.length() < 1) {
-                    pin.setError("Enter Valid Pincode");
-                }
-                if (pay_city.length() < 1) {
-                    dist.setError("Enter District");
-                }
-                if (pay_state.length() < 1) {
-                    state.setError("Enter State");
-                }
-                if (mobile.length() < 1) {
-                    mblno.setError("Enter Valid Mobile Number");
-                }
+
+
+            }
+        });
+
+/*        sub_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
                 String adrs_body = getAddress(fname, lname, address, aacty, pin_no, mobile, pay_state, pay_city);
 
-                /*String ins_addrs = passAddr(fname, lname, address, aacty, pin_no, mobile, pay_state, pay_city);*/
+                *//*String ins_addrs = passAddr(fname, lname, address, aacty, pin_no, mobile, pay_state, pay_city);*//*
 
                 Intent sbmt = new Intent();
                 sbmt.putExtra("Address", adrs_body);
                 setResult(2, sbmt);
                 finish();
             }
-        });
+        });*/
         cncl_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -113,7 +121,7 @@ public class EditaddressActivity extends AppCompatActivity {
         return addr.toString();
     }*/
 
-    private String getAddress(String fname, String lname, String address, String aacty, String pin_no, String mobile, String pay_state, String pay_city) {
+/*    private String getAddress(String fname, String lname, String address, String aacty, String pin_no, String mobile, String pay_state, String pay_city) {
         StringBuilder msgBody = new StringBuilder();
 
         msgBody.append(fname + " " + lname + "\n");
@@ -123,15 +131,5 @@ public class EditaddressActivity extends AppCompatActivity {
         msgBody.append(mobile + "\n");
 
         return msgBody.toString();
-    }
-
-    public static int getId(String resourceName, Class<?> c) {
-        try {
-            Field idField = c.getDeclaredField(resourceName);
-            return idField.getInt(idField);
-        } catch (Exception e) {
-            throw new RuntimeException("No resource ID found for: "
-                    + resourceName + " / " + c, e);
-        }
-    }
+    }*/
 }

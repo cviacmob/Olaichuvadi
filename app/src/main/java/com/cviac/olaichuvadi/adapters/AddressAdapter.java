@@ -82,6 +82,7 @@ public class AddressAdapter extends BaseAdapter {
         holder.tv6.setText(adinfo.getCity());
         holder.tv7.setText(adinfo.getZone());
         holder.tv8.setText(adinfo.getPostcode());
+
         holder.del.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -90,6 +91,7 @@ public class AddressAdapter extends BaseAdapter {
                 deleteAddress(add_id, c_id + "");
             }
         });
+
         return ord;
     }
 
