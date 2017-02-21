@@ -15,7 +15,9 @@ import com.cviac.olaichuvadi.services.LogininfoResponse;
 import com.cviac.olaichuvadi.services.OpencartAPIs;
 import com.cviac.olaichuvadi.utilities.OlaichuvadiApp;
 import com.cviac.olaichuvadi.utilities.Prefs;
+import com.squareup.okhttp.OkHttpClient;
 
+import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -93,9 +95,14 @@ public class LoginActivity extends AppCompatActivity {
         progressDialog.setCancelable(false);
         progressDialog.show();
 
+        OkHttpClient okHttpClient = new OkHttpClient();
+        okHttpClient.setConnectTimeout(120000, TimeUnit.MILLISECONDS);
+        okHttpClient.setReadTimeout(120000, TimeUnit.MILLISECONDS);
+
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("http://nheart.cviac.com")
                 .addConverterFactory(GsonConverterFactory.create())
+                .client(okHttpClient)
                 .build();
         OpencartAPIs api = retrofit.create(OpencartAPIs.class);
         Call<LogininfoResponse> call = api.login(lmail, lpwd);

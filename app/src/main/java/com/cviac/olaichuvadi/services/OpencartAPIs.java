@@ -80,7 +80,7 @@ public interface OpencartAPIs {
                                        @Field("country_id") String country_id);
 
     @POST("/index.php?route=api/address/edit")
-    Call<GeneralResponse> editAddress(@Field("address_id") String address_id,
+    Call<List<AddressInfo>> editAddress(@Field("address_id") String address_id,
                                       @Field("customer_id") String customer_id,
                                       @FieldMap HashMap<String, String> hashfields);
 

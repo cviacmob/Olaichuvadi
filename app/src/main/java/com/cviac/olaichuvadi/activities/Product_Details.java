@@ -25,7 +25,10 @@ import com.cviac.olaichuvadi.datamodels.Productdetailresponse;
 import com.cviac.olaichuvadi.services.OpencartAPIs;
 import com.cviac.olaichuvadi.utilities.BadgeDrawable;
 import com.cviac.olaichuvadi.utilities.Prefs;
+import com.squareup.okhttp.OkHttpClient;
 import com.squareup.picasso.Picasso;
+
+import java.util.concurrent.TimeUnit;
 
 import retrofit.Call;
 import retrofit.Callback;
@@ -113,9 +116,15 @@ public class Product_Details extends AppCompatActivity {
     private void addToCart(String prodId, String quantity) {
         String token = Prefs.getString("token", null);
         if (token != null) {
+
+            OkHttpClient okHttpClient = new OkHttpClient();
+            okHttpClient.setConnectTimeout(120000, TimeUnit.MILLISECONDS);
+            okHttpClient.setReadTimeout(120000, TimeUnit.MILLISECONDS);
+
             Retrofit retrofit = new Retrofit.Builder()
                     .baseUrl("http://nheart.cviac.com")
                     .addConverterFactory(GsonConverterFactory.create())
+                    .client(okHttpClient)
                     .build();
 
             OpencartAPIs api = retrofit.create(OpencartAPIs.class);
@@ -139,9 +148,14 @@ public class Product_Details extends AppCompatActivity {
     }
 
     private void getAndSetCartCount() {
+        OkHttpClient okHttpClient = new OkHttpClient();
+        okHttpClient.setConnectTimeout(120000, TimeUnit.MILLISECONDS);
+        okHttpClient.setReadTimeout(120000, TimeUnit.MILLISECONDS);
+
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("http://nheart.cviac.com")
                 .addConverterFactory(GsonConverterFactory.create())
+                .client(okHttpClient)
                 .build();
 
         OpencartAPIs api = retrofit.create(OpencartAPIs.class);

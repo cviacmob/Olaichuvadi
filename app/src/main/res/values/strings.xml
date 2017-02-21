@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">ஓலைச்சுவடி</string>
 
+    <string name="action_settings">settings</string>
+
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
@@ -24,7 +26,7 @@
     <string name="txt_add2cart">Add to Cart</string>
     <string name="txt_savdaddr">Your Saved Addresses :</string>
     <string name="txt_addaddr">Add Address</string>
-
+    <string name="txt_orders">Your Orders History :</string>
 
     <string name="edit_email">E-Mail ID</string>
     <string name="edit_pwd">Password</string>

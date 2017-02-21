@@ -26,7 +26,6 @@
         <activity android:name=".activities.CategoryList_Activity" />
         <activity android:name=".activities.MyCartActivity" />
         <activity android:name=".activities.MyAccountActivity" />
-        <activity android:name=".activities.MyOrdersActivity" />
         <activity android:name=".activities.LoginActivity" />
         <activity android:name=".activities.RegistrationActivity" />
         <activity android:name=".activities.EditaddressActivity" />
