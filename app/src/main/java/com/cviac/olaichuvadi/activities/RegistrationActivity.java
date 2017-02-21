@@ -111,6 +111,7 @@ public class RegistrationActivity extends AppCompatActivity {
                     Prefs.putString("Regname", dname);
                     Prefs.putString("Regmail", dmail);
                     Prefs.putString("Regphone", dphone);
+                    Prefs.putInt("customer_id", rsp.getCustomer_id());
 
                     progressDialog.dismiss();
 

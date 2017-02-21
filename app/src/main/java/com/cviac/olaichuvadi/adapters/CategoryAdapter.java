@@ -5,12 +5,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.cviac.olaichuvadi.R;
 import com.cviac.olaichuvadi.datamodels.Category;
-import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -71,7 +69,6 @@ public class CategoryAdapter extends BaseExpandableListAdapter {
 
     public static class ViewHolder {
         public TextView tv;
-        public ImageView iv;
     }
 
     @Override
@@ -82,19 +79,17 @@ public class CategoryAdapter extends BaseExpandableListAdapter {
             LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             shr = inflater.inflate(R.layout.categoryadapter, null);
             holder = new CategoryAdapter.ViewHolder();
-            holder.iv = (ImageView) shr.findViewById(R.id.catimg);
             holder.tv = (TextView) shr.findViewById(R.id.cattxt);
-//            holder.click = (ImageView) shr.findViewById(R.id.prcd_img);
             shr.setTag(holder);
         } else {
             holder = (CategoryAdapter.ViewHolder) shr.getTag();
         }
         Category cinfo = list.get(groupPosition);
         holder.tv.setText(cinfo.getName());
-        String url = cinfo.getImage();
+        /*String url = cinfo.getImage();
         if (url != null) {
             Picasso.with(shr.getContext()).load(url).resize(50, 50).into(holder.iv);
-        }
+        }*/
         return shr;
     }
 
@@ -107,9 +102,7 @@ public class CategoryAdapter extends BaseExpandableListAdapter {
             LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             shr = inflater.inflate(R.layout.categoryadapter, null);
             holder = new CategoryAdapter.ViewHolder();
-            holder.iv = (ImageView) shr.findViewById(R.id.catimg);
             holder.tv = (TextView) shr.findViewById(R.id.cattxt);
-//            holder.click = (ImageView) shr.findViewById(R.id.prcd_img);
             shr.setTag(holder);
         } else {
             holder = (CategoryAdapter.ViewHolder) shr.getTag();
@@ -117,10 +110,10 @@ public class CategoryAdapter extends BaseExpandableListAdapter {
         List<Category> childs = list.get(groupPosition).getCategories();
         Category cinfo = childs.get(childPosition);
         holder.tv.setText(cinfo.getName());
-        String url = cinfo.getImage();
+       /* String url = cinfo.getImage();
         if (url != null) {
             Picasso.with(shr.getContext()).load(url).resize(50, 50).into(holder.iv);
-        }
+        }*/
         return shr;
     }
 

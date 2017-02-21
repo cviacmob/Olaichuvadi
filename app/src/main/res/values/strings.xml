@@ -33,7 +33,7 @@
     <string name="edit_uname">Username</string>
     <string name="edit_fname">First Name</string>
     <string name="edit_lname">Last Name</string>
-    <string name="edit_addr">Address</string>
+    <string name="edit_cmpny">Company</string>
     <string name="edit_cty">City</string>
     <string name="edit_pin">PIN Code</string>
     <string name="edit_dist">District</string>
@@ -135,5 +135,8 @@
     <string name="pref_ringtone_silent">Silent</string>
 
     <string name="pref_title_vibrate">Vibrate</string>
+    <string name="edit_adrs1">Address 1</string>
+    <string name="edt_adrs2">Address 2</string>
+    <string name="edit_cntry">Country</string>
 
 </resources>

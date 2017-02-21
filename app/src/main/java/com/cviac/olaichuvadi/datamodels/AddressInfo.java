@@ -4,48 +4,76 @@ import java.io.Serializable;
 
 public class AddressInfo implements Serializable {
 
-    private String fname;
-    private String lname;
-    private String addr;
+    private String firstname;
+    private String lastname;
+    private String company;
+    private String address_id;
+    private String address_1;
+    private String address_2;
+    private String postcode;
     private String city;
-    private String dist;
-    private String state;
-    private String pin_code;
-    private String mobileno;
+    private String zone;
+    private String country;
+    private String zonecode;
+    private String country_id;
 
-    public AddressInfo(String fname, String lname, String addr, String city, String dist, String state, String pin_code, String mobileno) {
-        this.fname = fname;
-        this.lname = lname;
-        this.addr = addr;
-        this.city = city;
-        this.dist = dist;
-        this.state = state;
-        this.pin_code = pin_code;
-        this.mobileno = mobileno;
+    public AddressInfo() {
     }
 
-    public String getFname() {
-        return fname;
+    public String getFirstname() {
+        return firstname;
     }
 
-    public void setFname(String fname) {
-        this.fname = fname;
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
     }
 
-    public String getLname() {
-        return lname;
+    public String getLastname() {
+        return lastname;
     }
 
-    public void setLname(String lname) {
-        this.lname = lname;
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
     }
 
-    public String getAddr() {
-        return addr;
+    public String getCompany() {
+        return company;
     }
 
-    public void setAddr(String addr) {
-        this.addr = addr;
+    public void setCompany(String company) {
+        this.company = company;
+    }
+
+    public String getAddress_id() {
+        return address_id;
+    }
+
+    public void setAddress_id(String address_id) {
+        this.address_id = address_id;
+    }
+
+    public String getAddress_1() {
+        return address_1;
+    }
+
+    public void setAddress_1(String address_1) {
+        this.address_1 = address_1;
+    }
+
+    public String getAddress_2() {
+        return address_2;
+    }
+
+    public void setAddress_2(String address_2) {
+        this.address_2 = address_2;
+    }
+
+    public String getPostcode() {
+        return postcode;
+    }
+
+    public void setPostcode(String postcode) {
+        this.postcode = postcode;
     }
 
     public String getCity() {
@@ -56,35 +84,35 @@ public class AddressInfo implements Serializable {
         this.city = city;
     }
 
-    public String getDist() {
-        return dist;
+    public String getZone() {
+        return zone;
     }
 
-    public void setDist(String dist) {
-        this.dist = dist;
+    public void setZone(String zone) {
+        this.zone = zone;
     }
 
-    public String getState() {
-        return state;
+    public String getCountry() {
+        return country;
     }
 
-    public void setState(String state) {
-        this.state = state;
+    public void setCountry(String country) {
+        this.country = country;
     }
 
-    public String getPin_code() {
-        return pin_code;
+    public String getZonecode() {
+        return zonecode;
     }
 
-    public void setPin_code(String pin_code) {
-        this.pin_code = pin_code;
+    public void setZonecode(String zonecode) {
+        this.zonecode = zonecode;
     }
 
-    public String getMobileno() {
-        return mobileno;
+    public String getCountry_id() {
+        return country_id;
     }
 
-    public void setMobileno(String mobileno) {
-        this.mobileno = mobileno;
+    public void setCountry_id(String country_id) {
+        this.country_id = country_id;
     }
 }

@@ -79,7 +79,7 @@ public class EditaddressActivity extends AppCompatActivity {
 
                 String adrs_body = getAddress(fname, lname, address, aacty, pin_no, mobile, pay_state, pay_city);
 
-                String ins_addrs = passAddr(fname, lname, address, aacty, pin_no, mobile, pay_state, pay_city);
+                /*String ins_addrs = passAddr(fname, lname, address, aacty, pin_no, mobile, pay_state, pay_city);*/
 
                 Intent sbmt = new Intent();
                 sbmt.putExtra("Address", adrs_body);
@@ -97,7 +97,7 @@ public class EditaddressActivity extends AppCompatActivity {
         });
     }
 
-    private String passAddr(String fname, String lname, String address, String aacty, String pin_no, String mobile, String pay_state, String pay_city) {
+/*    private String passAddr(String fname, String lname, String address, String aacty, String pin_no, String mobile, String pay_state, String pay_city) {
 
         AddressInfo addr = new AddressInfo(fname, lname, address, aacty, pay_city, pay_state, pin_no, mobile);
 
@@ -111,7 +111,7 @@ public class EditaddressActivity extends AppCompatActivity {
         addr.setDist(pay_city);
 
         return addr.toString();
-    }
+    }*/
 
     private String getAddress(String fname, String lname, String address, String aacty, String pin_no, String mobile, String pay_state, String pay_city) {
         StringBuilder msgBody = new StringBuilder();

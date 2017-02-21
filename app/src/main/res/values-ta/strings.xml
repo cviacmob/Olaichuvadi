@@ -22,16 +22,20 @@
 
     <string name="edit_email">மின்னஞ்சல் முகவரி</string>
     <string name="edit_pwd">கடவுச்சொல்</string>
-    <string name="edit_cnfpwd">கடவுச்சொல்லை உறுதிப்படுத்தவும்</string>
+    <string name="edit_cnfpwd">உறுதிப்படுத்து</string>
     <string name="edit_mob">கைப்பேசி எண்</string>
     <string name="edit_uname">பயனர்பெயர்</string>
     <string name="edit_fname">முதல் பெயர்</string>
     <string name="edit_lname">கடந்த பெயர்</string>
-    <string name="edit_addr">முகவரி</string>
+    <string name="edit_cmpny">Company</string>
     <string name="edit_cty">நகரம்</string>
     <string name="edit_pin">அஞ்சல் குறியீடு</string>
     <string name="edit_dist">மாவட்டம்</string>
     <string name="edit_sname">மாநிலம்</string>
+
+    <string name="edit_adrs1">முகவரி 1</string>
+    <string name="edt_adrs2">முகவரி 2</string>
+    <string name="edit_cntry">நாடு</string>
 
     <string name="btn_sub">சமர்ப்பிக்க</string>
     <string name="btn_cncl">ரத்து செய்</string>

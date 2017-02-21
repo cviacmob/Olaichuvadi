@@ -1,140 +1,169 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_editaddress"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="5dp"
-    tools:context="com.cviac.olaichuvadi.activities.EditaddressActivity">
+xmlns:tools="http://schemas.android.com/tools"
+android:id="@+id/activity_editaddress"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:padding="5dp"
+tools:context="com.cviac.olaichuvadi.activities.EditaddressActivity">
 
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/nme"
+<ScrollView
+    android:id="@+id/address_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:id="@+id/scroll_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <EditText
-            android:id="@+id/afname"
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/fname_l"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+
+                android:id="@+id/fname_ed"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/edit_fname" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/lname_l"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/edit_fname"
-            android:inputType="text" />
-    </android.support.design.widget.TextInputLayout>
+            android:layout_below="@+id/fname_l">
 
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/drno_st"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/nme">
+            <EditText
+                android:id="@+id/lname_ed"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/edit_lname" />
 
-        <EditText
-            android:id="@+id/alname"
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/cmpny_l"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/edit_lname" />
-    </android.support.design.widget.TextInputLayout>
+            android:layout_below="@+id/lname_l">
 
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/cty"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/drno_st">
+            <EditText
+                android:id="@+id/cmpny_ed"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/edit_cmpny" />
 
-        <EditText
-            android:id="@+id/aaddr"
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/addr1_l"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/edit_addr" />
-    </android.support.design.widget.TextInputLayout>
+            android:layout_below="@+id/cmpny_l">
 
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/stt"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/cty">
+            <EditText
+                android:id="@+id/addr1_ed"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/edit_adrs1" />
 
-        <EditText
-            android:id="@+id/acity"
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/addr2_l"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/edit_cty" />
-    </android.support.design.widget.TextInputLayout>
+            android:layout_below="@+id/addr1_l">
 
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/pin"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/stt">
+            <EditText
+                android:id="@+id/addr2_ed"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/edt_adrs2" />
 
-        <EditText
-            android:id="@+id/apin"
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/city_l"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/edit_pin"
-            android:inputType="number"
-            android:maxLength="6" />
-    </android.support.design.widget.TextInputLayout>
+            android:layout_below="@+id/addr2_l">
 
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/dist_n"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/pin">
+            <EditText
+                android:id="@+id/city_ed"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/edit_cty" />
 
-        <EditText
-            android:id="@+id/adist"
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/pin_l"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/edit_dist"
-            android:inputType="text" />
-    </android.support.design.widget.TextInputLayout>
+            android:layout_below="@+id/city_l">
 
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/state_n"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/dist_n">
+            <EditText
+                android:id="@+id/pin_ed"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/edit_pin" />
 
-        <EditText
-            android:id="@+id/astate"
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/state_l"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/edit_sname"
-            android:inputType="text" />
-    </android.support.design.widget.TextInputLayout>
+            android:layout_below="@+id/pin_l">
 
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/mobile"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/state_n">
+            <EditText
+                android:id="@+id/state_ed"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/edit_sname" />
 
-        <EditText
-            android:id="@+id/mob_no"
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/cntry_l"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/edit_mob"
-            android:inputType="text" />
-    </android.support.design.widget.TextInputLayout>
+            android:layout_below="@+id/state_l">
 
-    <Button
-        android:id="@+id/subbtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/mobile"
-        android:layout_marginRight="5dp"
-        android:layout_toLeftOf="@+id/cnclbtn"
-        android:background="@drawable/roundcolorbtn"
-        android:text="@string/btn_sub"
-        android:textColor="#ffffff" />
+            <EditText
+                android:id="@+id/cntry_ed"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/edit_cntry" />
 
-    <Button
-        android:id="@+id/cnclbtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_below="@+id/mobile"
-        android:background="@drawable/roundcolorbtn"
-        android:text="@string/btn_cncl"
-        android:textColor="#ffffff" />
+        </android.support.design.widget.TextInputLayout>
+
+        <Button
+            android:id="@+id/sub_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/cntry_l"
+            android:background="@drawable/roundcolorbtn"
+            android:text="@string/btn_sub"
+            android:textColor="#ffffff" />
+
+        <Button
+            android:id="@+id/cncl_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_below="@+id/cntry_l"
+            android:background="@drawable/roundcolorbtn"
+            android:text="@string/btn_cncl"
+            android:textColor="#ffffff" />
+
+    </RelativeLayout>
+
+</ScrollView>
 
 </RelativeLayout>

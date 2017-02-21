@@ -2,7 +2,6 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginLeft="10dp"
     android:padding="5dp">
 
     <TextView
@@ -15,61 +14,57 @@
         android:id="@+id/addlname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toEndOf="@+id/addname"
         android:layout_toRightOf="@+id/addname"
         android:paddingLeft="5dp"
         android:text="sample_lname" />
 
     <TextView
-        android:id="@+id/drst"
+        android:id="@+id/addr1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/addname"
-        android:text="sample_door no/st." />
+        android:text="Sample_addr1" />
 
     <TextView
-        android:id="@+id/cty"
+        android:id="@+id/addr2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/drst"
-        android:text="Sample_city" />
-
-    <TextView
-        android:id="@+id/dist"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/drst"
-        android:layout_toRightOf="@+id/cty"
+        android:layout_below="@+id/addname"
+        android:layout_toRightOf="@+id/addr1"
         android:paddingLeft="5dp"
-        android:text="sample_dist" />
+        android:text="sample_addr2" />
 
     <TextView
-        android:id="@+id/stt"
+        android:id="@+id/city"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/cty"
+        android:layout_below="@+id/addr1"
+        android:text="sample_city" />
+
+    <TextView
+        android:id="@+id/stat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/addr2"
+        android:layout_toRightOf="@+id/city"
+        android:paddingLeft="5dp"
         android:text="sample_state" />
 
     <TextView
-        android:id="@+id/pin"
+        android:id="@+id/zip"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/dist"
-        android:layout_toRightOf="@+id/stt"
-        android:paddingLeft="5dp"
-        android:text="sample_pin" />
-
-    <TextView
-        android:id="@+id/mbl"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/stt"
-        android:text="sample_mobile" />
+        android:layout_below="@+id/city"
+        android:text="sample_postcode" />
 
     <ImageButton
         android:id="@+id/delbtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
-        android:background="@mipmap/remcart" />
+        android:background="@mipmap/remcart"
+        android:clickable="true" />
 
 </RelativeLayout>
