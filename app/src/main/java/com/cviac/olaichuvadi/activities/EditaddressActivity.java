@@ -15,6 +15,7 @@ import com.cviac.olaichuvadi.R;
 import com.cviac.olaichuvadi.datamodels.AddressInfo;
 import com.cviac.olaichuvadi.datamodels.Category;
 import com.cviac.olaichuvadi.datamodels.CountryInfo;
+import com.cviac.olaichuvadi.datamodels.GeneralResponse;
 import com.cviac.olaichuvadi.datamodels.ZoneInfo;
 import com.cviac.olaichuvadi.services.OpencartAPIs;
 import com.cviac.olaichuvadi.utilities.Prefs;
@@ -149,11 +150,11 @@ public class EditaddressActivity extends AppCompatActivity {
 
         OpencartAPIs api = retrofit.create(OpencartAPIs.class);
 
-        Call<List<AddressInfo>> call = api.editAddress(addrs_id, c_id + "", fname, lname, company, addres1, addres2, pin, cty, state_id, country_id);
-        call.enqueue(new Callback<List<AddressInfo>>() {
+        Call<GeneralResponse> call = api.editAddress(addrs_id, c_id + "", fname, lname, company, addres1, addres2, pin, cty, state_id, country_id);
+        call.enqueue(new Callback<GeneralResponse>() {
 
-            public void onResponse(Response<List<AddressInfo>> response, Retrofit retrofit) {
-                List<AddressInfo> rsp1 = response.body();
+            public void onResponse(Response<GeneralResponse> response, Retrofit retrofit) {
+                GeneralResponse rsp1 = response.body();
             }
 
             @Override
@@ -177,17 +178,20 @@ public class EditaddressActivity extends AppCompatActivity {
 
         OpencartAPIs api = retrofit.create(OpencartAPIs.class);
 
-        Call<List<AddressInfo>> call = api.addAddress(c_id + "", fname, lname, company, addres1, addres2, pin, cty, state_id, country_id);
-        call.enqueue(new Callback<List<AddressInfo>>() {
+        Call<GeneralResponse> call = api.addAddress(c_id + "", fname, lname, company, addres1, addres2, pin, cty, state_id, country_id);
+        call.enqueue(new Callback<GeneralResponse>() {
 
-            public void onResponse(Response<List<AddressInfo>> response, Retrofit retrofit) {
+            public void onResponse(Response<GeneralResponse> response, Retrofit retrofit) {
 
-                List<AddressInfo> rsp2 = response.body();
+                GeneralResponse rsp2 = response.body();
+                if (rsp2.getCode() == 0) {
 
-                Intent new_address = new Intent();
+                    Intent new_address = new Intent();
 
-                setResult(140, new_address);
-                finish();
+                    setResult(140, new_address);
+                    finish();
+
+                }
             }
 
             @Override

@@ -23,7 +23,6 @@ import retrofit.http.Header;
 import retrofit.http.POST;
 import retrofit.http.Query;
 
-
 public interface OpencartAPIs {
 
     @FormUrlEncoded
@@ -68,7 +67,7 @@ public interface OpencartAPIs {
     Call<List<AddressInfo>> getAdresses(@Query("customer_id") String customer_id);
 
     @POST("/index.php?route=api/address/add")
-    Call<List<AddressInfo>> addAddress(@Field("customer_id") String customer_id,
+    Call<GeneralResponse> addAddress(@Field("customer_id") String customer_id,
                                        @Field("firstname") String firstname,
                                        @Field("lastname") String lastname,
                                        @Field("company") String company,
@@ -80,7 +79,7 @@ public interface OpencartAPIs {
                                        @Field("country_id") String country_id);
 
     @POST("/index.php?route=api/address/edit")
-    Call<List<AddressInfo>> editAddress(@Field("address_id") String address_id,
+    Call<GeneralResponse> editAddress(@Field("address_id") String address_id,
                                         @Field("customer_id") String customer_id,
                                         @Field("firstname") String firstname,
                                         @Field("lastname") String lastname,
