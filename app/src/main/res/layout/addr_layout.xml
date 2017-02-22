@@ -64,14 +64,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
-        android:background="@mipmap/remcart" />
+        android:background="@mipmap/remcart"
+        android:clickable="true" />
 
     <ImageButton
         android:id="@+id/editaddr"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/city"
-        android:background="@mipmap/pencil" />
+        android:layout_marginRight="15dp"
+        android:layout_toLeftOf="@+id/delbtn"
+        android:background="@mipmap/pencil"
+        android:clickable="true" />
 
 </RelativeLayout>

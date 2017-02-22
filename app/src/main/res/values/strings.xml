@@ -140,5 +140,6 @@
     <string name="edit_adrs1">Address 1</string>
     <string name="edt_adrs2">Address 2</string>
     <string name="edit_cntry">Country</string>
+    <string name="btn_save">SAVE</string>
 
 </resources>

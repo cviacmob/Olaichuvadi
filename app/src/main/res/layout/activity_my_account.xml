@@ -77,10 +77,7 @@
             android:layout_alignParentBottom="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:background="@drawable/roundcolorbtn"
-            android:text="@string/txt_addaddr"
-            android:textColor="#ffffff" />
+            android:background="@mipmap/plusaddr" />
 
     </RelativeLayout>
-
 </RelativeLayout>

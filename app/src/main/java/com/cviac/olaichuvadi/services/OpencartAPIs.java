@@ -4,10 +4,12 @@ import com.cviac.olaichuvadi.datamodels.AddToCartResponse;
 import com.cviac.olaichuvadi.datamodels.AddressInfo;
 import com.cviac.olaichuvadi.datamodels.CategoriesResponse;
 import com.cviac.olaichuvadi.datamodels.CategoryProductsResponse;
+import com.cviac.olaichuvadi.datamodels.CountryInfo;
 import com.cviac.olaichuvadi.datamodels.GeneralResponse;
 import com.cviac.olaichuvadi.datamodels.GetCartItemsResponse;
 import com.cviac.olaichuvadi.datamodels.LoginResponse;
 import com.cviac.olaichuvadi.datamodels.Productdetailresponse;
+import com.cviac.olaichuvadi.datamodels.ZoneInfo;
 
 import java.util.HashMap;
 import java.util.List;
@@ -74,17 +76,29 @@ public interface OpencartAPIs {
                                        @Field("address_2") String address_2,
                                        @Field("postcode") String postcode,
                                        @Field("city") String city,
-                                       @Field("zone") String zone,
-                                       @Field("country") String country,
                                        @Field("zonecode") String zonecode,
                                        @Field("country_id") String country_id);
 
     @POST("/index.php?route=api/address/edit")
     Call<List<AddressInfo>> editAddress(@Field("address_id") String address_id,
-                                      @Field("customer_id") String customer_id,
-                                      @FieldMap HashMap<String, String> hashfields);
+                                        @Field("customer_id") String customer_id,
+                                        @Field("firstname") String firstname,
+                                        @Field("lastname") String lastname,
+                                        @Field("company") String company,
+                                        @Field("address_1") String address_1,
+                                        @Field("address_2") String address_2,
+                                        @Field("postcode") String postcode,
+                                        @Field("city") String city,
+                                        @Field("zonecode") String zonecode,
+                                        @Field("country_id") String country_id);
 
     @GET("/index.php?route=api/address/delete")
     Call<GeneralResponse> deleteAddress(@Query("address_id") String address_id,
                                         @Query("customer_id") String customer_id);
+
+    @GET("/index.php?route=api/address/getCountries")
+    Call<List<CountryInfo>> getCountries();
+
+    @GET("/index.php?route=api/address/getZones")
+    Call<List<ZoneInfo>> getZones(@Query("country_id") String country_id);
 }
