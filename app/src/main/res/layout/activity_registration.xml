@@ -32,17 +32,39 @@
                 android:layout_height="wrap_content"
                 android:drawableLeft="@mipmap/account"
                 android:drawablePadding="5dp"
-                android:hint="@string/edit_uname"
+                android:hint="@string/edit_fname"
                 android:inputType="text"
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp" />
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
-            android:id="@+id/mail"
+            android:id="@+id/lname"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/name"
+            android:layout_centerHorizontal="true"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp">
+
+            <EditText
+                android:id="@+id/lnamebox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@mipmap/account"
+                android:drawablePadding="5dp"
+                android:hint="@string/edit_lname"
+                android:inputType="text"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/mail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/lname"
             android:paddingLeft="20dp"
             android:paddingRight="20dp">
 
@@ -124,10 +146,10 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/cnfpwd"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="48dp"
             android:background="@drawable/roundcolorbtn"
             android:text="@string/register"
             android:textColor="#ffffff" />
 
     </RelativeLayout>
+
 </RelativeLayout>

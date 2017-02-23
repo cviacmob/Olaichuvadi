@@ -13,7 +13,6 @@ import android.widget.TextView;
 
 import com.cviac.olaichuvadi.R;
 import com.cviac.olaichuvadi.datamodels.AddressInfo;
-import com.cviac.olaichuvadi.datamodels.Category;
 import com.cviac.olaichuvadi.datamodels.CountryInfo;
 import com.cviac.olaichuvadi.datamodels.GeneralResponse;
 import com.cviac.olaichuvadi.datamodels.ZoneInfo;
@@ -38,6 +37,7 @@ public class EditaddressActivity extends AppCompatActivity {
     EditText first_name, last_name, cmpny, addrs1, addrs2, city, pin_code;
     Spinner country, state;
     int c_id = Prefs.getInt("customer_id", -1);
+    String Cus_id;
     List<CountryInfo> countrieslist;
     List<ZoneInfo> stateslist;
 
@@ -94,6 +94,7 @@ public class EditaddressActivity extends AppCompatActivity {
                 String addres2 = addrs2.getText().toString();
                 String cty = city.getText().toString();
                 String pin = pin_code.getText().toString();
+                Cus_id = Integer.toString(c_id);
 
                 CountryInfo cntry = (CountryInfo) country.getSelectedItem();
                 String country_id = cntry.getCountry_id();
@@ -122,9 +123,9 @@ public class EditaddressActivity extends AppCompatActivity {
 
                 if (addrs != null) {
                     String addrs_id = addrs.getAddress_id();
-                    editAddress(addrs_id, c_id + "", fname, lname, company, addres1, addres2, pin, cty, state_id, country_id);
+                    editAddress(addrs_id, Cus_id, fname, lname, company, addres1, addres2, pin, cty, state_id, country_id);
                 } else {
-                    addAddress(c_id + "", fname, lname, company, addres1, addres2, pin, cty, state_id, country_id);
+                    newAddress(Cus_id, fname, lname, company, addres1, addres2, pin, cty, state_id, country_id);
                 }
             }
         });
@@ -150,11 +151,17 @@ public class EditaddressActivity extends AppCompatActivity {
 
         OpencartAPIs api = retrofit.create(OpencartAPIs.class);
 
-        Call<GeneralResponse> call = api.editAddress(addrs_id, c_id + "", fname, lname, company, addres1, addres2, pin, cty, state_id, country_id);
+        Call<GeneralResponse> call = api.editAddress(addrs_id, Cus_id, fname, lname, company, addres1, addres2, pin, cty, state_id, country_id);
         call.enqueue(new Callback<GeneralResponse>() {
 
             public void onResponse(Response<GeneralResponse> response, Retrofit retrofit) {
+
                 GeneralResponse rsp1 = response.body();
+                if (rsp1.getCode() == 0) {
+                    Intent edt_address = new Intent();
+                    setResult(141, edt_address);
+                    finish();
+                }
             }
 
             @Override
@@ -164,7 +171,7 @@ public class EditaddressActivity extends AppCompatActivity {
         });
     }
 
-    private void addAddress(String s, String fname, String lname, String company, String addres1, String addres2, String pin, String cty, String state_id, String country_id) {
+    private void newAddress(String s, String fname, String lname, String company, String addres1, String addres2, String pin, String cty, String state_id, String country_id) {
 
         OkHttpClient okHttpClient = new OkHttpClient();
         okHttpClient.setConnectTimeout(120000, TimeUnit.MILLISECONDS);
@@ -178,19 +185,16 @@ public class EditaddressActivity extends AppCompatActivity {
 
         OpencartAPIs api = retrofit.create(OpencartAPIs.class);
 
-        Call<GeneralResponse> call = api.addAddress(c_id + "", fname, lname, company, addres1, addres2, pin, cty, state_id, country_id);
+        Call<GeneralResponse> call = api.addAddress(Cus_id, fname, lname, company, addres1, addres2, pin, cty, state_id, country_id);
         call.enqueue(new Callback<GeneralResponse>() {
 
             public void onResponse(Response<GeneralResponse> response, Retrofit retrofit) {
 
                 GeneralResponse rsp2 = response.body();
                 if (rsp2.getCode() == 0) {
-
                     Intent new_address = new Intent();
-
                     setResult(140, new_address);
                     finish();
-
                 }
             }
 

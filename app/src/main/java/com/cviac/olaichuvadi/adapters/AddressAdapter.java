@@ -18,6 +18,8 @@ import com.cviac.olaichuvadi.datamodels.GeneralResponse;
 import com.cviac.olaichuvadi.services.OpencartAPIs;
 import com.cviac.olaichuvadi.utilities.Prefs;
 
+import org.w3c.dom.Text;
+
 import java.util.List;
 
 import retrofit.Call;
@@ -52,7 +54,7 @@ public class AddressAdapter extends BaseAdapter {
     }
 
     public static class ViewHolder {
-        public TextView tv1, tv2, tv4, tv5, tv6, tv7, tv8;
+        public TextView tv1, tv2, tv4, tv5, tv6, tv7, tv8, tv9;
         public ImageButton edt, del;
     }
 
@@ -72,8 +74,10 @@ public class AddressAdapter extends BaseAdapter {
             holder.tv6 = (TextView) ord.findViewById(R.id.city);
             holder.tv7 = (TextView) ord.findViewById(R.id.stat);
             holder.tv8 = (TextView) ord.findViewById(R.id.zip);
+            holder.tv9 = (TextView) ord.findViewById(R.id.cntry);
             holder.del = (ImageButton) ord.findViewById(R.id.delbtn);
             holder.edt = (ImageButton) ord.findViewById(R.id.editaddr);
+
             ord.setTag(holder);
         } else {
             holder = (ViewHolder) ord.getTag();
@@ -85,6 +89,7 @@ public class AddressAdapter extends BaseAdapter {
         holder.tv6.setText(adinfo.getCity());
         holder.tv7.setText(adinfo.getZone());
         holder.tv8.setText(adinfo.getPostcode());
+        holder.tv9.setText(adinfo.getCountry());
 
         holder.del.setOnClickListener(new View.OnClickListener() {
             @Override

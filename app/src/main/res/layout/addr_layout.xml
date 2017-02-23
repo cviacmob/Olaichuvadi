@@ -57,7 +57,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/city"
+        android:layout_toRightOf="@+id/cntry"
+        android:paddingLeft="5dp"
         android:text="sample_postcode" />
+
+    <TextView
+        android:id="@+id/cntry"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/city"
+        android:text="sample_country" />
 
     <ImageButton
         android:id="@+id/delbtn"

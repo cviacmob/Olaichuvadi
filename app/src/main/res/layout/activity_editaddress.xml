@@ -113,7 +113,8 @@
                     android:id="@+id/pin_ed"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/edit_pin" />
+                    android:hint="@string/edit_pin"
+                    android:inputType="number" />
 
             </android.support.design.widget.TextInputLayout>
 

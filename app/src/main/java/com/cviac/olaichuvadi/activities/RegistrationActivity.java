@@ -28,8 +28,8 @@ import retrofit.Retrofit;
 
 public class RegistrationActivity extends AppCompatActivity {
 
-    EditText name, mail, phone, pwd, cnfpwd;
-    String dname, dmail, dphone, dpwd, dcnfpwd;
+    EditText name, lname, mail, phone, pwd, cnfpwd;
+    String dname, dlname, dmail, dphone, dpwd, dcnfpwd;
     Button regist;
     ProgressDialog progressDialog = null;
 
@@ -41,6 +41,7 @@ public class RegistrationActivity extends AppCompatActivity {
         setTitle(getString(R.string.register));
 
         name = (EditText) findViewById(R.id.namebox);
+        lname = (EditText) findViewById(R.id.lnamebox);
         mail = (EditText) findViewById(R.id.mailbox);
         phone = (EditText) findViewById(R.id.phonebox);
         pwd = (EditText) findViewById(R.id.pwdbox);
@@ -51,6 +52,7 @@ public class RegistrationActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 dname = name.getText().toString();
+                dlname = lname.getText().toString();
                 dmail = mail.getText().toString();
                 dphone = phone.getText().toString();
                 dpwd = pwd.getText().toString();
@@ -78,7 +80,7 @@ public class RegistrationActivity extends AppCompatActivity {
                 if (app.isNetworkStatus()) {
 
 
-                    register(dname, dname, dmail, dphone, dpwd, dcnfpwd);
+                    register(dname, dlname, dmail, dphone, dpwd, dcnfpwd);
                 } else {
                     Toast.makeText(getApplicationContext(),
                             "Please Check Your Internet Connection and try again", Toast.LENGTH_LONG).show();

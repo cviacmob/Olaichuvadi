@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_my_account"
     android:layout_width="match_parent"
@@ -50,34 +51,28 @@
 
     </RelativeLayout>
 
-    <RelativeLayout
-        android:id="@+id/textarea"
+    <TextView
+        android:id="@+id/addtit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/accdet"
+        android:text="@string/txt_savdaddr"
+        android:textStyle="bold" />
+
+    <ListView
+        android:id="@+id/addlst"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/accdet">
+        android:layout_below="@+id/addtit" />
 
-        <TextView
-            android:id="@+id/addtit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/txt_savdaddr"
-            android:textStyle="bold" />
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/fab_margin"
+        app:srcCompat="@mipmap/plusfab" />
 
-        <ListView
-            android:id="@+id/addlst"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_above="@+id/addbtn"
-            android:layout_below="@+id/addtit" />
-
-        <Button
-            android:id="@+id/addbtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:background="@mipmap/plusaddr" />
-
-    </RelativeLayout>
 </RelativeLayout>

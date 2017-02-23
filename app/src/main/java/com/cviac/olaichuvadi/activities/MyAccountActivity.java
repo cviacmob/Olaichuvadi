@@ -2,10 +2,10 @@ package com.cviac.olaichuvadi.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -31,7 +31,7 @@ public class MyAccountActivity extends AppCompatActivity {
     TextView tv1, tv2, tv3;
     List<AddressInfo> addhis;
     ListView lv;
-    Button add_addr_btn;
+    FloatingActionButton fab;
     AddressAdapter adapter1;
 
     @Override
@@ -51,7 +51,7 @@ public class MyAccountActivity extends AppCompatActivity {
         tv1 = (TextView) findViewById(R.id.uname);
         tv2 = (TextView) findViewById(R.id.umail);
         tv3 = (TextView) findViewById(R.id.uphone);
-        add_addr_btn = (Button) findViewById(R.id.addbtn);
+        fab = (FloatingActionButton) findViewById(R.id.fab);
 
         tv1.setText(aname);
         tv2.setText(amail);
@@ -62,16 +62,13 @@ public class MyAccountActivity extends AppCompatActivity {
         adapter1 = new AddressAdapter(MyAccountActivity.this, addhis);
         lv.setAdapter(adapter1);
 
-        add_addr_btn = (Button) findViewById(R.id.addbtn);
-
-        add_addr_btn.setOnClickListener(new View.OnClickListener() {
+        fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent addaddr = new Intent(MyAccountActivity.this, EditaddressActivity.class);
                 startActivityForResult(addaddr, 140);
             }
         });
-
     }
 
     public void loadAddresses() {
@@ -106,12 +103,13 @@ public class MyAccountActivity extends AppCompatActivity {
         });
     }
 
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
         if (requestCode == 140) {
-
+            loadAddresses();
+        } else if (requestCode == 141) {
+            loadAddresses();
         }
     }
 
