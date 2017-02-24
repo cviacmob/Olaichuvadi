@@ -75,13 +75,16 @@ public class EditaddressActivity extends AppCompatActivity {
             city.setText(addrs.getCity(), TextView.BufferType.EDITABLE);
             pin_code.setText(addrs.getPostcode(), TextView.BufferType.EDITABLE);
 
+
             sub_btn.setText(R.string.btn_save);
             setTitle("Edit Your Address Here");
+
         } else {
+
             sub_btn.setText(R.string.btn_sub);
             setTitle("Enter Your Address Here");
-        }
 
+        }
 
         sub_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -205,6 +208,34 @@ public class EditaddressActivity extends AppCompatActivity {
         });
     }
 
+    private int getCountryPosition(List<CountryInfo> contr) {
+        if (addrs != null) {
+            String c_id = addrs.getCountry_id();
+            int index = 0;
+            for (CountryInfo info : contr) {
+                if (info.getCountry_id().equalsIgnoreCase(c_id)) {
+                    return index;
+                }
+                index++;
+            }
+        }
+        return 0;
+    }
+
+    private int getStatePosition(List<ZoneInfo> zone) {
+        if (addrs != null) {
+            String s_id = addrs.getZone_id();
+            int index = 0;
+            for (ZoneInfo info2 : zone) {
+                if (info2.getZone_id().equalsIgnoreCase(s_id)) {
+                    return index;
+                }
+                index++;
+            }
+        }
+        return 0;
+    }
+
     private void loadspinner() {
         OkHttpClient okHttpClient = new OkHttpClient();
         okHttpClient.setConnectTimeout(120000, TimeUnit.MILLISECONDS);
@@ -230,6 +261,9 @@ public class EditaddressActivity extends AppCompatActivity {
                 ArrayAdapter adapter1 = new ArrayAdapter(EditaddressActivity.this, android.R.layout.simple_spinner_item, countrieslist);
                 adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 country.setAdapter(adapter1);
+
+                int index = getCountryPosition(contr);
+                country.setSelection(index);
 
                 country.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                     @Override
@@ -262,6 +296,9 @@ public class EditaddressActivity extends AppCompatActivity {
                                 ArrayAdapter adapter2 = new ArrayAdapter(EditaddressActivity.this, android.R.layout.simple_spinner_item, stateslist);
                                 adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                                 state.setAdapter(adapter2);
+
+                                int count = getStatePosition(zone);
+                                state.setSelection(count);
                             }
 
                             @Override

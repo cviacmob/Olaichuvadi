@@ -14,10 +14,18 @@ public class AddressInfo implements Serializable {
     private String city;
     private String zone;
     private String country;
-    private String zonecode;
+    private String zone_id;
     private String country_id;
 
     public AddressInfo() {
+    }
+
+    public String getZone_id() {
+        return zone_id;
+    }
+
+    public void setZone_id(String zone_id) {
+        this.zone_id = zone_id;
     }
 
     public String getFirstname() {
@@ -98,14 +106,6 @@ public class AddressInfo implements Serializable {
 
     public void setCountry(String country) {
         this.country = country;
-    }
-
-    public String getZonecode() {
-        return zonecode;
-    }
-
-    public void setZonecode(String zonecode) {
-        this.zonecode = zonecode;
     }
 
     public String getCountry_id() {

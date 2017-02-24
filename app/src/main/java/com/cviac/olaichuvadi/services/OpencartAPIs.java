@@ -87,7 +87,7 @@ public interface OpencartAPIs {
                                       @Field("address_2") String address_2,
                                       @Field("postcode") String postcode,
                                       @Field("city") String city,
-                                      @Field("zone_id") String zonecode,
+                                      @Field("zone_id") String zone_id,
                                       @Field("country_id") String country_id);
 
     @GET("/index.php?route=api/address/getList")

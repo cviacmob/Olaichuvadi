@@ -115,6 +115,11 @@ public class LoginActivity extends AppCompatActivity {
 
                     Prefs.edit();
                     Prefs.putString("isregistered", "true");
+                    Prefs.putInt("customer_id", rsp.getCustomer_id());
+                    Prefs.putString("Regname", rsp.getFirstname());
+                    Prefs.putString("Regmail", rsp.getEmail());
+                    Prefs.putString("Regphone", rsp.getTelephone());
+                    Prefs.putInt("customer_id", rsp.getCustomer_id());
 
                     progressDialog.dismiss();
 

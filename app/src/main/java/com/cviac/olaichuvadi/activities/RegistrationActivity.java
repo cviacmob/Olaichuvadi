@@ -117,12 +117,6 @@ public class RegistrationActivity extends AppCompatActivity {
 
                 if (rsp.getCode() == 0) {
 
-                    Prefs.edit();
-                    Prefs.putString("Regname", dname);
-                    Prefs.putString("Regmail", dmail);
-                    Prefs.putString("Regphone", dphone);
-                    Prefs.putInt("customer_id", rsp.getCustomer_id());
-
                     progressDialog.dismiss();
 
                     Intent logn = new Intent(RegistrationActivity.this, LoginActivity.class);
