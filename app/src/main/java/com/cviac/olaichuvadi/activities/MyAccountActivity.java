@@ -51,8 +51,6 @@ public class MyAccountActivity extends AppCompatActivity {
         tv1 = (TextView) findViewById(R.id.uname);
         tv2 = (TextView) findViewById(R.id.umail);
         tv3 = (TextView) findViewById(R.id.uphone);
-        fab = (FloatingActionButton) findViewById(R.id.fab);
-
         tv1.setText(aname);
         tv2.setText(amail);
         tv3.setText(aphone);
@@ -62,6 +60,7 @@ public class MyAccountActivity extends AppCompatActivity {
         adapter1 = new AddressAdapter(MyAccountActivity.this, addhis);
         lv.setAdapter(adapter1);
 
+        fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

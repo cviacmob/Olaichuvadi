@@ -53,10 +53,11 @@ public class CategoryList_Activity extends AppCompatActivity {
         call.enqueue(new Callback<CategoriesResponse>() {
             @Override
             public void onResponse(Response<CategoriesResponse> response, Retrofit retrofit) {
+
                 CategoriesResponse rsp = response.body();
                 categoryList.addAll(rsp.getCategories());
-//                adapter.notifyDataSetChanged();
                 adapter.notifyDataSetInvalidated();
+
             }
 
             @Override
@@ -71,11 +72,12 @@ public class CategoryList_Activity extends AppCompatActivity {
                 List<Category> childs = categoryList.get(groupPosition).getCategories();
 
                 if (childs != null && childs.size() > 0) {
-                    //No Action
+
                 } else {
                     Category ct = categoryList.get(groupPosition);
                     Intent cat = new Intent(CategoryList_Activity.this, SearchResultActivity.class);
                     cat.putExtra("categoryid", ct.getCategory_id());
+                    cat.putExtra("categoryname", ct.getName());
                     startActivity(cat);
                 }
                 return false;
@@ -90,6 +92,7 @@ public class CategoryList_Activity extends AppCompatActivity {
                     Category ct = childs.get(childPosition);
                     Intent cat = new Intent(CategoryList_Activity.this, SearchResultActivity.class);
                     cat.putExtra("categoryid", ct.getCategory_id());
+                    cat.putExtra("categoryname", ct.getName());
                     startActivity(cat);
                 }
                 return false;

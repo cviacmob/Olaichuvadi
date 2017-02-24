@@ -18,8 +18,6 @@ import com.cviac.olaichuvadi.datamodels.GeneralResponse;
 import com.cviac.olaichuvadi.services.OpencartAPIs;
 import com.cviac.olaichuvadi.utilities.Prefs;
 
-import org.w3c.dom.Text;
-
 import java.util.List;
 
 import retrofit.Call;

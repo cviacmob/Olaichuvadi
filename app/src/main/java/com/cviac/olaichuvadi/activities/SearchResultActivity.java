@@ -39,6 +39,9 @@ public class SearchResultActivity extends AppCompatActivity {
 
         Intent i = getIntent();
         String catid = i.getStringExtra("categoryid");
+        String catname = i.getStringExtra("categoryname");
+
+        setTitle(catname);
 
         gv = (GridView) findViewById(R.id.prdts1);
         gv.setFastScrollEnabled(true);
