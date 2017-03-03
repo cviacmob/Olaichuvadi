@@ -95,6 +95,7 @@
                 android:drawablePadding="5dp"
                 android:hint="@string/edit_mob"
                 android:inputType="number"
+                android:maxLength="10"
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp" />
         </android.support.design.widget.TextInputLayout>

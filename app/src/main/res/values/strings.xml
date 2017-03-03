@@ -6,140 +6,67 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
-    <string name="title_activity_my_library">MyLibrary</string>
     <string name="section_format">Hello World from section: %1$d</string>
-    <string name="title_activity_my_community">MyCommunity</string>
 
-    <string name="Categories">CATEGORIES</string>
-    <string name="My_Library">MY LIBRARY</string>
-    <string name="My_Community">MY COMMUNITY</string>
-    <string name="My_Cart">MY CART</string>
-    <string name="My_Account">MY ACCOUNT</string>
-    <string name="Logout">LOGOUT</string>
-    <string name="tit_pay">Payment</string>
+    <string name="Categories">பிரிவுகள்</string>
+    <string name="My_Library">என் நூலகம்</string>
+    <string name="My_Community">என் சமூகம்</string>
+    <string name="My_Cart">புத்தகப்பை</string>
+    <string name="My_Account">என் விவரம்</string>
+    <string name="Logout">வெளியேறு</string>
 
-    <string name="login">Login</string>
-    <string name="register">Register</string>
-    <string name="txt_addr">Change Your Address</string>
+    <string name="tit_pay">பில்போடு</string>
+
+    <string name="login">உள்ளே வாங்க</string>
+    <string name="register">பதிவு</string>
+
+
     <string name="txt_pay">PAY NOW</string>
-    <string name="txt_buy">BUY NOW</string>
-    <string name="txt_add2cart">Add to Cart</string>
-    <string name="txt_savdaddr">Your Saved Addresses :</string>
-    <string name="txt_addaddr">Add Address</string>
-    <string name="txt_orders">Your Orders History :</string>
+    <string name="txt_buy">பில்போடு </string>
+    <string name="txt_add2cart">பைல போடு</string>
 
-    <string name="edit_email">E-Mail ID</string>
-    <string name="edit_pwd">Password</string>
-    <string name="edit_cnfpwd">Confirm Password</string>
-    <string name="edit_mob">Mobile Number</string>
-    <string name="edit_uname">Username</string>
-    <string name="edit_fname">First Name</string>
-    <string name="edit_lname">Last Name</string>
-    <string name="edit_cmpny">Company</string>
-    <string name="edit_cty">City</string>
-    <string name="edit_pin">PIN Code</string>
-    <string name="edit_dist">District</string>
-    <string name="edit_sname">State</string>
+    <string name="edit_email">மின்னஞ்சல்</string>
+    <string name="edit_pwd">கடவுச்சொல்</string>
+    <string name="edit_cnfpwd">உறுதிப்படுத்து</string>
+    <string name="edit_mob">தொலைபேசி</string>
+    <string name="edit_fname">முதல் பெயர்</string>
+    <string name="edit_lname">கடைசி பெயர்</string>
+    <string name="edit_cmpny">நிறுவனம்</string>
+    <string name="edit_cty">நகரம்</string>
+    <string name="edit_pin">தபால் எண்</string>
 
-    <string name="btn_sub">Submit</string>
-    <string name="btn_cncl">Cancel</string>
+    <string name="country">நாடு</string>
+    <string name="state">மாநிலம்</string>
 
-    <string name="tamil_language">தமிழ்</string>
-    <string name="english_language">English</string>
+    <string name="btn_sub">தொடரு</string>
+    <string name="btn_cncl">பின் செல்ல</string>
 
-    <string name="tab_shared">SHARED BOOKS</string>
-    <string name="tab_readclubs">READING CLUB</string>
-    <string name="tab_authors">AUTHORS</string>
-    <string name="tab_pub">PUBLISHERS</string>
-    <string name="tab_books">MY BOOKS</string>
-    <string name="tab_purch">PURCHASED</string>
-    <string name="tab_rev">REVIEWED</string>
-    <string name="tab_fav">FAVOURITES</string>
-    <string name="title_activity_my_comm__shared">MyComm_SharedActivity</string>
-    <string name="title_activity_my_comm__readingclub">MyComm_Readingclub</string>
-    <string name="prddet_desc">DESCRIPTION :</string>
-    <string name="clk_to_reg"><u>Click Here to Register</u></string>
-    <string name="tab_rdcb1">RECOMMENDED</string>
-    <string name="tab_rdcb2">MEMBERED</string>
-    <string name="tab_rdcb3">YOUR\'S</string>
+    <string name="tamil_language">English</string>
+    <string name="english_language">தமிழ்</string>
 
+    <string name="tab_readclubs">புத்தக வாசிப்பு சங்கம்</string>
+    <string name="tab_authors">எழுத்தாளர்</string>
+    <string name="tab_pub">பதிப்பகம்</string>
+    <string name="tab_books">என் புத்தகங்கள்</string>
+    <string name="tab_purch">வாங்கிய புத்தகங்கள்</string>
+    <string name="tab_rev">விமர்சனம் செய்த புத்தகங்கள்</string>
+    <string name="tab_fav">பிடித்த புத்தகங்கள்</string>
 
-    <string name="title_activity_settings">Settings</string>
+    <string name="tab_rdcb1">பரிந்துரைக்கப்படுகிறது</string>
+    <string name="tab_rdcb2">உறுப்பினர்கள்</string>
+    <string name="tab_rdcb3">உங்களுடைய</string>
 
-    <!-- Strings related to Settings -->
+    <string name="prddet_desc">விளக்கம் :</string>
 
-    <!-- Example General settings -->
-    <string name="pref_header_general">General</string>
+    <string name="clk_to_reg"><u>புதிய வாடிக்கையாளர் பதிவு</u></string>
 
-    <string name="pref_title_social_recommendations">Enable social recommendations</string>
-    <string name="pref_description_social_recommendations">Recommendations for people to contact
-        based on your message history
-    </string>
+    <string name="edit_adrs1">முகவரி 1</string>
+    <string name="edt_adrs2">முகவரி 2</string>
 
-    <string name="pref_title_display_name">Display name</string>
-    <string name="pref_default_display_name">John Smith</string>
+    <string name="btn_save">சேமி</string>
 
-    <string name="pref_title_add_friends_to_messages">Add friends to messages</string>
-    <string-array name="pref_example_list_titles">
-        <item>Always</item>
-        <item>When possible</item>
-        <item>Never</item>
-    </string-array>
-    <string-array name="pref_example_list_values">
-        <item>1</item>
-        <item>0</item>
-        <item>-1</item>
-    </string-array>
-
-    <!-- Example settings for Data & Sync -->
-    <string name="pref_header_data_sync">Data &amp; sync</string>
-
-    <string name="pref_title_sync_frequency">Sync frequency</string>
-    <string-array name="pref_sync_frequency_titles">
-        <item>15 minutes</item>
-        <item>30 minutes</item>
-        <item>1 hour</item>
-        <item>3 hours</item>
-        <item>6 hours</item>
-        <item>Never</item>
-    </string-array>
-    <string-array name="pref_sync_frequency_values">
-        <item>15</item>
-        <item>30</item>
-        <item>60</item>
-        <item>180</item>
-        <item>360</item>
-        <item>-1</item>
-    </string-array>
-
-    <string-array name="list_preference_entries">
-        <item>Entry 1</item>
-        <item>Entry 2</item>
-        <item>Entry 3</item>
-    </string-array>
-
-    <string-array name="list_preference_entry_values">
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-    </string-array>
-
-    <string-array name="multi_select_list_preference_default_value" />
-
-    <string name="pref_title_system_sync_settings">System sync settings</string>
-
-    <!-- Example settings for Notifications -->
-    <string name="pref_header_notifications">Notifications</string>
-
-    <string name="pref_title_new_message_notifications">New message notifications</string>
-
-    <string name="pref_title_ringtone">Ringtone</string>
-    <string name="pref_ringtone_silent">Silent</string>
-
-    <string name="pref_title_vibrate">Vibrate</string>
-    <string name="edit_adrs1">Address 1</string>
-    <string name="edt_adrs2">Address 2</string>
-    <string name="edit_cntry">Country</string>
-    <string name="btn_save">SAVE</string>
+    <string name="mylib_books">என் நூலகத்திலுள்ள புத்தகங்கள் :</string>
+    <string name="tab_shared">பகிர்வு புத்தகங்கள்</string>
+    <string name="baseurl">http://www.olaichuvadi.cviac.com</string>
 
 </resources>

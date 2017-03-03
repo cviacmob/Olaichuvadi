@@ -113,7 +113,7 @@ public class AddressAdapter extends BaseAdapter {
     private void deleteAddress(String address_id, String customer_id) {
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://nheart.cviac.com")
+                .baseUrl(String.valueOf(R.string.baseurl))
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 

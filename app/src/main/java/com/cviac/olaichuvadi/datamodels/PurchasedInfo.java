@@ -4,39 +4,17 @@ import java.io.Serializable;
 
 public class PurchasedInfo implements Serializable {
 
-    private int book_img;
+    private String book_title;
 
-    private String tit;
-
-    private String auth;
-
-    public PurchasedInfo(int book_img, String tit, String auth) {
-        this.book_img = book_img;
-        this.tit = tit;
-        this.auth = auth;
+    public PurchasedInfo(String book_title) {
+        this.book_title = book_title;
     }
 
-    public int getBook_img() {
-        return book_img;
+    public String getBook_title() {
+        return book_title;
     }
 
-    public void setBook_img(int book_img) {
-        this.book_img = book_img;
-    }
-
-    public String getTit() {
-        return tit;
-    }
-
-    public void setTit(String tit) {
-        this.tit = tit;
-    }
-
-    public String getAuth() {
-        return auth;
-    }
-
-    public void setAuth(String auth) {
-        this.auth = auth;
+    public void setBook_title(String book_title) {
+        this.book_title = book_title;
     }
 }

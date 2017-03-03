@@ -51,19 +51,11 @@
 
     </RelativeLayout>
 
-    <TextView
-        android:id="@+id/addtit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/accdet"
-        android:text="@string/txt_savdaddr"
-        android:textStyle="bold" />
-
     <ListView
         android:id="@+id/addlst"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/addtit" />
+        android:layout_below="@+id/accdet" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"

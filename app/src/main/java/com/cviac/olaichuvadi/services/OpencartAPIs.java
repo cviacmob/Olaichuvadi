@@ -57,8 +57,7 @@ public interface OpencartAPIs {
     @POST("/index.php?route=api/cart/add")
     Call<AddToCartResponse> addToCart(@Query("token") String token,
                                       @Field("product_id") String prodid,
-                                      @Field("quantity") String quantity
-    );
+                                      @Field("quantity") String quantity);
 
     @GET("/index.php?route=api/cart/products")
     Call<GetCartItemsResponse> getCartItems(@Query("token") String token);

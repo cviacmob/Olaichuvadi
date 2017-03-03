@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:padding="10dp">
 
     <ImageView
         android:id="@+id/lib_pur_img"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:src="@mipmap/ic" />
+        android:src="@mipmap/logo" />
 
     <TextView
         android:id="@+id/purchtit"
@@ -16,30 +17,28 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/lib_pur_img"
         android:layout_centerHorizontal="true"
-        android:text="Title" />
+        android:text="Book Title" />
 
-    <TextView
-        android:id="@+id/purchauth"
+    <RelativeLayout
+        android:id="@+id/btn_lay"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/purchtit"
-        android:layout_centerHorizontal="true"
-        android:text="Author" />
+        android:layout_centerHorizontal="true">
 
-    <ImageButton
-        android:id="@+id/wish"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/lib_pur_img"
-        android:layout_below="@+id/purchauth"
-        android:background="@mipmap/wish" />
+        <ImageView
+            android:id="@+id/p_revbtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/pencil" />
 
-    <ImageButton
-        android:id="@+id/fav"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/lib_pur_img"
-        android:layout_below="@+id/purchauth"
-        android:background="@mipmap/fav" />
+        <ImageView
+            android:id="@+id/p_favbtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/revbtn"
+            android:src="@mipmap/star" />
+
+    </RelativeLayout>
 
 </RelativeLayout>

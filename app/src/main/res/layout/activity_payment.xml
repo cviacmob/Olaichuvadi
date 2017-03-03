@@ -4,8 +4,8 @@
     android:id="@+id/activity_prepayment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="10dp"
     android:background="@mipmap/menubg"
+    android:padding="10dp"
     tools:context="com.cviac.olaichuvadi.activities.PaymentActivity">
 
     <TextView
@@ -80,8 +80,7 @@
             <com.cviac.olaichuvadi.utilities.NonScrollListView
                 android:id="@+id/crtitms"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/chngadd" />
+                android:layout_height="wrap_content" />
 
             <Button
                 android:id="@+id/paybutn"

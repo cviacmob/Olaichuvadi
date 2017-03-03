@@ -11,6 +11,8 @@ import android.widget.TextView;
 import com.cviac.olaichuvadi.R;
 import com.cviac.olaichuvadi.datamodels.FavouritesInfo;
 
+import org.w3c.dom.Text;
+
 import java.util.List;
 
 public class FavouritesAdapter extends BaseAdapter {
@@ -38,9 +40,8 @@ public class FavouritesAdapter extends BaseAdapter {
     }
 
     public static class ViewHolder {
-        public ImageView iv;
-        public TextView tv1, tv2, tv3, tv4;
-
+        ImageView iv;
+        TextView tv;
     }
 
     @Override
@@ -53,17 +54,11 @@ public class FavouritesAdapter extends BaseAdapter {
             fav = inflater.inflate(R.layout.favouritesitem, null);
             holder = new ViewHolder();
             holder.iv = (ImageView) fav.findViewById(R.id.fav_imggg);
-            holder.tv1 = (TextView) fav.findViewById(R.id.titl);
-            holder.tv2 = (TextView) fav.findViewById(R.id.tit2);
-            holder.tv3 = (TextView) fav.findViewById(R.id.auth1);
-            holder.tv4 = (TextView) fav.findViewById(R.id.auth2);
+            holder.tv = (TextView) fav.findViewById(R.id.book_title);
             fav.setTag(holder);
         } else {
             holder = (FavouritesAdapter.ViewHolder) fav.getTag();
         }
-        holder.iv.setImageResource(puinfo.getFav_img());
-        holder.tv2.setText(puinfo.getFav_tit());
-        holder.tv4.setText(puinfo.getFav_auth());
         return fav;
     }
 }

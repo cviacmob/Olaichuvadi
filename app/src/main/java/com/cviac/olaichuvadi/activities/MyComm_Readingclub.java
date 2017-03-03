@@ -48,6 +48,8 @@ public class MyComm_Readingclub extends AppCompatActivity {
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
+        mViewPager.setOffscreenPageLimit(3);
+
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabsre);
         tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
         tabLayout.setupWithViewPager(mViewPager);

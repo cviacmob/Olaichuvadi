@@ -55,7 +55,7 @@ public class SearchResultActivity extends AppCompatActivity {
     public void getProducts(String catId) {
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://olaichuvadi.cviac.com")
+                .baseUrl(getString(R.string.baseurl))
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         String credentials = Credentials.basic("olaichuvadi", "cviac");

@@ -43,7 +43,7 @@ public class CategoryList_Activity extends AppCompatActivity {
         lv.setAdapter(adapter);
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://olaichuvadi.cviac.com")
+                .baseUrl(getString(R.string.baseurl))
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 

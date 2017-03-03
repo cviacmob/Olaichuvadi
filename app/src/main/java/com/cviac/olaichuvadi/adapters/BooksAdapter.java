@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.cviac.olaichuvadi.R;
 import com.cviac.olaichuvadi.datamodels.BooksInfo;
@@ -38,9 +39,8 @@ public class BooksAdapter extends BaseAdapter {
     }
 
     public static class ViewHolder {
-        public ImageView iv;
-        public TextView tv1, tv2;
-        public ImageView edt;
+        public TextView tv1;
+        public ImageView iv1, iv2;
     }
 
     @Override
@@ -52,18 +52,26 @@ public class BooksAdapter extends BaseAdapter {
             LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             shr = inflater.inflate(R.layout.book_item, null);
             holder = new BooksAdapter.ViewHolder();
-            holder.iv = (ImageView) shr.findViewById(R.id.book_image);
             holder.tv1 = (TextView) shr.findViewById(R.id.lib_book_tit);
-            holder.tv2 = (TextView) shr.findViewById(R.id.lib_book_auhtor);
-            holder.edt = (ImageView) shr.findViewById(R.id.editbton);
+            holder.iv1 = (ImageView) shr.findViewById(R.id.revbtn);
+            holder.iv2 = (ImageView) shr.findViewById(R.id.favbtn);
             shr.setTag(holder);
         } else {
             holder = (BooksAdapter.ViewHolder) shr.getTag();
         }
-        holder.iv.setImageResource(cinfo.getBooks());
-        holder.tv1.setText(cinfo.getBook_tit());
-        holder.tv2.setText(cinfo.getBook_author());
-        holder.edt.setImageResource(cinfo.getEdt_img());
+        holder.tv1.setText(cinfo.getTit());
+        holder.iv1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(mContext, "Review Clicked", Toast.LENGTH_LONG).show();
+            }
+        });
+        holder.iv2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(mContext, "Favourites Clicked", Toast.LENGTH_LONG).show();
+            }
+        });
         return shr;
     }
 }

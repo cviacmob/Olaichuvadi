@@ -5,16 +5,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.cviac.olaichuvadi.R;
 import com.cviac.olaichuvadi.datamodels.PurchasedInfo;
 
 import java.util.List;
-
-import static com.cviac.olaichuvadi.R.id.wish;
 
 public class PurchasedAdapter extends BaseAdapter {
 
@@ -42,9 +40,8 @@ public class PurchasedAdapter extends BaseAdapter {
     }
 
     public static class ViewHolder {
-        public ImageView iv;
-        public TextView tv1, tv2;
-        public ImageButton wish, fav;
+        public TextView tv;
+        public ImageView rev, fav;
     }
 
     @Override
@@ -56,19 +53,27 @@ public class PurchasedAdapter extends BaseAdapter {
             LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             purch = inflater.inflate(R.layout.purchaseditem, null);
             holder = new ViewHolder();
-            holder.iv = (ImageView) purch.findViewById(R.id.lib_pur_img);
-            holder.tv1 = (TextView) purch.findViewById(R.id.purchtit);
-            holder.tv2 = (TextView) purch.findViewById(R.id.purchauth);
-            holder.wish = (ImageButton) purch.findViewById(wish);
-            holder.fav = (ImageButton) purch.findViewById(R.id.fav);
+            holder.tv = (TextView) purch.findViewById(R.id.purchtit);
+            holder.rev = (ImageView) purch.findViewById(R.id.p_revbtn);
+            holder.fav = (ImageView) purch.findViewById(R.id.p_favbtn);
             purch.setTag(holder);
         } else {
 
             holder = (ViewHolder) purch.getTag();
         }
-        holder.iv.setImageResource(puinfo.getBook_img());
-        holder.tv1.setText(puinfo.getTit());
-        holder.tv2.setText(puinfo.getAuth());
+        holder.tv.setText(puinfo.getBook_title());
+        holder.fav.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(mContext, "Favourites Clicked", Toast.LENGTH_LONG).show();
+            }
+        });
+        holder.rev.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(mContext, "Review Clicked", Toast.LENGTH_LONG).show();
+            }
+        });
         return purch;
     }
 }

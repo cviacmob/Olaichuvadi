@@ -84,7 +84,7 @@ public class Product_Details extends AppCompatActivity {
         });
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://olaichuvadi.cviac.com")
+                .baseUrl(getString(R.string.baseurl))
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
@@ -103,7 +103,7 @@ public class Product_Details extends AppCompatActivity {
                 tv3.setText(prdetail.getSpecial());
 
                 String url = prdetail.getThumb();
-                Picasso.with(Product_Details.this).load(url).resize(500, 500).into(iv);
+                Picasso.with(Product_Details.this).load(url).placeholder(R.mipmap.bookgrd).resize(500, 500).into(iv);
             }
 
             @Override
@@ -122,7 +122,7 @@ public class Product_Details extends AppCompatActivity {
             okHttpClient.setReadTimeout(120000, TimeUnit.MILLISECONDS);
 
             Retrofit retrofit = new Retrofit.Builder()
-                    .baseUrl("http://nheart.cviac.com")
+                    .baseUrl(getString(R.string.baseurl))
                     .addConverterFactory(GsonConverterFactory.create())
                     .client(okHttpClient)
                     .build();
@@ -153,7 +153,7 @@ public class Product_Details extends AppCompatActivity {
         okHttpClient.setReadTimeout(120000, TimeUnit.MILLISECONDS);
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://nheart.cviac.com")
+                .baseUrl(getString(R.string.baseurl))
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(okHttpClient)
                 .build();
@@ -183,7 +183,6 @@ public class Product_Details extends AppCompatActivity {
 
         BadgeDrawable badge;
 
-        // Reuse drawable if possible
         Drawable reuse = icon.findDrawableByLayerId(R.id.ic_cart_badge);
         if (reuse != null && reuse instanceof BadgeDrawable) {
             badge = (BadgeDrawable) reuse;
@@ -195,21 +194,19 @@ public class Product_Details extends AppCompatActivity {
         icon.mutate();
         icon.setDrawableByLayerId(R.id.ic_cart_badge, badge);
     }
-/*
-    @Override
-    public boolean onPrepareOptionsMenu(Menu menu) {
-//        menu.findItem(R.id.action_settings).setVisible(false);
-        super.onPrepareOptionsMenu(menu);
-        return true;
-    }*/
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         onBackPressed();
         switch (item.getItemId()) {
             case R.id.cart:
-                Intent h = new Intent(Product_Details.this, MyCartActivity.class);
-                startActivity(h);
+                if (mCartCount == 0) {
+                    Intent cart = new Intent(Product_Details.this, EmptycartActivity.class);
+                    startActivity(cart);
+                } else if (mCartCount != 0) {
+                    Intent cart = new Intent(Product_Details.this, MyCartActivity.class);
+                    startActivity(cart);
+                }
                 break;
         }
         return true;

@@ -100,7 +100,7 @@ public class LoginActivity extends AppCompatActivity {
         okHttpClient.setReadTimeout(120000, TimeUnit.MILLISECONDS);
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://nheart.cviac.com")
+                .baseUrl(getString(R.string.baseurl))
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(okHttpClient)
                 .build();

@@ -114,9 +114,21 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/edit_pin"
-                    android:inputType="number" />
+                    android:inputType="number"
+                    android:maxLength="6" />
 
             </android.support.design.widget.TextInputLayout>
+
+            <TextView
+                android:id="@+id/spin_tit1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/pin_l"
+                android:paddingLeft="10dp"
+                android:text="@string/country"
+                android:textAlignment="center"
+                android:textStyle="bold" />
 
             <Spinner
                 android:id="@+id/country"
@@ -124,6 +136,17 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/pin_l"
                 android:layout_centerHorizontal="true" />
+
+            <TextView
+                android:id="@+id/spin_tit2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/spin_tit1"
+                android:paddingLeft="10dp"
+                android:text="@string/state"
+                android:textAlignment="center"
+                android:textStyle="bold" />
 
             <Spinner
                 android:id="@+id/state"

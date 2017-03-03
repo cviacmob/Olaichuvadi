@@ -12,8 +12,7 @@
         android:id="@+id/prd_img"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:src="@mipmap/bookgrd" />
+        android:layout_centerHorizontal="true" />
 
     <TextView
         android:id="@+id/tit"

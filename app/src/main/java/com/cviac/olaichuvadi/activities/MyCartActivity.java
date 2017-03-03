@@ -80,7 +80,7 @@ public class MyCartActivity extends AppCompatActivity {
         okHttpClient.setReadTimeout(120000, TimeUnit.MILLISECONDS);
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://nheart.cviac.com")
+                .baseUrl(getString(R.string.baseurl))
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(okHttpClient)
                 .build();
@@ -112,7 +112,7 @@ public class MyCartActivity extends AppCompatActivity {
         okHttpClient.setReadTimeout(120000, TimeUnit.MILLISECONDS);
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://nheart.cviac.com")
+                .baseUrl(getString(R.string.baseurl))
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(okHttpClient)
                 .build();
@@ -127,7 +127,6 @@ public class MyCartActivity extends AppCompatActivity {
                 GetCartItemsResponse rsp = response.body();
                 cartProducts.addAll(rsp.getProducts());
                 s = String.valueOf(rsp.getProducts().size());
-//                tv.setText(s);
                 adapter.notifyDataSetInvalidated();
                 cartTotals = rsp.getTotals();
                 total.setText(cartTotals.get(cartTotals.size() - 1).getText());

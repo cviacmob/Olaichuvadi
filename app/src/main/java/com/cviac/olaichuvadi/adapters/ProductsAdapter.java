@@ -73,7 +73,7 @@ public class ProductsAdapter extends BaseAdapter {
         String url = oinfo.getThumb();
         url = url.replace("localhost", "192.168.1.16");
         try {
-            Picasso.with(ord.getContext()).load(url).resize(500, 500).into(holder.iv);
+            Picasso.with(ord.getContext()).load(url).placeholder(R.mipmap.bookgrd).resize(500, 500).into(holder.iv);
 
         } catch (Exception e) {
             e.printStackTrace();

@@ -101,13 +101,13 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         String token = Prefs.getString("token", null);
         if (token == null) {
             Retrofit retrofit = new Retrofit.Builder()
-                    .baseUrl("http://nheart.cviac.com/index.php?route=api/login")
+                    .baseUrl(getString(R.string.baseurl))
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
 
             OpencartAPIs api = retrofit.create(OpencartAPIs.class);
 
-            String apiKey = "um5xn7zaF0RfeAzhN5vG3xsqeeFjupkgOjvtqSubhcR68yw1yg5l1nu4z0EIaYx2HLqRwlvkLGCnFL8EIG0T61L3AtD1v5HNCTPYKdksMXZrCGWGdFX1p5z8KKGQz7lBQzczWxopiQcsUXKr6B7vNasiWEpZ5pNWTjhZgMMOUILMKmnj335u67xLaO334LRmgDiEA6IDyR4Hmilqp3xjce2SvPJeRDwPuINSmSFLFxJO8qUSiF6xObvNhqZZAkey";
+            String apiKey = "3wDBJPRQrsL2hPOPlKXMOEhMQNLas6vb5aDpqiu9M2d5f13BUBXcvE8FpDn1D7yO8nPodmkrBifAzhcGUWrTyfZBbrCYiFp03u2DwmTGB4kPKihUCt199btO1i1gGPShxaoMlcuf1zcrMYmc2Z8zQqdnphpIwbA7RORYn6xjUgvGtUAL4yJ709cxkni6dDF7gkCRformUVrefpLhXkuOVa8Yd3W3ausZ3KHDctUpWovATSqsxLI3pRSc89PfjXUM";
             final Call<LoginResponse> call = api.login(apiKey);
             call.enqueue(new Callback<LoginResponse>() {
                 @Override
@@ -132,15 +132,13 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         okHttpClient.setReadTimeout(120000, TimeUnit.MILLISECONDS);
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://olaichuvadi.cviac.com")
+                .baseUrl(getString(R.string.baseurl))
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(okHttpClient)
                 .build();
         String credentials = Credentials.basic("olaichuvadi", "cviac");
         OpencartAPIs api = retrofit.create(OpencartAPIs.class);
 
-       /* Map<String, String> map = new HashMap<>();
-        map.put("Authorization",credentials);*/
         final Call<CategoryProductsResponse> call = api.getProducts(credentials, catId);
 
         call.enqueue(new Callback<CategoryProductsResponse>() {
@@ -173,7 +171,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
     public void slider(String catId) {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://olaichuvadi.cviac.com")
+                .baseUrl(getString(R.string.baseurl))
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
@@ -257,7 +255,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
     private void getAndSetCartCount() {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://nheart.cviac.com")
+                .baseUrl(getString(R.string.baseurl))
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
@@ -333,8 +331,13 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         int id = item.getItemId();
         switch (id) {
             case R.id.cart:
-                Intent h = new Intent(HomeActivity.this, MyCartActivity.class);
-                startActivity(h);
+                if (mCartCount == 0) {
+                    Intent cart = new Intent(HomeActivity.this, EmptycartActivity.class);
+                    startActivity(cart);
+                } else if (mCartCount != 0) {
+                    Intent cart = new Intent(HomeActivity.this, MyCartActivity.class);
+                    startActivity(cart);
+                }
                 break;
             case R.id.tamil:
                 setLocale("ta");
@@ -427,10 +430,13 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             startActivity(libb);
 
         } else if (id == R.id.nav_cart) {
-
-            Intent cart = new Intent(HomeActivity.this, MyCartActivity.class);
-            startActivity(cart);
-
+            if (mCartCount == 0) {
+                Intent cart = new Intent(HomeActivity.this, EmptycartActivity.class);
+                startActivity(cart);
+            } else if (mCartCount != 0) {
+                Intent cart = new Intent(HomeActivity.this, MyCartActivity.class);
+                startActivity(cart);
+            }
         } else if (id == R.id.nav_account) {
 
             Intent acc = new Intent(HomeActivity.this, MyAccountActivity.class);
