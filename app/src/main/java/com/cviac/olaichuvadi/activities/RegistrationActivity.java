@@ -119,6 +119,8 @@ public class RegistrationActivity extends AppCompatActivity {
 
                     progressDialog.dismiss();
 
+                    Toast.makeText(RegistrationActivity.this, "Your Account Registered Successfully. Check your registered email for Account Activation", Toast.LENGTH_LONG).show();
+
                     Intent logn = new Intent(RegistrationActivity.this, LoginActivity.class);
                     startActivity(logn);
                     finish();

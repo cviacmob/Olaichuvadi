@@ -126,12 +126,17 @@ public class LoginActivity extends AppCompatActivity {
                     Intent logn = new Intent(LoginActivity.this, HomeActivity.class);
                     startActivity(logn);
                     finish();
+                } else if (rsp.getCode() == 1) {
+
+                    progressDialog.dismiss();
+
+                    Toast.makeText(LoginActivity.this, "Check your registered email for Account Activation", Toast.LENGTH_LONG).show();
+
                 } else {
 
                     progressDialog.dismiss();
 
-                    Toast.makeText(LoginActivity.this,
-                            "Login Failed: " + rsp.getCode(), Toast.LENGTH_LONG).show();
+                    Toast.makeText(LoginActivity.this, "Login Failed: " + rsp.getCode(), Toast.LENGTH_LONG).show();
                 }
             }
 
@@ -140,8 +145,7 @@ public class LoginActivity extends AppCompatActivity {
 
                 progressDialog.dismiss();
 
-                Toast.makeText(LoginActivity.this,
-                        "Login Failed: " + t.getLocalizedMessage(), Toast.LENGTH_LONG).show();
+                Toast.makeText(LoginActivity.this, "Login Failed: " + t.getLocalizedMessage(), Toast.LENGTH_LONG).show();
             }
         });
     }
