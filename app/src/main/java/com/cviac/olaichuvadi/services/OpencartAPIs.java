@@ -11,12 +11,10 @@ import com.cviac.olaichuvadi.datamodels.LoginResponse;
 import com.cviac.olaichuvadi.datamodels.Productdetailresponse;
 import com.cviac.olaichuvadi.datamodels.ZoneInfo;
 
-import java.util.HashMap;
 import java.util.List;
 
 import retrofit.Call;
 import retrofit.http.Field;
-import retrofit.http.FieldMap;
 import retrofit.http.FormUrlEncoded;
 import retrofit.http.GET;
 import retrofit.http.Header;
