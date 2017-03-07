@@ -9,11 +9,25 @@ import android.widget.BaseAdapter;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.cviac.olaichuvadi.R;
+import com.cviac.olaichuvadi.activities.Product_Details;
+import com.cviac.olaichuvadi.datamodels.AddToCartResponse;
 import com.cviac.olaichuvadi.datamodels.ProductCartInfo;
+import com.cviac.olaichuvadi.datamodels.ProductDetail;
+import com.cviac.olaichuvadi.services.OpencartAPIs;
+import com.cviac.olaichuvadi.utilities.Prefs;
+import com.squareup.okhttp.OkHttpClient;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
+
+import retrofit.Call;
+import retrofit.Callback;
+import retrofit.GsonConverterFactory;
+import retrofit.Response;
+import retrofit.Retrofit;
 
 public class CartItemAdapter extends BaseAdapter {
 
@@ -21,6 +35,7 @@ public class CartItemAdapter extends BaseAdapter {
     private static int counter = 0;
     private String stringVal;
     private List<ProductCartInfo> cartProducts;
+    ProductDetail prdetail = null;
 
     public CartItemAdapter(Context mContext, List<ProductCartInfo> cartProducts) {
         this.mContext = mContext;
@@ -52,7 +67,7 @@ public class CartItemAdapter extends BaseAdapter {
 
         View crt = view;
         ViewHolder holder;
-        ProductCartInfo cinfo = cartProducts.get(i);
+        final ProductCartInfo cinfo = cartProducts.get(i);
         if (view == null) {
             LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             crt = inflater.inflate(R.layout.cartitems, null);
@@ -71,6 +86,7 @@ public class CartItemAdapter extends BaseAdapter {
                     counter++;
                     stringVal = Integer.toString(counter);
                     tv2.setText(stringVal);
+                    addToCart(cinfo.getProduct_id(), "1");
                 }
             });
             final ImageButton txtminus = (ImageButton) crt.findViewById(R.id.delprd);
@@ -81,9 +97,10 @@ public class CartItemAdapter extends BaseAdapter {
                     counter--;
                     stringVal = Integer.toString(counter);
                     tv2.setText(stringVal);
-                    if (counter <= 0) {
+                    if (counter < 0) {
                         txtminus.setEnabled(false);
                         tv2.setText("0");
+                        addToCart(cinfo.getProduct_id(), "-1");
                     }
                 }
             });
@@ -95,5 +112,37 @@ public class CartItemAdapter extends BaseAdapter {
         holder.tv1.setText(cinfo.getName());
         holder.tv2.setText(cinfo.getQuantity());
         return crt;
+    }
+
+    private void addToCart(String prodId, String quantity) {
+
+        String token = Prefs.getString("token", null);
+        if (token != null) {
+
+            OkHttpClient okHttpClient = new OkHttpClient();
+            okHttpClient.setConnectTimeout(120000, TimeUnit.MILLISECONDS);
+            okHttpClient.setReadTimeout(120000, TimeUnit.MILLISECONDS);
+
+            Retrofit retrofit = new Retrofit.Builder()
+                    .baseUrl(mContext.getString(R.string.baseurl))
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .client(okHttpClient)
+                    .build();
+
+            OpencartAPIs api = retrofit.create(OpencartAPIs.class);
+
+            final Call<AddToCartResponse> call = api.addToCart(token, prodId, quantity);
+            call.enqueue(new Callback<AddToCartResponse>() {
+                @Override
+                public void onResponse(Response<AddToCartResponse> response, Retrofit retrofit) {
+                    AddToCartResponse rsp = response.body();
+                }
+
+                @Override
+                public void onFailure(Throwable t) {
+                    t.printStackTrace();
+                }
+            });
+        }
     }
 }
