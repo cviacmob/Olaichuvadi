@@ -219,7 +219,7 @@ public class EditaddressActivity extends AppCompatActivity {
                 index++;
             }
         }
-        return 0;
+        return 97;
     }
 
     private int getStatePosition(List<ZoneInfo> zone) {
@@ -233,7 +233,7 @@ public class EditaddressActivity extends AppCompatActivity {
                 index++;
             }
         }
-        return 0;
+        return 28;
     }
 
     private void loadspinner() {

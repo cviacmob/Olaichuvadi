@@ -64,10 +64,11 @@
         android:id="@+id/addprd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/crtimg"
-        android:layout_toRightOf="@+id/numcounts"
         android:background="@mipmap/plusbtn"
         android:paddingLeft="2dp"
-        android:paddingRight="2dp" />
+        android:paddingRight="2dp"
+        android:layout_alignBottom="@+id/numcounts"
+        android:layout_toRightOf="@+id/numcounts"
+        android:layout_toEndOf="@+id/numcounts" />
 
 </RelativeLayout>

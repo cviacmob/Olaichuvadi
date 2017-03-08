@@ -53,10 +53,10 @@ public class MyCartActivity extends AppCompatActivity {
         cartProducts = new ArrayList<>();
         loadCartItems();
 
-        adapter = new CartItemAdapter(MyCartActivity.this, cartProducts);
         total = (TextView) findViewById(R.id.netamnt);
         proc = (Button) findViewById(R.id.paybtn);
         lv = (ListView) findViewById(R.id.cartlist);
+        adapter = new CartItemAdapter(MyCartActivity.this, cartProducts);
         lv.setAdapter(adapter);
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

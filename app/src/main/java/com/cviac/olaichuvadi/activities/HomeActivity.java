@@ -219,7 +219,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 imageSlider.setPresetTransformer(SliderLayout.Transformer.Accordion);
                 imageSlider.setPresetIndicator(SliderLayout.PresetIndicators.Center_Bottom);
                 imageSlider.setCustomAnimation(new DescriptionAnimation());
-                imageSlider.setDuration(2000);
                 imageSlider.addOnPageChangeListener(HomeActivity.this);
             }
 

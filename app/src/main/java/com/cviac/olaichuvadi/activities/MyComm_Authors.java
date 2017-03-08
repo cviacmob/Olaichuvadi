@@ -33,6 +33,7 @@ public class MyComm_Authors extends AppCompatActivity {
     }
 
     private void loadauthors() {
+
         authr = new ArrayList<>();
 
         AuthorsInfo ai1 = new AuthorsInfo("VAIRAMUTHU");
