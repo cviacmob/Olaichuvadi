@@ -12,11 +12,15 @@ import com.cviac.olaichuvadi.R;
 import com.cviac.olaichuvadi.adapters.ProductsAdapter;
 import com.cviac.olaichuvadi.datamodels.CategoryProductsResponse;
 import com.cviac.olaichuvadi.datamodels.Product;
+import com.cviac.olaichuvadi.services.AddCookiesInterceptor;
 import com.cviac.olaichuvadi.services.OpencartAPIs;
+import com.cviac.olaichuvadi.services.ReceivedCookiesInterceptor;
 import com.squareup.okhttp.Credentials;
+import com.squareup.okhttp.OkHttpClient;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import retrofit.Call;
 import retrofit.Callback;
@@ -54,16 +58,22 @@ public class SearchResultActivity extends AppCompatActivity {
 
     public void getProducts(String catId) {
 
+        OkHttpClient okHttpClient = new OkHttpClient();
+        okHttpClient.setConnectTimeout(120000, TimeUnit.MILLISECONDS);
+        okHttpClient.setReadTimeout(120000, TimeUnit.MILLISECONDS);
+        okHttpClient.interceptors().add(new AddCookiesInterceptor());
+        okHttpClient.interceptors().add(new ReceivedCookiesInterceptor());
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(getString(R.string.baseurl))
                 .addConverterFactory(GsonConverterFactory.create())
+                .client(okHttpClient)
                 .build();
-        String credentials = Credentials.basic("olaichuvadi", "cviac");
+       // String credentials = Credentials.basic("olaichuvadi", "cviac");
         OpencartAPIs api = retrofit.create(OpencartAPIs.class);
 
        /* Map<String, String> map = new HashMap<>();
         map.put("Authorization",credentials);*/
-        final Call<CategoryProductsResponse> call = api.getProducts(credentials, catId);
+        final Call<CategoryProductsResponse> call = api.getProducts(catId);
 
         call.enqueue(new Callback<CategoryProductsResponse>() {
             @Override

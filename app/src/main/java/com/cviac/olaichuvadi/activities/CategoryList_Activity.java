@@ -11,10 +11,14 @@ import com.cviac.olaichuvadi.R;
 import com.cviac.olaichuvadi.adapters.CategoryAdapter;
 import com.cviac.olaichuvadi.datamodels.CategoriesResponse;
 import com.cviac.olaichuvadi.datamodels.Category;
+import com.cviac.olaichuvadi.services.AddCookiesInterceptor;
 import com.cviac.olaichuvadi.services.OpencartAPIs;
+import com.cviac.olaichuvadi.services.ReceivedCookiesInterceptor;
+import com.squareup.okhttp.OkHttpClient;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import retrofit.Call;
 import retrofit.Callback;
@@ -42,9 +46,15 @@ public class CategoryList_Activity extends AppCompatActivity {
         adapter = new CategoryAdapter(this, categoryList);
         lv.setAdapter(adapter);
 
+        OkHttpClient okHttpClient = new OkHttpClient();
+        okHttpClient.setConnectTimeout(120000, TimeUnit.MILLISECONDS);
+        okHttpClient.setReadTimeout(120000, TimeUnit.MILLISECONDS);
+        okHttpClient.interceptors().add(new AddCookiesInterceptor());
+        okHttpClient.interceptors().add(new ReceivedCookiesInterceptor());
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(getString(R.string.baseurl))
                 .addConverterFactory(GsonConverterFactory.create())
+                .client(okHttpClient)
                 .build();
 
         OpencartAPIs api = retrofit.create(OpencartAPIs.class);

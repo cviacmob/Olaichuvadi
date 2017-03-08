@@ -29,7 +29,9 @@ import com.cviac.olaichuvadi.datamodels.CategoryProductsResponse;
 import com.cviac.olaichuvadi.datamodels.GetCartItemsResponse;
 import com.cviac.olaichuvadi.datamodels.LoginResponse;
 import com.cviac.olaichuvadi.datamodels.Product;
+import com.cviac.olaichuvadi.services.AddCookiesInterceptor;
 import com.cviac.olaichuvadi.services.OpencartAPIs;
+import com.cviac.olaichuvadi.services.ReceivedCookiesInterceptor;
 import com.cviac.olaichuvadi.utilities.BadgeDrawable;
 import com.cviac.olaichuvadi.utilities.Prefs;
 import com.daimajia.slider.library.Animations.DescriptionAnimation;
@@ -90,7 +92,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
         Typeface tf = Typeface.createFromAsset(getAssets(), "fonts/bamini.TTF");
 
-        getSetToken();
+       // getSetToken();
 
         refresh("93");
         slider("94");
@@ -130,16 +132,18 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         OkHttpClient okHttpClient = new OkHttpClient();
         okHttpClient.setConnectTimeout(120000, TimeUnit.MILLISECONDS);
         okHttpClient.setReadTimeout(120000, TimeUnit.MILLISECONDS);
+        okHttpClient.interceptors().add(new AddCookiesInterceptor());
+        okHttpClient.interceptors().add(new ReceivedCookiesInterceptor());
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(getString(R.string.baseurl))
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(okHttpClient)
                 .build();
-        String credentials = Credentials.basic("olaichuvadi", "cviac");
+       // String credentials = Credentials.basic("olaichuvadi", "cviac");
         OpencartAPIs api = retrofit.create(OpencartAPIs.class);
 
-        final Call<CategoryProductsResponse> call = api.getProducts(credentials, catId);
+        final Call<CategoryProductsResponse> call = api.getProducts( catId);
 
         call.enqueue(new Callback<CategoryProductsResponse>() {
             @Override
@@ -170,16 +174,22 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     }
 
     public void slider(String catId) {
+        OkHttpClient okHttpClient = new OkHttpClient();
+        okHttpClient.setConnectTimeout(120000, TimeUnit.MILLISECONDS);
+        okHttpClient.setReadTimeout(120000, TimeUnit.MILLISECONDS);
+        okHttpClient.interceptors().add(new AddCookiesInterceptor());
+        okHttpClient.interceptors().add(new ReceivedCookiesInterceptor());
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(getString(R.string.baseurl))
                 .addConverterFactory(GsonConverterFactory.create())
+                .client(okHttpClient)
                 .build();
 
-        String credentials = Credentials.basic("olaichuvadi", "cviac");
+        //String credentials = Credentials.basic("olaichuvadi", "cviac");
 
         OpencartAPIs api = retrofit.create(OpencartAPIs.class);
 
-        final Call<CategoryProductsResponse> call = api.getProducts(credentials, catId);
+        final Call<CategoryProductsResponse> call = api.getProducts(catId);
         call.enqueue(new Callback<CategoryProductsResponse>() {
             @Override
             public void onResponse(Response<CategoryProductsResponse> response, Retrofit retrofit) {
@@ -254,15 +264,21 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     }
 
     private void getAndSetCartCount() {
+        OkHttpClient okHttpClient = new OkHttpClient();
+        okHttpClient.setConnectTimeout(120000, TimeUnit.MILLISECONDS);
+        okHttpClient.setReadTimeout(120000, TimeUnit.MILLISECONDS);
+        okHttpClient.interceptors().add(new AddCookiesInterceptor());
+        okHttpClient.interceptors().add(new ReceivedCookiesInterceptor());
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(getString(R.string.baseurl))
                 .addConverterFactory(GsonConverterFactory.create())
+                .client(okHttpClient)
                 .build();
 
         OpencartAPIs api = retrofit.create(OpencartAPIs.class);
 
         String token = Prefs.getString("token", null);
-        Call<GetCartItemsResponse> call = api.getCartItems(token);
+        Call<GetCartItemsResponse> call = api.getCartItems();
         call.enqueue(new Callback<GetCartItemsResponse>() {
 
             public void onResponse(Response<GetCartItemsResponse> response, Retrofit retrofit) {

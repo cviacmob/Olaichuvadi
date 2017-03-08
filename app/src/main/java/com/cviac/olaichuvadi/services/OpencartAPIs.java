@@ -43,8 +43,7 @@ public interface OpencartAPIs {
     Call<CategoriesResponse> getCategories();
 
     @GET("/index.php?route=api/category/getproducts")
-    Call<CategoryProductsResponse> getProducts(@Header("Authorization") String credentials,
-                                               @Query("categoryid") String categoryid);
+    Call<CategoryProductsResponse> getProducts(@Query("categoryid") String categoryid);
 
     @GET("/index.php?route=api/category/getproductdetails")
     Call<Productdetailresponse> getProductdetails(@Query("productid") String categoryid);
@@ -55,12 +54,11 @@ public interface OpencartAPIs {
 
     @FormUrlEncoded
     @POST("/index.php?route=api/cart/add")
-    Call<AddToCartResponse> addToCart(@Query("token") String token,
-                                      @Field("product_id") String prodid,
+    Call<AddToCartResponse> addToCart(@Field("product_id") String prodid,
                                       @Field("quantity") String quantity);
 
     @GET("/index.php?route=api/cart/products")
-    Call<GetCartItemsResponse> getCartItems(@Query("token") String token);
+    Call<GetCartItemsResponse> getCartItems();
 
     @FormUrlEncoded
     @POST("/index.php?route=api/address/add")

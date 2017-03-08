@@ -11,8 +11,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.cviac.olaichuvadi.R;
+import com.cviac.olaichuvadi.services.AddCookiesInterceptor;
 import com.cviac.olaichuvadi.services.LogininfoResponse;
 import com.cviac.olaichuvadi.services.OpencartAPIs;
+import com.cviac.olaichuvadi.services.ReceivedCookiesInterceptor;
 import com.cviac.olaichuvadi.utilities.OlaichuvadiApp;
 import com.cviac.olaichuvadi.utilities.Prefs;
 import com.squareup.okhttp.OkHttpClient;
@@ -43,6 +45,8 @@ public class LoginActivity extends AppCompatActivity {
 
         mail = (EditText) findViewById(R.id.namebox);
         pwd = (EditText) findViewById(R.id.pwdbox);
+        mail.setText("rameshoh1@gmail.com");
+        pwd.setText("123456");
         log = (Button) findViewById(R.id.login);
         clk = (TextView) findViewById(R.id.textView3);
 
@@ -98,6 +102,10 @@ public class LoginActivity extends AppCompatActivity {
         OkHttpClient okHttpClient = new OkHttpClient();
         okHttpClient.setConnectTimeout(120000, TimeUnit.MILLISECONDS);
         okHttpClient.setReadTimeout(120000, TimeUnit.MILLISECONDS);
+        okHttpClient.interceptors().add(new AddCookiesInterceptor());
+        okHttpClient.interceptors().add(new ReceivedCookiesInterceptor());
+
+        Prefs.remove("oc_cookies");
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(getString(R.string.baseurl))

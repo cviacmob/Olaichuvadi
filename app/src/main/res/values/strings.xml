@@ -68,5 +68,6 @@
     <string name="mylib_books">என் நூலகத்திலுள்ள புத்தகங்கள் :</string>
     <string name="tab_shared">பகிர்வு புத்தகங்கள்</string>
     <string name="baseurl">http://www.olaichuvadi.cviac.com</string>
+    <string name="baseurl_local">http://192.168.1.61</string>
 
 </resources>
