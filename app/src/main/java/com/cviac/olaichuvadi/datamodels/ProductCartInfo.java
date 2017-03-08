@@ -4,7 +4,30 @@ import java.io.Serializable;
 
 public class ProductCartInfo implements Serializable {
 
+    private String cart_id;
+    private String product_id;
+    private String image;
+    private String name;
+    private String model;
+    private boolean stock;
+    private String quantity;
+    private String shipping;
+    private String price;
+    private String total;
+    private int reward;
+
+    public ProductCartInfo() {
+    }
+
     public ProductCartInfo(int ic, String s, String s1, String s2) {
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public String getCart_id() {
@@ -87,17 +110,5 @@ public class ProductCartInfo implements Serializable {
         this.reward = reward;
     }
 
-    private String cart_id;
-    private String product_id;
-    private String name;
-    private String model;
-    private boolean stock;
-    private String quantity;
-    private String shipping;
-    private String price;
-    private String total;
-    private int reward;
 
-    public ProductCartInfo() {
-    }
 }

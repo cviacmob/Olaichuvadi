@@ -74,7 +74,9 @@ public class Product_Details extends AppCompatActivity {
         crt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                addToCart(prdetail.getProduct_id(), "1");
+                if (prdetail != null) {
+                    addToCart(prdetail.getProduct_id(), "1");
+                }
             }
         });
         buy.setOnClickListener(new View.OnClickListener() {

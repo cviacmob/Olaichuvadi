@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.cviac.olaichuvadi.R;
 import com.cviac.olaichuvadi.activities.LoginActivity;
 import com.cviac.olaichuvadi.activities.MyCartActivity;
+import com.cviac.olaichuvadi.activities.Product_Details;
 import com.cviac.olaichuvadi.datamodels.AddToCartResponse;
 import com.cviac.olaichuvadi.datamodels.ProductCartInfo;
 import com.cviac.olaichuvadi.datamodels.ProductDetail;
@@ -20,6 +21,7 @@ import com.cviac.olaichuvadi.services.AddCookiesInterceptor;
 import com.cviac.olaichuvadi.services.OpencartAPIs;
 import com.cviac.olaichuvadi.services.ReceivedCookiesInterceptor;
 import com.squareup.okhttp.OkHttpClient;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -109,6 +111,8 @@ public class CartItemAdapter extends BaseAdapter {
         } else {
             holder = (ViewHolder) crt.getTag();
         }
+        String prd_img = cinfo.getImage();
+        Picasso.with(mContext).load(prd_img).placeholder(R.mipmap.bookgrd).resize(60, 60).into(holder.iv);
         holder.tv4.setText(cinfo.getTotal());
         holder.tv1.setText(cinfo.getName());
         holder.tv2.setText(cinfo.getQuantity());
