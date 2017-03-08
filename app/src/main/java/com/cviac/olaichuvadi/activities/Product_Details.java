@@ -141,7 +141,7 @@ public class Product_Details extends AppCompatActivity {
                 public void onResponse(Response<AddToCartResponse> response, Retrofit retrofit) {
                     AddToCartResponse rsp = response.body();
                     getAndSetCartCount();
-                    Toast.makeText(Product_Details.this, "Product Added to Cart", Toast.LENGTH_LONG).show();
+                    Toast.makeText(Product_Details.this, "Book Added to Cart", Toast.LENGTH_LONG).show();
                 }
 
                 @Override

@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -16,8 +15,6 @@ import com.cviac.olaichuvadi.adapters.CartItemAdapter;
 import com.cviac.olaichuvadi.datamodels.CartTotalInfo;
 import com.cviac.olaichuvadi.datamodels.GetCartItemsResponse;
 import com.cviac.olaichuvadi.datamodels.ProductCartInfo;
-import com.cviac.olaichuvadi.datamodels.ProductDetail;
-import com.cviac.olaichuvadi.datamodels.Productdetailresponse;
 import com.cviac.olaichuvadi.services.AddCookiesInterceptor;
 import com.cviac.olaichuvadi.services.OpencartAPIs;
 import com.cviac.olaichuvadi.services.ReceivedCookiesInterceptor;
@@ -52,6 +49,7 @@ public class MyCartActivity extends AppCompatActivity {
         setTitle(R.string.My_Cart);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         cartProducts = new ArrayList<>();
         loadCartItems();
 
@@ -60,51 +58,11 @@ public class MyCartActivity extends AppCompatActivity {
         lv = (ListView) findViewById(R.id.cartlist);
         adapter = new CartItemAdapter(MyCartActivity.this, cartProducts);
         lv.setAdapter(adapter);
-        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                ProductCartInfo pinfo = cartProducts.get(i);
-                getProduct(pinfo.getProduct_id());
-            }
-        });
         proc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 Intent prd = new Intent(MyCartActivity.this, PaymentActivity.class);
                 startActivity(prd);
-            }
-        });
-    }
-
-    private void getProduct(String productId) {
-
-        OkHttpClient okHttpClient = new OkHttpClient();
-        okHttpClient.setConnectTimeout(120000, TimeUnit.MILLISECONDS);
-        okHttpClient.setReadTimeout(120000, TimeUnit.MILLISECONDS);
-
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(getString(R.string.baseurl))
-                .addConverterFactory(GsonConverterFactory.create())
-                .client(okHttpClient)
-                .build();
-
-        OpencartAPIs api = retrofit.create(OpencartAPIs.class);
-
-        Call<Productdetailresponse> call = api.getProductdetails(productId);
-        call.enqueue(new Callback<Productdetailresponse>() {
-
-            public void onResponse(Response<Productdetailresponse> response, Retrofit retrofit) {
-                Productdetailresponse rsp = response.body();
-                ProductDetail prdet = rsp.getProduct().get(0);
-                Intent i = new Intent(MyCartActivity.this, Product_Details.class);
-                i.putExtra("productobj", prdet);
-                startActivity(i);
-            }
-
-            @Override
-            public void onFailure(Throwable t) {
-                t.printStackTrace();
             }
         });
     }
