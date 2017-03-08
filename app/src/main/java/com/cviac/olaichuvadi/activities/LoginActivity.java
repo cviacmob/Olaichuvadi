@@ -45,8 +45,6 @@ public class LoginActivity extends AppCompatActivity {
 
         mail = (EditText) findViewById(R.id.namebox);
         pwd = (EditText) findViewById(R.id.pwdbox);
-        /*mail.setText("rameshoh1@gmail.com");
-        pwd.setText("123456");*/
         log = (Button) findViewById(R.id.login);
         clk = (TextView) findViewById(R.id.textView3);
 
@@ -104,9 +102,7 @@ public class LoginActivity extends AppCompatActivity {
         okHttpClient.setReadTimeout(120000, TimeUnit.MILLISECONDS);
         okHttpClient.interceptors().add(new AddCookiesInterceptor());
         okHttpClient.interceptors().add(new ReceivedCookiesInterceptor());
-
         /*Prefs.remove("oc_cookies");*/
-
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(getString(R.string.baseurl))
                 .addConverterFactory(GsonConverterFactory.create())
@@ -135,34 +131,25 @@ public class LoginActivity extends AppCompatActivity {
                     startActivity(logn);
                     finish();
                 } else if (rsp.getCode() == 1) {
-
                     progressDialog.dismiss();
-
                     Toast.makeText(LoginActivity.this, "Check your registered email for Account Activation", Toast.LENGTH_LONG).show();
-
                 } else {
-
                     progressDialog.dismiss();
-
                     Toast.makeText(LoginActivity.this, "Login Failed: " + rsp.getCode(), Toast.LENGTH_LONG).show();
                 }
             }
 
             @Override
             public void onFailure(Throwable t) {
-
                 progressDialog.dismiss();
-
                 Toast.makeText(LoginActivity.this, "Login Failed: " + t.getLocalizedMessage(), Toast.LENGTH_LONG).show();
             }
         });
     }
 
     protected boolean isValidEmail(String email) {
-
         String EMAILPATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
                 + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
-
         Pattern pattern = Pattern.compile(EMAILPATTERN);
         Matcher matcher = pattern.matcher(email);
         return matcher.matches();
