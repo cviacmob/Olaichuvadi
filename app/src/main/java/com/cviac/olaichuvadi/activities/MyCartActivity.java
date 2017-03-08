@@ -1,5 +1,6 @@
 package com.cviac.olaichuvadi.activities;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -42,6 +43,7 @@ public class MyCartActivity extends AppCompatActivity {
     Button proc;
     TextView total;
     String s;
+    ProgressDialog progressDialog = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -108,6 +110,11 @@ public class MyCartActivity extends AppCompatActivity {
     }
 
     public void loadCartItems() {
+        progressDialog = new ProgressDialog(MyCartActivity.this, R.style.AppTheme_Dark_Dialog);
+        progressDialog.setIndeterminate(true);
+        progressDialog.setMessage("Loading...");
+        progressDialog.setCancelable(false);
+        progressDialog.show();
 
         OkHttpClient okHttpClient = new OkHttpClient();
         okHttpClient.setConnectTimeout(120000, TimeUnit.MILLISECONDS);
@@ -128,6 +135,7 @@ public class MyCartActivity extends AppCompatActivity {
         call.enqueue(new Callback<GetCartItemsResponse>() {
 
             public void onResponse(Response<GetCartItemsResponse> response, Retrofit retrofit) {
+                progressDialog.dismiss();
                 GetCartItemsResponse rsp = response.body();
                 cartProducts.clear();
                 cartProducts.addAll(rsp.getProducts());
@@ -139,6 +147,7 @@ public class MyCartActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Throwable t) {
+                progressDialog.dismiss();
                 t.printStackTrace();
             }
         });

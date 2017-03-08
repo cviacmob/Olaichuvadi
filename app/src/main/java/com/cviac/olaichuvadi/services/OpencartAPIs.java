@@ -55,6 +55,10 @@ public interface OpencartAPIs {
     Call<AddToCartResponse> addToCart(@Field("product_id") String prodid,
                                       @Field("quantity") String quantity);
 
+    @FormUrlEncoded
+    @POST("/index.php?route=api/cart/remove")
+    Call<AddToCartResponse> removeFromCart(@Field("key") String cartid);
+
     @GET("/index.php?route=api/cart/products")
     Call<GetCartItemsResponse> getCartItems();
 
