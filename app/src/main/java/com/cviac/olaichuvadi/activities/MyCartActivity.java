@@ -107,7 +107,7 @@ public class MyCartActivity extends AppCompatActivity {
         });
     }
 
-    private void loadCartItems() {
+    public void loadCartItems() {
 
         OkHttpClient okHttpClient = new OkHttpClient();
         okHttpClient.setConnectTimeout(120000, TimeUnit.MILLISECONDS);
@@ -129,6 +129,7 @@ public class MyCartActivity extends AppCompatActivity {
 
             public void onResponse(Response<GetCartItemsResponse> response, Retrofit retrofit) {
                 GetCartItemsResponse rsp = response.body();
+                cartProducts.clear();
                 cartProducts.addAll(rsp.getProducts());
                 s = String.valueOf(rsp.getProducts().size());
                 adapter.notifyDataSetInvalidated();

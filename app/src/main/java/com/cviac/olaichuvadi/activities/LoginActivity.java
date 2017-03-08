@@ -45,8 +45,8 @@ public class LoginActivity extends AppCompatActivity {
 
         mail = (EditText) findViewById(R.id.namebox);
         pwd = (EditText) findViewById(R.id.pwdbox);
-        mail.setText("rameshoh1@gmail.com");
-        pwd.setText("123456");
+        /*mail.setText("rameshoh1@gmail.com");
+        pwd.setText("123456");*/
         log = (Button) findViewById(R.id.login);
         clk = (TextView) findViewById(R.id.textView3);
 
@@ -105,7 +105,7 @@ public class LoginActivity extends AppCompatActivity {
         okHttpClient.interceptors().add(new AddCookiesInterceptor());
         okHttpClient.interceptors().add(new ReceivedCookiesInterceptor());
 
-        Prefs.remove("oc_cookies");
+        /*Prefs.remove("oc_cookies");*/
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(getString(R.string.baseurl))
