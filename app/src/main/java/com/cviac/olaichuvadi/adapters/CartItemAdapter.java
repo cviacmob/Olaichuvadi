@@ -11,9 +11,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.cviac.olaichuvadi.R;
-import com.cviac.olaichuvadi.activities.LoginActivity;
 import com.cviac.olaichuvadi.activities.MyCartActivity;
-import com.cviac.olaichuvadi.activities.Product_Details;
+import com.cviac.olaichuvadi.activities.PaymentActivity;
 import com.cviac.olaichuvadi.datamodels.AddToCartResponse;
 import com.cviac.olaichuvadi.datamodels.ProductCartInfo;
 import com.cviac.olaichuvadi.datamodels.ProductDetail;
@@ -35,10 +34,7 @@ import retrofit.Retrofit;
 public class CartItemAdapter extends BaseAdapter {
 
     private Context mContext;
-    private static int counter = 0;
-    private String stringVal;
     private List<ProductCartInfo> cartProducts;
-    ProductDetail prdetail = null;
     ProgressDialog progressDialog = null;
 
     public CartItemAdapter(Context mContext, List<ProductCartInfo> cartProducts) {
@@ -189,8 +185,13 @@ public class CartItemAdapter extends BaseAdapter {
             public void onResponse(Response<AddToCartResponse> response, Retrofit retrofit) {
                 progressDialog.dismiss();
                 AddToCartResponse rsp = response.body();
-                MyCartActivity actv = (MyCartActivity) mContext;
-                actv.loadCartItems();
+                if (mContext instanceof MyCartActivity) {
+                    MyCartActivity actv1 = (MyCartActivity) mContext;
+                    actv1.loadCartItems();
+                } else {
+                    PaymentActivity actv2 = (PaymentActivity) mContext;
+                    actv2.loadCartItems();
+                }
             }
 
             @Override

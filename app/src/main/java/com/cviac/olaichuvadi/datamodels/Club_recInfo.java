@@ -2,14 +2,18 @@ package com.cviac.olaichuvadi.datamodels;
 
 import java.io.Serializable;
 
-public class ReadingclubInfo implements Serializable {
+public class Club_recInfo implements Serializable {
 
     private String title;
     private int club_img;
 
-    public ReadingclubInfo(String title, int club_img) {
+    public Club_recInfo(String title, int club_img) {
         this.title = title;
         this.club_img = club_img;
+    }
+
+    public Club_recInfo(String title) {
+        this.title = title;
     }
 
     public String getTitle() {

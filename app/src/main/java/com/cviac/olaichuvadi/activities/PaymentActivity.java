@@ -10,7 +10,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.cviac.olaichuvadi.R;
-import com.cviac.olaichuvadi.adapters.CartItemAdapter;
+import com.cviac.olaichuvadi.adapters.PaymentAdapter;
 import com.cviac.olaichuvadi.datamodels.CartTotalInfo;
 import com.cviac.olaichuvadi.datamodels.GetCartItemsResponse;
 import com.cviac.olaichuvadi.datamodels.ProductCartInfo;
@@ -21,14 +21,10 @@ import com.cviac.olaichuvadi.utilities.NonScrollListView;
 import com.cviac.olaichuvadi.utilities.Prefs;
 import com.squareup.okhttp.OkHttpClient;
 
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import butterknife.ButterKnife;
-import butterknife.InjectView;
 import retrofit.Call;
 import retrofit.Callback;
 import retrofit.GsonConverterFactory;
@@ -38,7 +34,7 @@ import retrofit.Retrofit;
 public class PaymentActivity extends AppCompatActivity {
 
     ProgressDialog progressDialog = null;
-    CartItemAdapter adapter;
+    PaymentAdapter adapter;
     List<ProductCartInfo> cartProducts;
     List<CartTotalInfo> cartTotals;
     NonScrollListView nonScrollListView;
@@ -57,7 +53,7 @@ public class PaymentActivity extends AppCompatActivity {
         loadCartItems();
 
         nonScrollListView = (NonScrollListView) findViewById(R.id.crtitms);
-        adapter = new CartItemAdapter(PaymentActivity.this, cartProducts);
+        adapter = new PaymentAdapter(PaymentActivity.this, cartProducts);
         nonScrollListView.setAdapter(adapter);
         amount = (TextView) findViewById(R.id.priceamnt);
         pay = (Button) findViewById(R.id.paybutn);

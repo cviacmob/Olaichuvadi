@@ -10,16 +10,16 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.cviac.olaichuvadi.R;
-import com.cviac.olaichuvadi.datamodels.ReadingclubInfo;
+import com.cviac.olaichuvadi.datamodels.Club_recInfo;
 
 import java.util.List;
 
-public class ReadingclubAdapter extends BaseAdapter {
+public class Club_recAdapter extends BaseAdapter {
 
     private Context mContext;
-    private List<ReadingclubInfo> read;
+    private List<Club_recInfo> read;
 
-    public ReadingclubAdapter(Context mContext, List<ReadingclubInfo> read) {
+    public Club_recAdapter(Context mContext, List<Club_recInfo> read) {
         this.mContext = mContext;
         this.read = read;
     }
@@ -40,30 +40,24 @@ public class ReadingclubAdapter extends BaseAdapter {
     }
 
     public static class ViewHolder {
-        public ImageView iv;
         public TextView tv1;
-        public Button join;
     }
 
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
         View shr = view;
-        ReadingclubAdapter.ViewHolder holder;
-        ReadingclubInfo cinfo = read.get(i);
+        Club_recAdapter.ViewHolder holder;
+        Club_recInfo cinfo = read.get(i);
         if (view == null) {
             LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             shr = inflater.inflate(R.layout.club_item, null);
             holder = new ViewHolder();
-            holder.iv = (ImageView) shr.findViewById(R.id.club_img);
-            holder.tv1 = (TextView) shr.findViewById(R.id.clubtit);
-            holder.join = (Button) shr.findViewById(R.id.joinbtn);
+            holder.tv1 = (TextView) shr.findViewById(R.id.clubtitle);
             shr.setTag(holder);
         } else {
-            holder = (ReadingclubAdapter.ViewHolder) shr.getTag();
+            holder = (Club_recAdapter.ViewHolder) shr.getTag();
         }
-        holder.iv.setImageResource(cinfo.getClub_img());
         holder.tv1.setText(cinfo.getTitle());
-
         return shr;
     }
 }

@@ -16,6 +16,10 @@ public class FavouritesInfo implements Serializable {
         this.fav_auth = fav_auth;
     }
 
+    public FavouritesInfo(String fav_tit) {
+        this.fav_tit = fav_tit;
+    }
+
     public int getFav_img() {
         return fav_img;
     }

@@ -23,14 +23,37 @@ public class MyLib_Favourites extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_lib__favourites);
 
+        loadbooks();
+
         setTitle(R.string.tab_fav);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-        fav = new ArrayList<>();
 
         gv = (GridView) findViewById(R.id.favsgrid);
         adapter = new FavouritesAdapter(MyLib_Favourites.this, fav);
         gv.setAdapter(adapter);
+    }
+
+    private void loadbooks() {
+
+        fav = new ArrayList<>();
+
+        FavouritesInfo f1 = new FavouritesInfo("Book-1");
+        fav.add(f1);
+        FavouritesInfo f2 = new FavouritesInfo("Book-2");
+        fav.add(f2);
+        FavouritesInfo f3 = new FavouritesInfo("Book-3");
+        fav.add(f3);
+        FavouritesInfo f4 = new FavouritesInfo("Book-4");
+        fav.add(f4);
+        FavouritesInfo f5 = new FavouritesInfo("Book-5");
+        fav.add(f5);
+        FavouritesInfo f6 = new FavouritesInfo("Book-6");
+        fav.add(f6);
+        FavouritesInfo f7 = new FavouritesInfo("Book-7");
+        fav.add(f7);
+        FavouritesInfo f8 = new FavouritesInfo("Book-8");
+        fav.add(f8);
+
     }
 
     @Override

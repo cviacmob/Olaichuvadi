@@ -3,12 +3,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/clubtit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true" />
-
     <ImageView
         android:id="@+id/club_img"
         android:layout_width="wrap_content"
@@ -17,13 +11,21 @@
         android:layout_centerHorizontal="true"
         android:src="@mipmap/ic" />
 
-    <Button
-        android:id="@+id/joinbtn"
-        android:background="@drawable/roundcolorbtn"
+    <TextView
+        android:id="@+id/clubtitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/club_img"
         android:layout_centerHorizontal="true"
-        android:text="Join" />
+        android:textColor="#000000" />
+
+    <Button
+        android:id="@+id/joinbtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/clubtitle"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/roundcolorbtn"
+        android:text="JOIN" />
 
 </RelativeLayout>

@@ -11,8 +11,15 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import com.cviac.olaichuvadi.R;
+import com.cviac.olaichuvadi.fragments.Club_Joined;
+import com.cviac.olaichuvadi.fragments.Club_Own;
+import com.cviac.olaichuvadi.fragments.Club_Recommended;
 
 public class MyComm_Readingclub extends AppCompatActivity {
+
+    private Club_Recommended Club_rec_frag;
+    private Club_Joined Club_joined_frag;
+    private Club_Own Club_own_frag;
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -47,7 +54,6 @@ public class MyComm_Readingclub extends AppCompatActivity {
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
-
         mViewPager.setOffscreenPageLimit(3);
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabsre);
@@ -127,6 +133,15 @@ public class MyComm_Readingclub extends AppCompatActivity {
         public Fragment getItem(int position) {
 
             switch (position + 1) {
+                case 1:
+                    Club_rec_frag = new Club_Recommended();
+                    return Club_rec_frag;
+                case 2:
+                    Club_joined_frag = new Club_Joined();
+                    return Club_joined_frag;
+                case 3:
+                    Club_own_frag = new Club_Own();
+                    return Club_own_frag;
             }
             return PlaceholderFragment.newInstance(position + 1);
         }

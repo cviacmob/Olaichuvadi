@@ -16,6 +16,10 @@ public class SharedInfo implements Serializable{
         this.price = price;
     }
 
+    public SharedInfo(String book_tit) {
+        this.book_tit = book_tit;
+    }
+
     public String getBook_tit() {
         return book_tit;
     }

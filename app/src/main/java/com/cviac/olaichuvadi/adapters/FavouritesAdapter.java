@@ -59,6 +59,7 @@ public class FavouritesAdapter extends BaseAdapter {
         } else {
             holder = (FavouritesAdapter.ViewHolder) fav.getTag();
         }
+        holder.tv.setText(puinfo.getFav_tit());
         return fav;
     }
 }

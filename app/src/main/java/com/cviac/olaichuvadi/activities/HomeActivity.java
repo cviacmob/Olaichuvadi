@@ -25,6 +25,8 @@ import android.widget.TextView;
 
 import com.cviac.olaichuvadi.R;
 import com.cviac.olaichuvadi.adapters.ProductsAdapter;
+import com.cviac.olaichuvadi.datamodels.CategoriesResponse;
+import com.cviac.olaichuvadi.datamodels.Category;
 import com.cviac.olaichuvadi.datamodels.CategoryProductsResponse;
 import com.cviac.olaichuvadi.datamodels.GetCartItemsResponse;
 import com.cviac.olaichuvadi.datamodels.LoginResponse;
@@ -66,6 +68,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
@@ -92,11 +95,48 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
         Typeface tf = Typeface.createFromAsset(getAssets(), "fonts/bamini.TTF");
 
-       // getSetToken();
+        OkHttpClient okHttpClient = new OkHttpClient();
+        okHttpClient.setConnectTimeout(120000, TimeUnit.MILLISECONDS);
+        okHttpClient.setReadTimeout(120000, TimeUnit.MILLISECONDS);
+        okHttpClient.interceptors().add(new AddCookiesInterceptor());
+        okHttpClient.interceptors().add(new ReceivedCookiesInterceptor());
 
-        refresh("93");
-        slider("94");
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(getString(R.string.baseurl))
+                .addConverterFactory(GsonConverterFactory.create())
+                .client(okHttpClient)
+                .build();
 
+        OpencartAPIs api = retrofit.create(OpencartAPIs.class);
+
+        final Call<CategoriesResponse> call = api.getCategories();
+        call.enqueue(new Callback<CategoriesResponse>() {
+            @Override
+            public void onResponse(Response<CategoriesResponse> response, Retrofit retrofit) {
+
+                CategoriesResponse rsp = response.body();
+                List<Category> catlist = rsp.getCategories();
+                String feature_id = "";
+                String promoted_id = "";
+                for (Category cat : catlist) {
+                    if (cat.getName().equalsIgnoreCase("featured")) {
+                        feature_id = cat.getCategory_id();
+                    } else if (cat.getName().equalsIgnoreCase("promoted")) {
+                        promoted_id = cat.getCategory_id();
+                    }
+                }
+                if (!promoted_id.isEmpty()) {
+                    slider(promoted_id);
+                }
+                if (!feature_id.isEmpty()) {
+                    refresh(feature_id);
+                }
+            }
+
+            @Override
+            public void onFailure(Throwable t) {
+            }
+        });
     }
 
     private void getSetToken() {
@@ -140,10 +180,10 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(okHttpClient)
                 .build();
-       // String credentials = Credentials.basic("olaichuvadi", "cviac");
+        // String credentials = Credentials.basic("olaichuvadi", "cviac");
         OpencartAPIs api = retrofit.create(OpencartAPIs.class);
 
-        final Call<CategoryProductsResponse> call = api.getProducts( catId);
+        final Call<CategoryProductsResponse> call = api.getProducts(catId);
 
         call.enqueue(new Callback<CategoryProductsResponse>() {
             @Override

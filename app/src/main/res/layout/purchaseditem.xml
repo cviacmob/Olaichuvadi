@@ -36,7 +36,7 @@
             android:id="@+id/p_favbtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/revbtn"
+            android:layout_toRightOf="@+id/p_revbtn"
             android:src="@mipmap/star" />
 
     </RelativeLayout>

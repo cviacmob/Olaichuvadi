@@ -4,11 +4,13 @@ import java.io.Serializable;
 import java.util.List;
 
 public class Category implements Serializable {
+
     private String category_id;
     private String parent_id;
     private String name;
     private String image;
     private String href;
+
     private List<Category> categories;
 
     public List<Category> getCategories() {
