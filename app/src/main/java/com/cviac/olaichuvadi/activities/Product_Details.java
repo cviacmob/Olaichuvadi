@@ -118,39 +118,35 @@ public class Product_Details extends AppCompatActivity {
     }
 
     private void addToCart(String prodId, String quantity) {
-//        String token = Prefs.getString("token", null);
-//        if (token != null)
-        {
 
-            OkHttpClient okHttpClient = new OkHttpClient();
-            okHttpClient.setConnectTimeout(120000, TimeUnit.MILLISECONDS);
-            okHttpClient.setReadTimeout(120000, TimeUnit.MILLISECONDS);
-            okHttpClient.interceptors().add(new AddCookiesInterceptor());
-            okHttpClient.interceptors().add(new ReceivedCookiesInterceptor());
-            Retrofit retrofit = new Retrofit.Builder()
-                    .baseUrl(getString(R.string.baseurl))
-                    .addConverterFactory(GsonConverterFactory.create())
-                    .client(okHttpClient)
-                    .build();
+        OkHttpClient okHttpClient = new OkHttpClient();
+        okHttpClient.setConnectTimeout(120000, TimeUnit.MILLISECONDS);
+        okHttpClient.setReadTimeout(120000, TimeUnit.MILLISECONDS);
+        okHttpClient.interceptors().add(new AddCookiesInterceptor());
+        okHttpClient.interceptors().add(new ReceivedCookiesInterceptor());
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(getString(R.string.baseurl))
+                .addConverterFactory(GsonConverterFactory.create())
+                .client(okHttpClient)
+                .build();
 
-            OpencartAPIs api = retrofit.create(OpencartAPIs.class);
+        OpencartAPIs api = retrofit.create(OpencartAPIs.class);
 
-            final Call<AddToCartResponse> call = api.addToCart(prodId, quantity);
-            call.enqueue(new Callback<AddToCartResponse>() {
-                @Override
-                public void onResponse(Response<AddToCartResponse> response, Retrofit retrofit) {
-                    AddToCartResponse rsp = response.body();
-                    getAndSetCartCount();
-                    Toast.makeText(Product_Details.this, "Book Added to Cart", Toast.LENGTH_LONG).show();
-                }
+        final Call<AddToCartResponse> call = api.addToCart(prodId, quantity);
+        call.enqueue(new Callback<AddToCartResponse>() {
+            @Override
+            public void onResponse(Response<AddToCartResponse> response, Retrofit retrofit) {
+                AddToCartResponse rsp = response.body();
+                getAndSetCartCount();
+                Toast.makeText(Product_Details.this, "Book Added to Cart", Toast.LENGTH_LONG).show();
+            }
 
-                @Override
-                public void onFailure(Throwable t) {
-                    t.printStackTrace();
-                    Toast.makeText(Product_Details.this, "Server Error", Toast.LENGTH_LONG).show();
-                }
-            });
-        }
+            @Override
+            public void onFailure(Throwable t) {
+                t.printStackTrace();
+                Toast.makeText(Product_Details.this, "Server Error", Toast.LENGTH_LONG).show();
+            }
+        });
     }
 
     private void getAndSetCartCount() {

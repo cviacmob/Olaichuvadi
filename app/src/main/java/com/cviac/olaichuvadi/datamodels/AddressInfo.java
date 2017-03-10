@@ -20,6 +20,11 @@ public class AddressInfo implements Serializable {
     public AddressInfo() {
     }
 
+    @Override
+    public String toString() {
+        return firstname + " " + city + " " + postcode;
+    }
+
     public String getZone_id() {
         return zone_id;
     }

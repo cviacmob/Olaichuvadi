@@ -12,53 +12,58 @@
         android:id="@+id/payname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Username" />
+        android:text="Firstname" />
 
-    <TextView
-        android:id="@+id/payaddr"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/payname"
-        android:text="Door No./St." />
 
     <TextView
         android:id="@+id/payaddr1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/payaddr"
-        android:text="City" />
+        android:layout_below="@+id/payname"
+        android:text="Address 1" />
 
     <TextView
         android:id="@+id/payaddr2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/payaddr"
+        android:layout_below="@+id/payname"
         android:layout_toRightOf="@+id/payaddr1"
         android:paddingLeft="5dp"
-        android:text="Dist." />
+        android:text="Address 2" />
 
     <TextView
-        android:id="@+id/payaddr3"
+        android:id="@+id/payCity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/payaddr1"
-        android:text="State" />
+        android:text="City" />
 
     <TextView
-        android:id="@+id/payaddr4"
+        android:id="@+id/payPIN"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/payaddr1"
-        android:layout_toRightOf="@+id/payaddr3"
+        android:layout_toRightOf="@+id/payCity"
         android:paddingLeft="5dp"
         android:text="Pincode" />
 
     <TextView
-        android:id="@+id/paymbl"
+        android:id="@+id/payState"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/payaddr3"
-        android:text="Mobile No" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/payCity"
+        android:text="State" />
+
+    <TextView
+        android:id="@+id/payCountry"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/payCity"
+        android:layout_toRightOf="@+id/payState"
+        android:paddingLeft="5dp"
+        android:text="Country" />
 
     <ImageView
         android:id="@+id/edtadd"
@@ -71,7 +76,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/price"
-        android:layout_below="@+id/paymbl">
+        android:layout_below="@+id/payState">
 
         <RelativeLayout
             android:layout_width="match_parent"

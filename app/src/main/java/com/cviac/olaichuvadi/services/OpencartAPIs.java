@@ -8,8 +8,11 @@ import com.cviac.olaichuvadi.datamodels.CountryInfo;
 import com.cviac.olaichuvadi.datamodels.GeneralResponse;
 import com.cviac.olaichuvadi.datamodels.GetCartItemsResponse;
 import com.cviac.olaichuvadi.datamodels.LoginResponse;
+import com.cviac.olaichuvadi.datamodels.PaymentMethodsResponse;
 import com.cviac.olaichuvadi.datamodels.Productdetailresponse;
+import com.cviac.olaichuvadi.datamodels.ShippingMethodsResponse;
 import com.cviac.olaichuvadi.datamodels.ZoneInfo;
+import com.squareup.okhttp.ResponseBody;
 
 import java.util.List;
 
@@ -17,7 +20,6 @@ import retrofit.Call;
 import retrofit.http.Field;
 import retrofit.http.FormUrlEncoded;
 import retrofit.http.GET;
-import retrofit.http.Header;
 import retrofit.http.POST;
 import retrofit.http.Query;
 
@@ -101,4 +103,62 @@ public interface OpencartAPIs {
 
     @GET("/index.php?route=api/address/getZones")
     Call<List<ZoneInfo>> getZones(@Query("country_id") String country_id);
+
+    @GET("/index.php?route=api/payment/methods")
+    Call<PaymentMethodsResponse> getPaymentMethods();
+
+    @GET("/index.php?route=api/shipping/methods")
+    Call<ShippingMethodsResponse> getShippingMethods();
+
+    // Order Placement APIs
+    @FormUrlEncoded
+    @POST("/index.php?route=api/customer")
+    Call<GeneralResponse> setCustomerSession(@Field("customer_id") String customer_id,
+                                             @Field("customer_group_id") String customer_group_id,
+                                             @Field("firstname") String firstname,
+                                             @Field("lastname") String lastname,
+                                             @Field("email") String email,
+                                             @Field("telephone") String telephone,
+                                             @Field("fax") String fax);
+
+    @FormUrlEncoded
+    @POST("/index.php?route=api/payment/address")
+    Call<GeneralResponse> setPaymentAddress(@Field("firstname") String firstname,
+                                            @Field("lastname") String lastname,
+                                            @Field("company") String company,
+                                            @Field("address_1") String address_1,
+                                            @Field("address_2") String address_2,
+                                            @Field("postcode") String postcode,
+                                            @Field("city") String city,
+                                            @Field("zone_id") String zone_id,
+                                            @Field("country_id") String country_id);
+
+
+    @FormUrlEncoded
+    @POST("/index.php?route=api/payment/method")
+    Call<GeneralResponse> setPaymentMethod(@Field("payment_method") String payment_method);
+
+    @FormUrlEncoded
+    @POST("/index.php?route=api/shipping/address")
+    Call<GeneralResponse> setShippingAddress(@Field("firstname") String firstname,
+                                             @Field("lastname") String lastname,
+                                             @Field("company") String company,
+                                             @Field("address_1") String address_1,
+                                             @Field("address_2") String address_2,
+                                             @Field("postcode") String postcode,
+                                             @Field("city") String city,
+                                             @Field("zone_id") String zone_id,
+                                             @Field("country_id") String country_id);
+
+    @FormUrlEncoded
+    @POST("/index.php?route=api/shipping/method")
+    Call<GeneralResponse> setShippingMethod(@Field("shipping_method") String shipping_method);
+
+    @FormUrlEncoded
+    @POST("/index.php?route=api/order/add")
+    Call<ResponseBody> placeOrder(@Field("payment_method") String payment_method,
+                                  @Field("shipping_method") String shipping_method,
+                                  @Field("comment") String comment,
+                                  @Field("affiliate_id") String affiliate_id,
+                                  @Field("order_status_id") String order_status_id);
 }

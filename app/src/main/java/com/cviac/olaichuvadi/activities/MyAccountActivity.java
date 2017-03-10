@@ -12,7 +12,9 @@ import android.widget.TextView;
 import com.cviac.olaichuvadi.R;
 import com.cviac.olaichuvadi.adapters.AddressAdapter;
 import com.cviac.olaichuvadi.datamodels.AddressInfo;
+import com.cviac.olaichuvadi.services.AddCookiesInterceptor;
 import com.cviac.olaichuvadi.services.OpencartAPIs;
+import com.cviac.olaichuvadi.services.ReceivedCookiesInterceptor;
 import com.cviac.olaichuvadi.utilities.Prefs;
 import com.squareup.okhttp.OkHttpClient;
 
@@ -75,6 +77,8 @@ public class MyAccountActivity extends AppCompatActivity {
         OkHttpClient okHttpClient = new OkHttpClient();
         okHttpClient.setConnectTimeout(120000, TimeUnit.MILLISECONDS);
         okHttpClient.setReadTimeout(120000, TimeUnit.MILLISECONDS);
+        okHttpClient.interceptors().add(new AddCookiesInterceptor());
+        okHttpClient.interceptors().add(new ReceivedCookiesInterceptor());
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(getString(R.string.baseurl))
