@@ -19,6 +19,7 @@ import com.cviac.olaichuvadi.datamodels.ProductDetail;
 import com.cviac.olaichuvadi.services.AddCookiesInterceptor;
 import com.cviac.olaichuvadi.services.OpencartAPIs;
 import com.cviac.olaichuvadi.services.ReceivedCookiesInterceptor;
+import com.cviac.olaichuvadi.utilities.OlaichuvadiApp;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.picasso.Picasso;
 
@@ -185,13 +186,12 @@ public class CartItemAdapter extends BaseAdapter {
             public void onResponse(Response<AddToCartResponse> response, Retrofit retrofit) {
                 progressDialog.dismiss();
                 AddToCartResponse rsp = response.body();
-                if (mContext instanceof MyCartActivity) {
-                    MyCartActivity actv1 = (MyCartActivity) mContext;
-                    actv1.loadCartItems();
-                } else {
-                    PaymentActivity actv2 = (PaymentActivity) mContext;
-                    actv2.loadCartItems();
-                }
+
+                MyCartActivity actv1 = (MyCartActivity) mContext;
+                actv1.loadCartItems();
+
+                OlaichuvadiApp app = (OlaichuvadiApp) ((MyCartActivity) mContext).getApplication();
+                app.notifyCartChange("remove");
             }
 
             @Override

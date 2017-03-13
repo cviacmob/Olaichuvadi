@@ -3,6 +3,7 @@ package com.cviac.olaichuvadi.utilities;
 import android.app.Application;
 import android.content.Context;
 import android.content.ContextWrapper;
+import android.content.Intent;
 import android.support.multidex.MultiDex;
 
 public class OlaichuvadiApp extends Application {
@@ -33,5 +34,11 @@ public class OlaichuvadiApp extends Application {
                 .setPrefsName(getPackageName())
                 .setUseDefaultSharedPreference(true)
                 .build();
+    }
+
+    public void notifyCartChange(String action) {
+        Intent i = new Intent("notifyCartChange");
+        i.putExtra("action", action);
+        sendBroadcast(i);
     }
 }

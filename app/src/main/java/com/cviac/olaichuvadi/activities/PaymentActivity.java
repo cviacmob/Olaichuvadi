@@ -3,13 +3,18 @@ package com.cviac.olaichuvadi.activities;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.annotation.IdRes;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,6 +24,7 @@ import com.cviac.olaichuvadi.datamodels.AddressInfo;
 import com.cviac.olaichuvadi.datamodels.CartTotalInfo;
 import com.cviac.olaichuvadi.datamodels.GeneralResponse;
 import com.cviac.olaichuvadi.datamodels.GetCartItemsResponse;
+import com.cviac.olaichuvadi.datamodels.PaymentMethodsInfo;
 import com.cviac.olaichuvadi.datamodels.PaymentMethodsResponse;
 import com.cviac.olaichuvadi.datamodels.ProductCartInfo;
 import com.cviac.olaichuvadi.datamodels.ShippingMethodsResponse;
@@ -26,6 +32,7 @@ import com.cviac.olaichuvadi.services.AddCookiesInterceptor;
 import com.cviac.olaichuvadi.services.OpencartAPIs;
 import com.cviac.olaichuvadi.services.ReceivedCookiesInterceptor;
 import com.cviac.olaichuvadi.utilities.NonScrollListView;
+import com.cviac.olaichuvadi.utilities.OlaichuvadiApp;
 import com.cviac.olaichuvadi.utilities.Prefs;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.ResponseBody;
@@ -52,10 +59,11 @@ public class PaymentActivity extends AppCompatActivity {
     Button pay;
     TextView amount, tv1, tv2, tv3, tv4, tv5, tv6, tv7;
     ImageView iv;
-    String paymethod = "cod";
+    String paymethod = "";
     String shipmethod = "flat";
     List<AddressInfo> addrlist;
     AlertDialog levelDialog = null;
+    List<PaymentMethodsInfo> pay_mthd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,11 +74,13 @@ public class PaymentActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         cartProducts = new ArrayList<>();
+        pay_mthd = new ArrayList<>();
 
         loadCartItems();
         loadAddresses();
-        /*loadPaymentMethods();
-        loadShippingMethods();*/
+        loadPaymentMethods();
+        /*loadShippingMethods();*/
+
         nonScrollListView = (NonScrollListView) findViewById(R.id.crtitms);
         adapter = new PaymentAdapter(PaymentActivity.this, cartProducts);
         nonScrollListView.setAdapter(adapter);
@@ -170,6 +180,10 @@ public class PaymentActivity extends AppCompatActivity {
 
             public void onResponse(Response<PaymentMethodsResponse> response, Retrofit retrofit) {
                 PaymentMethodsResponse rsp = response.body();
+                pay_mthd = rsp.getPayment_methods();
+                if (pay_mthd != null && pay_mthd.size() > 0) {
+                    addRadioButtons(pay_mthd);
+                }
             }
 
             @Override
@@ -272,8 +286,77 @@ public class PaymentActivity extends AppCompatActivity {
 
     }
 
+    public void addRadioButtons(final List<PaymentMethodsInfo> methods) {
+
+        for (int row = 0; row < 1; row++) {
+            RadioGroup group = new RadioGroup(this);
+            group.setOrientation(LinearLayout.HORIZONTAL);
+
+            for (int i = 0; i < methods.size(); i++) {
+                PaymentMethodsInfo info = methods.get(i);
+                RadioButton rdbtn = new RadioButton(this);
+                rdbtn.setId(i);
+                rdbtn.setTag(info);
+                rdbtn.setText(info.getTitle());
+                group.addView(rdbtn);
+            }
+            ((ViewGroup) findViewById(R.id.paygrp)).addView(group);
+            group.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
+                    PaymentMethodsInfo info = methods.get(checkedId);
+                    paymethod = info.getCode();
+                    /*Toast.makeText(PaymentActivity.this, "Radio Button:" + checkedId, Toast.LENGTH_SHORT).show();*/
+                }
+            });
+        }
+    }
+
+    private boolean validateAddress(AddressInfo info) {
+        if (info.getFirstname().isEmpty()) {
+            return false;
+        }
+        if (info.getAddress_1().isEmpty()) {
+            return false;
+        }
+        if (info.getAddress_2().isEmpty()) {
+            return false;
+        }
+        if (info.getCity().isEmpty()) {
+            return false;
+        }
+        if (info.getPostcode().isEmpty()) {
+            return false;
+        }
+        if (info.getZone_id().isEmpty()) {
+            return false;
+        }
+        if (info.getCountry_id().isEmpty()) {
+            return false;
+        }
+        return true;
+    }
+
+    private boolean validateCheckout() {
+        if (paymethod.isEmpty()) {
+            Toast.makeText(PaymentActivity.this, "Select a Payment Method", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        if (validateAddress(pay_addr) == false) {
+            Toast.makeText(PaymentActivity.this, "Fill Payment Address", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        if (validateAddress(ship_addr) == false) {
+            Toast.makeText(PaymentActivity.this, "Fill Shipping Address", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        return true;
+    }
+
     private void checkOut() {
-        setCustmoerSession();
+        if (validateCheckout() == true) {
+            setCustmoerSession();
+        }
     }
 
     private void setCustmoerSession() {
@@ -570,6 +653,10 @@ public class PaymentActivity extends AppCompatActivity {
             public void onResponse(Response<ResponseBody> response, Retrofit retrofit) {
                 progressDialog.dismiss();
                 ResponseBody rsp = response.body();
+
+                OlaichuvadiApp app =(OlaichuvadiApp) getApplication();
+                app.notifyCartChange("order");
+
                 Toast.makeText(PaymentActivity.this, "Placed Order Successfully", Toast.LENGTH_LONG).show();
                 finish();
             }

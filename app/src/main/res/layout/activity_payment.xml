@@ -12,15 +12,16 @@
         android:id="@+id/payname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Firstname" />
-
+        android:layout_alignParentStart="true"
+        android:layout_toLeftOf="@+id/edtadd"
+        android:text="@string/edit_fname" />
 
     <TextView
         android:id="@+id/payaddr1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/payname"
-        android:text="Address 1" />
+        android:text="@string/edit_adrs1" />
 
     <TextView
         android:id="@+id/payaddr2"
@@ -29,14 +30,14 @@
         android:layout_below="@+id/payname"
         android:layout_toRightOf="@+id/payaddr1"
         android:paddingLeft="5dp"
-        android:text="Address 2" />
+        android:text="@string/edt_adrs2" />
 
     <TextView
         android:id="@+id/payCity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/payaddr1"
-        android:text="City" />
+        android:text="@string/edit_cty" />
 
     <TextView
         android:id="@+id/payPIN"
@@ -45,7 +46,7 @@
         android:layout_below="@+id/payaddr1"
         android:layout_toRightOf="@+id/payCity"
         android:paddingLeft="5dp"
-        android:text="Pincode" />
+        android:text="@string/edit_pin" />
 
     <TextView
         android:id="@+id/payState"
@@ -54,7 +55,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/payCity"
-        android:text="State" />
+        android:text="@string/state" />
 
     <TextView
         android:id="@+id/payCountry"
@@ -63,7 +64,7 @@
         android:layout_below="@+id/payCity"
         android:layout_toRightOf="@+id/payState"
         android:paddingLeft="5dp"
-        android:text="Country" />
+        android:text="@string/country" />
 
     <ImageView
         android:id="@+id/edtadd"
@@ -100,27 +101,7 @@
                 android:id="@+id/paygrp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/paybutn">
-
-                <RadioButton
-                    android:id="@+id/debitpay"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Debit Card" />
-
-                <RadioButton
-                    android:id="@+id/creditpay"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Credit Card" />
-
-                <RadioButton
-                    android:id="@+id/netpay"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Net Banking" />
-
-            </RadioGroup>
+                android:layout_below="@+id/paybutn" />
         </RelativeLayout>
 
     </ScrollView>

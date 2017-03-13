@@ -1,7 +1,9 @@
 package com.cviac.olaichuvadi.activities;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.graphics.Typeface;
@@ -62,6 +64,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     GridView gv;
     List<Product> rowListItem;
     ProductsAdapter adapter;
+    private BroadcastReceiver listenCartChange;
 
     private LayerDrawable mcartMenuIcon;
     private int mCartCount = 0;
@@ -137,6 +140,23 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             public void onFailure(Throwable t) {
             }
         });
+
+        listenCartChange = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                getAndSetCartCount();
+            }
+        };
+
+        registerReceiver(listenCartChange, new IntentFilter("notifyCartChange"));
+    }
+
+    @Override
+    protected void onDestroy() {
+
+        super.onDestroy();
+
+        unregisterReceiver(listenCartChange);
     }
 
     private void getSetToken() {

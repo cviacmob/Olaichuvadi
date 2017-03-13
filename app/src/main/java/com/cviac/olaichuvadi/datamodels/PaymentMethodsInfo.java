@@ -1,6 +1,8 @@
 package com.cviac.olaichuvadi.datamodels;
 
-public class PaymentMethodsInfo {
+import java.io.Serializable;
+
+public class PaymentMethodsInfo implements Serializable {
 
     private String code;
     private String title;

@@ -1,7 +1,10 @@
 package com.cviac.olaichuvadi.activities;
 
 import android.app.ProgressDialog;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
@@ -41,6 +44,7 @@ public class MyCartActivity extends AppCompatActivity {
     TextView total;
     String s;
     ProgressDialog progressDialog = null;
+    private BroadcastReceiver listenCartChange;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +69,25 @@ public class MyCartActivity extends AppCompatActivity {
                 startActivity(prd);
             }
         });
+        listenCartChange = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                String action = intent.getStringExtra("action");
+                if (action.equalsIgnoreCase("order")) {
+                    finish();
+                } else {
+                    loadCartItems();
+                }
+            }
+        };
+
+        registerReceiver(listenCartChange, new IntentFilter("notifyCartChange"));
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unregisterReceiver(listenCartChange);
     }
 
     public void loadCartItems() {

@@ -26,6 +26,7 @@ import com.cviac.olaichuvadi.services.AddCookiesInterceptor;
 import com.cviac.olaichuvadi.services.OpencartAPIs;
 import com.cviac.olaichuvadi.services.ReceivedCookiesInterceptor;
 import com.cviac.olaichuvadi.utilities.BadgeDrawable;
+import com.cviac.olaichuvadi.utilities.OlaichuvadiApp;
 import com.cviac.olaichuvadi.utilities.Prefs;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.picasso.Picasso;
@@ -138,6 +139,10 @@ public class Product_Details extends AppCompatActivity {
             public void onResponse(Response<AddToCartResponse> response, Retrofit retrofit) {
                 AddToCartResponse rsp = response.body();
                 getAndSetCartCount();
+
+                OlaichuvadiApp app =(OlaichuvadiApp) getApplication();
+                app.notifyCartChange("add");
+
                 Toast.makeText(Product_Details.this, "Book Added to Cart", Toast.LENGTH_LONG).show();
             }
 

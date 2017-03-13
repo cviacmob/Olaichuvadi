@@ -64,11 +64,9 @@ public class CategoryList_Activity extends AppCompatActivity {
         call.enqueue(new Callback<CategoriesResponse>() {
             @Override
             public void onResponse(Response<CategoriesResponse> response, Retrofit retrofit) {
-
                 CategoriesResponse rsp = response.body();
                 categoryList.addAll(rsp.getCategories());
                 adapter.notifyDataSetInvalidated();
-
             }
 
             @Override
