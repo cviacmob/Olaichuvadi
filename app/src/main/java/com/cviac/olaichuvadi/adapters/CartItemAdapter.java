@@ -184,6 +184,7 @@ public class CartItemAdapter extends BaseAdapter {
         call.enqueue(new Callback<AddToCartResponse>() {
             @Override
             public void onResponse(Response<AddToCartResponse> response, Retrofit retrofit) {
+
                 progressDialog.dismiss();
                 AddToCartResponse rsp = response.body();
 

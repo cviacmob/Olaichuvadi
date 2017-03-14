@@ -4,8 +4,7 @@
     android:id="@+id/library_books"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="10dp"
-    tools:context="com.cviac.olaichuvadi.fragments.BooksFragment">
+    android:padding="10dp">
 
     <TextView
         android:id="@+id/books_tit"

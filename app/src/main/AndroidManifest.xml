@@ -32,9 +32,7 @@
         <activity android:name=".activities.EditaddressActivity" />
         <activity android:name=".activities.Product_Details" />
         <activity android:name=".activities.PaymentActivity" />
-        <activity
-            android:name=".activities.MyComm_Readingclub"
-            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".activities.MyComm_Readingclub" />
         <activity android:name=".activities.MyComm_Authors" />
         <activity android:name=".activities.MyComm_Publ" />
         <activity android:name=".activities.MyLib_Books" />
@@ -48,7 +46,6 @@
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
 
-        <activity android:name=".activities.EmptycartActivity" />
     </application>
 
 </manifest>

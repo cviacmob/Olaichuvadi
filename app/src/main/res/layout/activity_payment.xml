@@ -9,11 +9,19 @@
     tools:context="com.cviac.olaichuvadi.activities.PaymentActivity">
 
     <TextView
-        android:id="@+id/payname"
+        android:id="@+id/Payment_Address"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
-        android:layout_toLeftOf="@+id/edtadd"
+        android:text="Billing Address :"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/payname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/Payment_Address"
+        android:paddingTop="5dp"
         android:text="@string/edit_fname" />
 
     <TextView
@@ -67,17 +75,100 @@
         android:text="@string/country" />
 
     <ImageView
-        android:id="@+id/edtadd"
+        android:id="@+id/edtbilladd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:src="@mipmap/pencil" />
 
+    <TextView
+        android:id="@+id/shipping_address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/payState"
+        android:paddingTop="10dp"
+        android:text="Shipping Address :"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/ship_fname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/shipping_address"
+        android:paddingTop="5dp"
+        android:text="@string/edit_fname" />
+
+    <TextView
+        android:id="@+id/ship_addr1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ship_fname"
+        android:text="@string/edit_adrs1" />
+
+    <TextView
+        android:id="@+id/ship_addr2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ship_fname"
+        android:layout_toRightOf="@+id/ship_addr1"
+        android:paddingLeft="5dp"
+        android:text="@string/edt_adrs2" />
+
+    <TextView
+        android:id="@+id/ship_city"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ship_addr1"
+        android:text="@string/edit_cty" />
+
+    <TextView
+        android:id="@+id/ship_pin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ship_addr1"
+        android:layout_toRightOf="@+id/ship_city"
+        android:paddingLeft="5dp"
+        android:text="@string/edit_pin" />
+
+    <TextView
+        android:id="@+id/ship_state"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ship_city"
+        android:text="@string/state" />
+
+    <TextView
+        android:id="@+id/ship_country"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ship_city"
+        android:layout_toRightOf="@+id/ship_state"
+        android:paddingLeft="5dp"
+        android:text="@string/country" />
+
+    <ImageView
+        android:id="@+id/editshipaddr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/shipping_address"
+        android:layout_alignParentEnd="true"
+        android:src="@mipmap/pencil" />
+
+    <TextView
+        android:id="@+id/oder_books"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ship_state"
+        android:paddingTop="5dp"
+        android:text="Review Your Order :"
+        android:textStyle="bold" />
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/price"
-        android:layout_below="@+id/payState">
+        android:layout_below="@+id/oder_books"
+        android:paddingTop="10dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -88,20 +179,31 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
-            <Button
-                android:id="@+id/paybutn"
-                android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/pay_mthd"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/crtitms"
-                android:background="@drawable/roundcolorbtn"
-                android:text="@string/txt_pay"
-                android:textColor="#ffffff" />
+                android:text="Choose Payment Method :"
+                android:textStyle="bold" />
 
             <RadioGroup
                 android:id="@+id/paygrp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/paybutn" />
+                android:layout_below="@+id/pay_mthd"
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp" />
+
+            <Button
+                android:id="@+id/paybutn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/paygrp"
+                android:background="@drawable/roundcolorbtn"
+                android:text="@string/txt_pay"
+                android:textColor="#ffffff" />
+
         </RelativeLayout>
 
     </ScrollView>
@@ -119,7 +221,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_toRightOf="@+id/price"
+        android:layout_alignParentEnd="true"
         android:paddingLeft="10dp"
         android:text="Total Amount"
         android:textStyle="bold" />

@@ -140,7 +140,7 @@ public class Product_Details extends AppCompatActivity {
                 AddToCartResponse rsp = response.body();
                 getAndSetCartCount();
 
-                OlaichuvadiApp app =(OlaichuvadiApp) getApplication();
+                OlaichuvadiApp app = (OlaichuvadiApp) getApplication();
                 app.notifyCartChange("add");
 
                 Toast.makeText(Product_Details.this, "Book Added to Cart", Toast.LENGTH_LONG).show();
@@ -209,13 +209,8 @@ public class Product_Details extends AppCompatActivity {
         onBackPressed();
         switch (item.getItemId()) {
             case R.id.cart:
-                if (mCartCount == 0) {
-                    Intent cart = new Intent(Product_Details.this, EmptycartActivity.class);
-                    startActivity(cart);
-                } else if (mCartCount != 0) {
-                    Intent cart = new Intent(Product_Details.this, MyCartActivity.class);
-                    startActivity(cart);
-                }
+                Intent cart = new Intent(Product_Details.this, MyCartActivity.class);
+                startActivity(cart);
                 break;
         }
         return true;

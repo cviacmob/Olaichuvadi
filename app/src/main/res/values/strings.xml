@@ -55,16 +55,11 @@
     <string name="tab_rdcb1">பரிந்துரைக்கப்படுகிறது</string>
     <string name="tab_rdcb2">உறுப்பினர்கள்</string>
     <string name="tab_rdcb3">உங்களுடைய</string>
-
     <string name="prddet_desc">விளக்கம் :</string>
-
     <string name="clk_to_reg"><u>புதிய வாடிக்கையாளர் பதிவு</u></string>
-
     <string name="edit_adrs1">முகவரி 1</string>
     <string name="edt_adrs2">முகவரி 2</string>
-
     <string name="btn_save">சேமி</string>
-
     <string name="mylib_books">என் நூலகத்திலுள்ள புத்தகங்கள் :</string>
     <string name="tab_shared">பகிர்வு புத்தகங்கள்</string>
     <string name="baseurl">http://www.olaichuvadi.cviac.com</string>

@@ -42,6 +42,7 @@ public class MyCartActivity extends AppCompatActivity {
     List<CartTotalInfo> cartTotals;
     Button proc;
     TextView total;
+    int no = 0;
     String s;
     ProgressDialog progressDialog = null;
     private BroadcastReceiver listenCartChange;
@@ -118,6 +119,7 @@ public class MyCartActivity extends AppCompatActivity {
             public void onResponse(Response<GetCartItemsResponse> response, Retrofit retrofit) {
                 progressDialog.dismiss();
                 GetCartItemsResponse rsp = response.body();
+                no = rsp.getProducts().size();
                 cartProducts.clear();
                 cartProducts.addAll(rsp.getProducts());
                 s = String.valueOf(rsp.getProducts().size());

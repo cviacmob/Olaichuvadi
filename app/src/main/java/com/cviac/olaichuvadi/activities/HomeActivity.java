@@ -65,7 +65,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     List<Product> rowListItem;
     ProductsAdapter adapter;
     private BroadcastReceiver listenCartChange;
-
     private LayerDrawable mcartMenuIcon;
     private int mCartCount = 0;
 
@@ -406,13 +405,8 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         int id = item.getItemId();
         switch (id) {
             case R.id.cart:
-                if (mCartCount == 0) {
-                    Intent cart = new Intent(HomeActivity.this, EmptycartActivity.class);
-                    startActivity(cart);
-                } else if (mCartCount != 0) {
-                    Intent cart = new Intent(HomeActivity.this, MyCartActivity.class);
-                    startActivity(cart);
-                }
+                Intent cart = new Intent(HomeActivity.this, MyCartActivity.class);
+                startActivity(cart);
                 break;
             case R.id.tamil:
                 setLocale("ta");
@@ -505,13 +499,10 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             startActivity(libb);
 
         } else if (id == R.id.nav_cart) {
-            if (mCartCount == 0) {
-                Intent cart = new Intent(HomeActivity.this, EmptycartActivity.class);
-                startActivity(cart);
-            } else if (mCartCount != 0) {
-                Intent cart = new Intent(HomeActivity.this, MyCartActivity.class);
-                startActivity(cart);
-            }
+
+            Intent cart = new Intent(HomeActivity.this, MyCartActivity.class);
+            startActivity(cart);
+
         } else if (id == R.id.nav_account) {
 
             Intent acc = new Intent(HomeActivity.this, MyAccountActivity.class);

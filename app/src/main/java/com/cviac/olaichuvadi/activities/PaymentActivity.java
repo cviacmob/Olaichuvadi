@@ -58,7 +58,8 @@ public class PaymentActivity extends AppCompatActivity {
     NonScrollListView nonScrollListView;
     Button pay;
     TextView amount, tv1, tv2, tv3, tv4, tv5, tv6, tv7;
-    ImageView iv;
+    TextView s_tv1, s_tv2, s_tv3, s_tv4, s_tv5, s_tv6, s_tv7;
+    ImageView change_bill_addr, change_ship_addr;
     String paymethod = "";
     String shipmethod = "flat";
     List<AddressInfo> addrlist;
@@ -94,22 +95,49 @@ public class PaymentActivity extends AppCompatActivity {
         tv6 = (TextView) findViewById(R.id.payState);
         tv7 = (TextView) findViewById(R.id.payCountry);
 
-        iv = (ImageView) findViewById(R.id.edtadd);
-        iv.setOnClickListener(new View.OnClickListener() {
+        s_tv1 = (TextView) findViewById(R.id.ship_fname);
+        s_tv2 = (TextView) findViewById(R.id.ship_addr1);
+        s_tv3 = (TextView) findViewById(R.id.ship_addr2);
+        s_tv4 = (TextView) findViewById(R.id.ship_city);
+        s_tv5 = (TextView) findViewById(R.id.ship_pin);
+        s_tv6 = (TextView) findViewById(R.id.ship_state);
+        s_tv7 = (TextView) findViewById(R.id.ship_country);
+
+        change_bill_addr = (ImageView) findViewById(R.id.edtbilladd);
+        change_bill_addr.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(PaymentActivity.this);
-                builder.setTitle("Select Address");
+                builder.setTitle("Select Billing Address");
                 ArrayAdapter adapter1 = new ArrayAdapter(PaymentActivity.this, android.R.layout.select_dialog_singlechoice, addrlist);
                 builder.setSingleChoiceItems(adapter1, -1, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int item) {
                         levelDialog.dismiss();
                         if (addrlist != null && addrlist.size() > 0) {
                             pay_addr = addrlist.get(item);
-                            ship_addr = addrlist.get(item);
+                            set_Payment_Addr(addrlist.get(item));
+                        }
+                    }
+                });
+                levelDialog = builder.create();
+                levelDialog.show();
+            }
+        });
 
-                            setAddress(addrlist.get(item));
+        change_ship_addr = (ImageView) findViewById(R.id.editshipaddr);
+        change_ship_addr.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(PaymentActivity.this);
+                builder.setTitle("Select Shipping Address");
+                ArrayAdapter adapter1 = new ArrayAdapter(PaymentActivity.this, android.R.layout.select_dialog_singlechoice, addrlist);
+                builder.setSingleChoiceItems(adapter1, -1, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int item) {
+                        levelDialog.dismiss();
+                        if (addrlist != null && addrlist.size() > 0) {
+                            ship_addr = addrlist.get(item);
+                            set_Shipping_Addr(addrlist.get(item));
                         }
                     }
                 });
@@ -174,7 +202,6 @@ public class PaymentActivity extends AppCompatActivity {
 
         OpencartAPIs api = retrofit.create(OpencartAPIs.class);
 
-        int c_id = Prefs.getInt("customer_id", -1);
         Call<PaymentMethodsResponse> call = api.getPaymentMethods();
         call.enqueue(new Callback<PaymentMethodsResponse>() {
 
@@ -261,7 +288,8 @@ public class PaymentActivity extends AppCompatActivity {
                 addrlist = rsp;
                 if (addrlist != null && addrlist.size() > 0) {
                     AddressInfo info = addrlist.get(0);
-                    setAddress(info);
+                    set_Payment_Addr(info);
+                    set_Shipping_Addr(info);
                     pay_addr = info;
                     ship_addr = info;
                 }
@@ -274,7 +302,7 @@ public class PaymentActivity extends AppCompatActivity {
         });
     }
 
-    private void setAddress(AddressInfo info) {
+    private void set_Payment_Addr(AddressInfo info) {
 
         tv1.setText(info.getFirstname());
         tv2.setText(info.getAddress_1());
@@ -286,11 +314,23 @@ public class PaymentActivity extends AppCompatActivity {
 
     }
 
+    private void set_Shipping_Addr(AddressInfo info) {
+
+        s_tv1.setText(info.getFirstname());
+        s_tv2.setText(info.getAddress_1());
+        s_tv3.setText(info.getAddress_2());
+        s_tv4.setText(info.getCity());
+        s_tv5.setText(info.getPostcode());
+        s_tv6.setText(info.getZone());
+        s_tv7.setText(info.getCountry());
+
+    }
+
     public void addRadioButtons(final List<PaymentMethodsInfo> methods) {
 
         for (int row = 0; row < 1; row++) {
             RadioGroup group = new RadioGroup(this);
-            group.setOrientation(LinearLayout.HORIZONTAL);
+            group.setOrientation(LinearLayout.VERTICAL);
 
             for (int i = 0; i < methods.size(); i++) {
                 PaymentMethodsInfo info = methods.get(i);
@@ -338,10 +378,10 @@ public class PaymentActivity extends AppCompatActivity {
     }
 
     private boolean validateCheckout() {
-        if (paymethod.isEmpty()) {
+        /*if (paymethod.isEmpty()) {
             Toast.makeText(PaymentActivity.this, "Select a Payment Method", Toast.LENGTH_SHORT).show();
             return false;
-        }
+        }*/
         if (validateAddress(pay_addr) == false) {
             Toast.makeText(PaymentActivity.this, "Fill Payment Address", Toast.LENGTH_SHORT).show();
             return false;
@@ -654,7 +694,7 @@ public class PaymentActivity extends AppCompatActivity {
                 progressDialog.dismiss();
                 ResponseBody rsp = response.body();
 
-                OlaichuvadiApp app =(OlaichuvadiApp) getApplication();
+                OlaichuvadiApp app = (OlaichuvadiApp) getApplication();
                 app.notifyCartChange("order");
 
                 Toast.makeText(PaymentActivity.this, "Placed Order Successfully", Toast.LENGTH_LONG).show();
