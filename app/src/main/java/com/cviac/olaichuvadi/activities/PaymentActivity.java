@@ -78,9 +78,8 @@ public class PaymentActivity extends AppCompatActivity {
         pay_mthd = new ArrayList<>();
 
         loadCartItems();
-        loadAddresses();
-        loadPaymentMethods();
-        /*loadShippingMethods();*/
+        /*loadAddresses();
+        loadPaymentMethods();*/
 
         nonScrollListView = (NonScrollListView) findViewById(R.id.crtitms);
         adapter = new PaymentAdapter(PaymentActivity.this, cartProducts);
@@ -253,6 +252,7 @@ public class PaymentActivity extends AppCompatActivity {
                 adapter.notifyDataSetInvalidated();
                 cartTotals = rsp.getTotals();
                 amount.setText(cartTotals.get(cartTotals.size() - 1).getText());
+                loadAddresses();
             }
 
             @Override
@@ -284,14 +284,14 @@ public class PaymentActivity extends AppCompatActivity {
         call.enqueue(new Callback<List<AddressInfo>>() {
 
             public void onResponse(Response<List<AddressInfo>> response, Retrofit retrofit) {
-                List<AddressInfo> rsp = response.body();
-                addrlist = rsp;
+                addrlist = response.body();
                 if (addrlist != null && addrlist.size() > 0) {
                     AddressInfo info = addrlist.get(0);
                     set_Payment_Addr(info);
                     set_Shipping_Addr(info);
                     pay_addr = info;
                     ship_addr = info;
+                    loadPaymentMethods();
                 }
             }
 
@@ -378,15 +378,15 @@ public class PaymentActivity extends AppCompatActivity {
     }
 
     private boolean validateCheckout() {
-        /*if (paymethod.isEmpty()) {
+        if (paymethod.isEmpty()) {
             Toast.makeText(PaymentActivity.this, "Select a Payment Method", Toast.LENGTH_SHORT).show();
             return false;
-        }*/
-        if (validateAddress(pay_addr) == false) {
+        }
+        if (!validateAddress(pay_addr)) {
             Toast.makeText(PaymentActivity.this, "Fill Payment Address", Toast.LENGTH_SHORT).show();
             return false;
         }
-        if (validateAddress(ship_addr) == false) {
+        if (!validateAddress(ship_addr)) {
             Toast.makeText(PaymentActivity.this, "Fill Shipping Address", Toast.LENGTH_SHORT).show();
             return false;
         }
@@ -394,7 +394,7 @@ public class PaymentActivity extends AppCompatActivity {
     }
 
     private void checkOut() {
-        if (validateCheckout() == true) {
+        if (validateCheckout()) {
             setCustmoerSession();
         }
     }

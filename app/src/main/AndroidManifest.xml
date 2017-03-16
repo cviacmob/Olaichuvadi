@@ -23,7 +23,28 @@
         <activity
             android:name=".activities.HomeActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.app.default_searchable"
+                android:value=".activities.SearchResultActivity" />
+        </activity>
+        <activity
+            android:name=".activities.SearchResultActivity"
+            android:parentActivityName="com.cviac.olaichuvadi.activities.HomeActivity">
+
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.cviac.olaichuvadi.activities.HomeActivity" />
+
+            <!-- meta tag and intent filter go into results activity -->
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+        </activity>
         <activity android:name=".activities.CategoryList_Activity" />
         <activity android:name=".activities.MyCartActivity" />
         <activity android:name=".activities.MyAccountActivity" />
@@ -40,12 +61,9 @@
         <activity android:name=".activities.MyLib_Reviewed" />
         <activity android:name=".activities.MyLib_Favourites" />
         <activity android:name=".activities.MyComm_Shared" />
-        <activity android:name=".activities.SearchResultActivity" />
 
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
-
     </application>
-
 </manifest>

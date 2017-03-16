@@ -1,6 +1,8 @@
 package com.cviac.olaichuvadi.activities;
 
+import android.app.SearchManager;
 import android.content.BroadcastReceiver;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -12,9 +14,11 @@ import android.graphics.drawable.LayerDrawable;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -67,6 +71,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     private BroadcastReceiver listenCartChange;
     private LayerDrawable mcartMenuIcon;
     private int mCartCount = 0;
+    SearchView searchView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -318,6 +323,13 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         mcartMenuIcon = (LayerDrawable) menu.findItem(R.id.cart).getIcon();
         setBadgeCount(this, mcartMenuIcon, "");
         getAndSetCartCount();
+
+        SearchView search = (SearchView) MenuItemCompat.getActionView(menu.findItem(R.id.action_search));
+        // Associate searchable configuration with the SearchView
+        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+        search.setSearchableInfo(searchManager.getSearchableInfo(new ComponentName(this, SearchResultActivity.class)));
+        search.setQueryHint(getResources().getString(R.string.search_hint));
+
         return true;
     }
 
