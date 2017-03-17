@@ -30,7 +30,7 @@
         </activity>
         <activity
             android:name=".activities.SearchResultActivity"
-            android:parentActivityName="com.cviac.olaichuvadi.activities.HomeActivity">
+            android:parentActivityName=".activities.HomeActivity">
 
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
@@ -41,6 +41,7 @@
             <meta-data
                 android:name="android.app.searchable"
                 android:resource="@xml/searchable" />
+
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH" />
             </intent-filter>
@@ -65,5 +66,8 @@
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
+
+        <activity android:name=".activities.WriteReviewActivity"></activity>
     </application>
+
 </manifest>

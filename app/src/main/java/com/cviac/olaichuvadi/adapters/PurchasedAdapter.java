@@ -1,6 +1,7 @@
 package com.cviac.olaichuvadi.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.cviac.olaichuvadi.R;
+import com.cviac.olaichuvadi.activities.WriteReviewActivity;
 import com.cviac.olaichuvadi.datamodels.PurchasedInfo;
 
 import java.util.List;
@@ -72,6 +74,8 @@ public class PurchasedAdapter extends BaseAdapter {
             @Override
             public void onClick(View view) {
                 Toast.makeText(mContext, "Review Clicked", Toast.LENGTH_LONG).show();
+                Intent i = new Intent(mContext, WriteReviewActivity.class);
+                mContext.startActivity(i);
             }
         });
         return purch;
