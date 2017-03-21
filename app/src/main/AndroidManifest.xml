@@ -26,26 +26,9 @@
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.app.default_searchable"
-                android:value=".activities.SearchResultActivity" />
+                android:value=".activities.SearchQueryActivity" />
         </activity>
-        <activity
-            android:name=".activities.SearchResultActivity"
-            android:parentActivityName=".activities.HomeActivity">
-
-            <!-- Parent activity meta-data to support 4.0 and lower -->
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.cviac.olaichuvadi.activities.HomeActivity" />
-
-            <!-- meta tag and intent filter go into results activity -->
-            <meta-data
-                android:name="android.app.searchable"
-                android:resource="@xml/searchable" />
-
-            <intent-filter>
-                <action android:name="android.intent.action.SEARCH" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".activities.SearchResultActivity" />
         <activity android:name=".activities.CategoryList_Activity" />
         <activity android:name=".activities.MyCartActivity" />
         <activity android:name=".activities.MyAccountActivity" />
@@ -54,7 +37,9 @@
         <activity android:name=".activities.EditaddressActivity" />
         <activity android:name=".activities.Product_Details" />
         <activity android:name=".activities.PaymentActivity" />
-        <activity android:name=".activities.MyComm_Readingclub" />
+        <activity
+            android:name=".activities.MyComm_Readingclub"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".activities.MyComm_Authors" />
         <activity android:name=".activities.MyComm_Publ" />
         <activity android:name=".activities.MyLib_Books" />
@@ -67,7 +52,24 @@
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
 
-        <activity android:name=".activities.WriteReviewActivity"></activity>
+        <activity android:name=".activities.WriteReviewActivity" />
+
+        <activity
+            android:name=".activities.SearchQueryActivity"
+            android:parentActivityName=".activities.HomeActivity">
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.cviac.olaichuvadi.activities.HomeActivity" />
+            <!-- meta tag and intent filter go into results activity -->
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+        </activity>
+
     </application>
 
 </manifest>

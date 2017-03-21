@@ -2,12 +2,13 @@ package com.cviac.olaichuvadi.activities;
 
 import android.app.SearchManager;
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.TextView;
 
 import com.cviac.olaichuvadi.R;
 import com.cviac.olaichuvadi.adapters.ProductsAdapter;
@@ -28,36 +29,39 @@ import retrofit.GsonConverterFactory;
 import retrofit.Response;
 import retrofit.Retrofit;
 
-public class SearchResultActivity extends AppCompatActivity {
+public class SearchQueryActivity extends AppCompatActivity {
 
+    TextView tv;
     GridView gv;
     List<Product> rowListItem;
     ProductsAdapter adapter;
-    String query = "";
+    String query;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_search_result);
+        setContentView(R.layout.activity_search_query);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         Intent i = getIntent();
-        String catid = i.getStringExtra("categoryid");
-        String catname = i.getStringExtra("categoryname");
+        if (Intent.ACTION_SEARCH.equals(i.getAction())) {
+            query = i.getStringExtra(SearchManager.QUERY);
+        }
 
-        setTitle(catname);
+        setTitle(query);
 
-        gv = (GridView) findViewById(R.id.prdts1);
+        gv = (GridView) findViewById(R.id.search_grd);
+        tv = (TextView) findViewById(R.id.empty_search);
         gv.setFastScrollEnabled(true);
         rowListItem = new ArrayList<>();
-        adapter = new ProductsAdapter(SearchResultActivity.this, rowListItem);
+        adapter = new ProductsAdapter(SearchQueryActivity.this, rowListItem);
         gv.setAdapter(adapter);
 
-        getProducts(catid);
+        searchProducts(query);
     }
 
-    public void getProducts(String catId) {
+    private void searchProducts(String query) {
 
         OkHttpClient okHttpClient = new OkHttpClient();
         okHttpClient.setConnectTimeout(120000, TimeUnit.MILLISECONDS);
@@ -72,15 +76,20 @@ public class SearchResultActivity extends AppCompatActivity {
 
         OpencartAPIs api = retrofit.create(OpencartAPIs.class);
 
-        final Call<CategoryProductsResponse> call = api.getProducts(catId);
+        final Call<CategoryProductsResponse> call = api.search(query);
 
         call.enqueue(new Callback<CategoryProductsResponse>() {
             @Override
             public void onResponse(Response<CategoryProductsResponse> response, Retrofit retrofit) {
                 CategoryProductsResponse rsp = response.body();
-                rowListItem.clear();
-                rowListItem.addAll(rsp.getProducts());
-                adapter.notifyDataSetInvalidated();
+
+                if (rsp.getProducts().size() != 0) {
+                    rowListItem.clear();
+                    rowListItem.addAll(rsp.getProducts());
+                    adapter.notifyDataSetInvalidated();
+                } else if (rsp.getProducts().size() == 0) {
+                    tv.setText("No Prodcuts matches the Search Criteria");
+                }
             }
 
             @Override
@@ -93,7 +102,7 @@ public class SearchResultActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int pos, long l) {
                 Product pr = rowListItem.get(pos);
-                Intent prd = new Intent(SearchResultActivity.this, Product_Details.class);
+                Intent prd = new Intent(SearchQueryActivity.this, Product_Details.class);
                 prd.putExtra("productobj", pr);
                 startActivity(prd);
             }

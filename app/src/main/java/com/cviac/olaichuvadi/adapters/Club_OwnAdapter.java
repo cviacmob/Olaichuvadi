@@ -10,22 +10,24 @@ import android.widget.TextView;
 
 import com.cviac.olaichuvadi.R;
 import com.cviac.olaichuvadi.datamodels.Club_recInfo;
+import com.cviac.olaichuvadi.datamodels.ReadingClubInfo;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
 public class Club_OwnAdapter extends BaseAdapter {
 
     private Context mContext;
-    private List<Club_recInfo> read;
+    private List<ReadingClubInfo> club;
 
-    public Club_OwnAdapter(Context mContext, List<Club_recInfo> read) {
+    public Club_OwnAdapter(Context mContext, List<ReadingClubInfo> club) {
         this.mContext = mContext;
-        this.read = read;
+        this.club = club;
     }
 
     @Override
     public int getCount() {
-        return read.size();
+        return club.size();
     }
 
     @Override
@@ -45,20 +47,24 @@ public class Club_OwnAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        View club = convertView;
+        View clubs = convertView;
         Club_OwnAdapter.ViewHolder holder;
-        Club_recInfo cinfo = read.get(position);
+        ReadingClubInfo cinfo = club.get(position);
         if (convertView == null) {
             LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            club = inflater.inflate(R.layout.activity_club__own_adapter, null);
+            clubs = inflater.inflate(R.layout.activity_club__own_adapter, null);
             holder = new Club_OwnAdapter.ViewHolder();
-            holder.iv = (ImageView) club.findViewById(R.id.clubimg);
-            holder.tv1 = (TextView) club.findViewById(R.id.club);
-            club.setTag(holder);
+            holder.iv = (ImageView) clubs.findViewById(R.id.clubimg);
+            holder.tv1 = (TextView) clubs.findViewById(R.id.club);
+            clubs.setTag(holder);
         } else {
-            holder = (Club_OwnAdapter.ViewHolder) club.getTag();
+            holder = (Club_OwnAdapter.ViewHolder) clubs.getTag();
         }
-        holder.tv1.setText(cinfo.getTitle());
-        return club;
+        holder.tv1.setText(cinfo.getGroup_name());
+        String url = cinfo.getGroup_image();
+        if (!url.isEmpty()) {
+            Picasso.with(clubs.getContext()).load(url).placeholder(R.mipmap.bookgrd).resize(500, 500).into(holder.iv);
+        }
+        return clubs;
     }
 }

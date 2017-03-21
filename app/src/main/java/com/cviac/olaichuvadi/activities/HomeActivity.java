@@ -80,6 +80,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         setContentView(R.layout.activity_home);
 
         rowListItem = new ArrayList<Product>();
+
         gv = (GridView) findViewById(R.id.prdts);
         gv.setFastScrollEnabled(true);
         adapter = new ProductsAdapter(HomeActivity.this, rowListItem);
@@ -204,7 +205,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(okHttpClient)
                 .build();
-        // String credentials = Credentials.basic("olaichuvadi", "cviac");
         OpencartAPIs api = retrofit.create(OpencartAPIs.class);
 
         final Call<CategoryProductsResponse> call = api.getProducts(catId);
@@ -215,7 +215,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 CategoryProductsResponse rsp = response.body();
                 rowListItem.clear();
                 rowListItem.addAll(rsp.getProducts());
-//                adapter.notifyDataSetChanged();
                 adapter.notifyDataSetInvalidated();
             }
 
@@ -325,10 +324,10 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         getAndSetCartCount();
 
         SearchView search = (SearchView) MenuItemCompat.getActionView(menu.findItem(R.id.action_search));
-        // Associate searchable configuration with the SearchView
         SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-        search.setSearchableInfo(searchManager.getSearchableInfo(new ComponentName(this, SearchResultActivity.class)));
+        search.setSearchableInfo(searchManager.getSearchableInfo(new ComponentName(this, SearchQueryActivity.class)));
         search.setQueryHint(getResources().getString(R.string.search_hint));
+        String query = search.getQuery().toString();
 
         return true;
     }

@@ -4,6 +4,7 @@ import com.cviac.olaichuvadi.datamodels.AddToCartResponse;
 import com.cviac.olaichuvadi.datamodels.AddressInfo;
 import com.cviac.olaichuvadi.datamodels.CategoriesResponse;
 import com.cviac.olaichuvadi.datamodels.CategoryProductsResponse;
+import com.cviac.olaichuvadi.datamodels.ClubResponse;
 import com.cviac.olaichuvadi.datamodels.CountryInfo;
 import com.cviac.olaichuvadi.datamodels.GeneralResponse;
 import com.cviac.olaichuvadi.datamodels.GetCartItemsResponse;
@@ -45,7 +46,7 @@ public interface OpencartAPIs {
     @GET("/index.php?route=api/category/getproducts")
     Call<CategoryProductsResponse> getProducts(@Query("categoryid") String categoryid);
 
-    @GET("/index.php?route=api/category/getproducts")
+    @GET("/index.php?route=api/search")
     Call<CategoryProductsResponse> search(@Query("key") String key);
 
     @GET("/index.php?route=api/category/getproductdetails")
@@ -164,4 +165,15 @@ public interface OpencartAPIs {
                                   @Field("comment") String comment,
                                   @Field("affiliate_id") String affiliate_id,
                                   @Field("order_status_id") String order_status_id);
+
+
+    //My Community APIs
+    @GET("/index.php?route=api/mycommunity/getRecommendedClubs")
+    Call<ClubResponse> getRecommendedClubs();
+
+    @GET("/index.php?route=api/mycommunity/getJoinedClubs")
+    Call<ClubResponse> getJoinedClubs();
+
+    @GET("/index.php?route=api/mycommunity/getMyClubs")
+    Call<ClubResponse> getMyClubs();
 }

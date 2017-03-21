@@ -10,15 +10,27 @@ import android.widget.GridView;
 
 import com.cviac.olaichuvadi.R;
 import com.cviac.olaichuvadi.adapters.Club_recAdapter;
-import com.cviac.olaichuvadi.datamodels.Club_recInfo;
+import com.cviac.olaichuvadi.datamodels.ClubResponse;
+import com.cviac.olaichuvadi.datamodels.ReadingClubInfo;
+import com.cviac.olaichuvadi.services.AddCookiesInterceptor;
+import com.cviac.olaichuvadi.services.OpencartAPIs;
+import com.cviac.olaichuvadi.services.ReceivedCookiesInterceptor;
+import com.squareup.okhttp.OkHttpClient;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
+
+import retrofit.Call;
+import retrofit.Callback;
+import retrofit.GsonConverterFactory;
+import retrofit.Response;
+import retrofit.Retrofit;
 
 public class Club_Recommended extends Fragment {
 
     GridView gv;
-    List<Club_recInfo> club;
+    List<ReadingClubInfo> club;
     Club_recAdapter adapter;
 
     @Nullable
@@ -26,32 +38,49 @@ public class Club_Recommended extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_club__recommended, container, false);
 
-        loadclubs();
+        club = new ArrayList<>();
 
         gv = (GridView) view.findViewById(R.id.readingclub_rec);
         adapter = new Club_recAdapter(getActivity().getApplicationContext(), club);
         gv.setAdapter(adapter);
+
+        getRecommendedClubs();
         return view;
     }
 
-    private void loadclubs() {
-        club = new ArrayList<>();
+    private void getRecommendedClubs() {
 
-        Club_recInfo c1 = new Club_recInfo("Club-1");
-        club.add(c1);
-        Club_recInfo c2 = new Club_recInfo("Club-2");
-        club.add(c2);
-        Club_recInfo c3 = new Club_recInfo("Club-3");
-        club.add(c3);
-        Club_recInfo c4 = new Club_recInfo("Club-4");
-        club.add(c4);
-        Club_recInfo c5 = new Club_recInfo("Club-5");
-        club.add(c5);
-        Club_recInfo c6 = new Club_recInfo("Club-6");
-        club.add(c6);
-        Club_recInfo c7 = new Club_recInfo("Club-7");
-        club.add(c7);
-        Club_recInfo c8 = new Club_recInfo("Club-8");
-        club.add(c8);
+        OkHttpClient okHttpClient = new OkHttpClient();
+        okHttpClient.setConnectTimeout(120000, TimeUnit.MILLISECONDS);
+        okHttpClient.setReadTimeout(120000, TimeUnit.MILLISECONDS);
+        okHttpClient.interceptors().add(new AddCookiesInterceptor());
+        okHttpClient.interceptors().add(new ReceivedCookiesInterceptor());
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(getString(R.string.baseurl))
+                .addConverterFactory(GsonConverterFactory.create())
+                .client(okHttpClient)
+                .build();
+        OpencartAPIs api = retrofit.create(OpencartAPIs.class);
+
+        final Call<ClubResponse> call = api.getRecommendedClubs();
+
+        call.enqueue(new Callback<ClubResponse>() {
+            @Override
+            public void onResponse(Response<ClubResponse> response, Retrofit retrofit) {
+                ClubResponse rsp = response.body();
+                if (rsp != null) {
+                    club.clear();
+                    club.addAll(rsp.getClubs());
+                    adapter.notifyDataSetInvalidated();
+                }
+            }
+
+            @Override
+            public void onFailure(Throwable t) {
+                club = null;
+            }
+
+        });
     }
 }

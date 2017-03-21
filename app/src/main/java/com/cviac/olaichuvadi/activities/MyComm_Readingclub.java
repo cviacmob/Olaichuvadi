@@ -46,7 +46,7 @@ public class MyComm_Readingclub extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
@@ -61,7 +61,6 @@ public class MyComm_Readingclub extends AppCompatActivity {
         tabLayout.setupWithViewPager(mViewPager);
 
     }
-
 
 /*    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -108,15 +107,6 @@ public class MyComm_Readingclub extends AppCompatActivity {
             fragment.setArguments(args);
             return fragment;
         }
-
-   /*     @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                 Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_my_comm__readingclub, container, false);
-            TextView textView = (TextView) rootView.findViewById(R.id.section_label);
-            textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
-            return rootView;
-        }*/
     }
 
     /**
