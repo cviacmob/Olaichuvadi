@@ -6,65 +6,75 @@ import android.view.MenuItem;
 import android.widget.GridView;
 
 import com.cviac.olaichuvadi.R;
-import com.cviac.olaichuvadi.adapters.AuhtorsAdapter;
-import com.cviac.olaichuvadi.datamodels.AuthorsInfo;
+import com.cviac.olaichuvadi.adapters.PublishersAdapter;
+import com.cviac.olaichuvadi.datamodels.PublisherInfo;
+import com.cviac.olaichuvadi.datamodels.PublishersResponse;
+import com.cviac.olaichuvadi.services.AddCookiesInterceptor;
+import com.cviac.olaichuvadi.services.OpencartAPIs;
+import com.cviac.olaichuvadi.services.ReceivedCookiesInterceptor;
+import com.squareup.okhttp.OkHttpClient;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
+
+import retrofit.Call;
+import retrofit.Callback;
+import retrofit.GsonConverterFactory;
+import retrofit.Response;
+import retrofit.Retrofit;
 
 public class MyComm_Publ extends AppCompatActivity {
 
     GridView gv;
-    private List<AuthorsInfo> publ;
+    PublishersAdapter adapter;
+    private List<PublisherInfo> publ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_comm__publ);
 
-        loadpub();
+        loadLikedPublishers();
 
         setTitle(R.string.tab_pub);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         gv = (GridView) findViewById(R.id.pubgrd);
-        AuhtorsAdapter adapter = new AuhtorsAdapter(this, publ);
+        adapter = new PublishersAdapter(this, publ);
         gv.setAdapter(adapter);
     }
 
-    private void loadpub() {
+    public void loadLikedPublishers() {
 
-        publ = new ArrayList<>();
+        OkHttpClient okHttpClient = new OkHttpClient();
+        okHttpClient.setConnectTimeout(120000, TimeUnit.MILLISECONDS);
+        okHttpClient.setReadTimeout(120000, TimeUnit.MILLISECONDS);
+        okHttpClient.interceptors().add(new AddCookiesInterceptor());
+        okHttpClient.interceptors().add(new ReceivedCookiesInterceptor());
 
-        AuthorsInfo ai1 = new AuthorsInfo("PEE VEE PUBLICATIONS");
-        publ.add(ai1);
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(getString(R.string.baseurl))
+                .addConverterFactory(GsonConverterFactory.create())
+                .client(okHttpClient)
+                .build();
 
-        AuthorsInfo ai2 = new AuthorsInfo("JK PUBLISHERS");
-        publ.add(ai2);
+        OpencartAPIs api = retrofit.create(OpencartAPIs.class);
 
-        AuthorsInfo ai3 = new AuthorsInfo("SANDHYA PUBLICATIONS");
-        publ.add(ai3);
+        Call<PublishersResponse> call = api.getLikedPublisher();
+        call.enqueue(new Callback<PublishersResponse>() {
 
-        AuthorsInfo ai4 = new AuthorsInfo("VIKATAN PUBLICATIONS");
-        publ.add(ai4);
+            public void onResponse(Response<PublishersResponse> response, Retrofit retrofit) {
+                PublishersResponse rsp = response.body();
+                publ.clear();
+                publ.addAll(rsp.getPublishers());
+                adapter.notifyDataSetInvalidated();
+            }
 
-        AuthorsInfo ai5 = new AuthorsInfo("A.R.K PUBLICATIONS");
-        publ.add(ai5);
-
-        AuthorsInfo ai6 = new AuthorsInfo("PEE VEE PUBLICATIONS");
-        publ.add(ai6);
-
-        AuthorsInfo ai7 = new AuthorsInfo("JK PUBLISHERS");
-        publ.add(ai7);
-
-        AuthorsInfo ai8 = new AuthorsInfo("SANDHYA PUBLICATIONS");
-        publ.add(ai8);
-
-        AuthorsInfo ai9 = new AuthorsInfo("VIKATAN PUBLICATIONS");
-        publ.add(ai9);
-
-        AuthorsInfo ai10 = new AuthorsInfo("A.R.K PUBLICATIONS");
-        publ.add(ai10);
+            @Override
+            public void onFailure(Throwable t) {
+                t.printStackTrace();
+            }
+        });
     }
 
     @Override

@@ -53,10 +53,10 @@
             android:value="@integer/google_play_services_version" />
 
         <activity android:name=".activities.WriteReviewActivity" />
-
         <activity
             android:name=".activities.SearchQueryActivity"
             android:parentActivityName=".activities.HomeActivity">
+
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -65,11 +65,12 @@
             <meta-data
                 android:name="android.app.searchable"
                 android:resource="@xml/searchable" />
+
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH" />
             </intent-filter>
         </activity>
-
+        <activity android:name=".adapters.PublishersAdapter"></activity>
     </application>
 
 </manifest>

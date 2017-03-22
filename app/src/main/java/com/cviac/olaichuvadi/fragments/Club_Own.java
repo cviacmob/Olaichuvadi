@@ -1,14 +1,23 @@
 package com.cviac.olaichuvadi.fragments;
 
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.GridView;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import com.cviac.olaichuvadi.R;
+import com.cviac.olaichuvadi.activities.CreateClubActivity;
 import com.cviac.olaichuvadi.adapters.Club_OwnAdapter;
 import com.cviac.olaichuvadi.datamodels.ClubResponse;
 import com.cviac.olaichuvadi.datamodels.ReadingClubInfo;
@@ -32,6 +41,7 @@ public class Club_Own extends Fragment {
     GridView gv;
     List<ReadingClubInfo> club;
     Club_OwnAdapter adapter;
+    FloatingActionButton fab;
 
     @Nullable
     @Override
@@ -44,6 +54,15 @@ public class Club_Own extends Fragment {
         adapter = new Club_OwnAdapter(getActivity().getApplicationContext(), club);
         gv.setAdapter(adapter);
 
+        fab = (FloatingActionButton) view.findViewById(R.id.club_own);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getActivity().getApplicationContext(), "FAB Button Clicked", Toast.LENGTH_SHORT).show();
+                Intent new_club = new Intent(getActivity().getApplicationContext(), CreateClubActivity.class);
+                startActivityForResult(new_club, 909);
+            }
+        });
         getmyClubs();
         return view;
     }
@@ -82,5 +101,13 @@ public class Club_Own extends Fragment {
             }
 
         });
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        if (requestCode == 909) {
+            getmyClubs();
+        }
     }
 }

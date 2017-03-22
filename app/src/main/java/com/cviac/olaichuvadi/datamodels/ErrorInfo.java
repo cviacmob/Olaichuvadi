@@ -1,8 +1,5 @@
 package com.cviac.olaichuvadi.datamodels;
 
-/**
- * Created by User on 1/12/2017.
- */
 public class ErrorInfo {
 
     private String ip;

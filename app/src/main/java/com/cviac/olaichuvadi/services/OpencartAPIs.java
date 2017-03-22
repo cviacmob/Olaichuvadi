@@ -2,6 +2,7 @@ package com.cviac.olaichuvadi.services;
 
 import com.cviac.olaichuvadi.datamodels.AddToCartResponse;
 import com.cviac.olaichuvadi.datamodels.AddressInfo;
+import com.cviac.olaichuvadi.datamodels.AuthorsResponse;
 import com.cviac.olaichuvadi.datamodels.CategoriesResponse;
 import com.cviac.olaichuvadi.datamodels.CategoryProductsResponse;
 import com.cviac.olaichuvadi.datamodels.ClubResponse;
@@ -10,7 +11,9 @@ import com.cviac.olaichuvadi.datamodels.GeneralResponse;
 import com.cviac.olaichuvadi.datamodels.GetCartItemsResponse;
 import com.cviac.olaichuvadi.datamodels.LoginResponse;
 import com.cviac.olaichuvadi.datamodels.PaymentMethodsResponse;
+import com.cviac.olaichuvadi.datamodels.GetGetPostMessagesResponse;
 import com.cviac.olaichuvadi.datamodels.Productdetailresponse;
+import com.cviac.olaichuvadi.datamodels.PublishersResponse;
 import com.cviac.olaichuvadi.datamodels.ShippingMethodsResponse;
 import com.cviac.olaichuvadi.datamodels.ZoneInfo;
 import com.squareup.okhttp.ResponseBody;
@@ -137,7 +140,6 @@ public interface OpencartAPIs {
                                             @Field("zone_id") String zone_id,
                                             @Field("country_id") String country_id);
 
-
     @FormUrlEncoded
     @POST("/index.php?route=api/payment/method")
     Call<GeneralResponse> setPaymentMethod(@Field("payment_method") String payment_method);
@@ -166,7 +168,6 @@ public interface OpencartAPIs {
                                   @Field("affiliate_id") String affiliate_id,
                                   @Field("order_status_id") String order_status_id);
 
-
     //My Community APIs
     @GET("/index.php?route=api/mycommunity/getRecommendedClubs")
     Call<ClubResponse> getRecommendedClubs();
@@ -176,4 +177,38 @@ public interface OpencartAPIs {
 
     @GET("/index.php?route=api/mycommunity/getMyClubs")
     Call<ClubResponse> getMyClubs();
+
+    @POST("/index.php?route=api/mycommunity/createClub")
+    Call<GeneralResponse> newClub(@Field("club_name") String club_name,
+                                  @Field("club_description") String club_description,
+                                  @Field("status") String status,
+                                  @Field("location") String location);
+
+    @POST("/index.php?route=api/mycommunity/joinClub")
+    Call<GeneralResponse> joinClub(@Field("group_id") String group_id);
+
+    @GET("/index.php?route=api/mycommunity/getPostMessages")
+    Call<GetGetPostMessagesResponse> getPost(@Query("group_id") String group_id);
+
+    @POST("/index.php?route=api/mycommunity/inviteMembers")
+    Call<GeneralResponse> inviteMembers(@Query("group_id") String group_id,
+                                        @Field("email") String email);
+
+    @GET("/index.php?route=api/mycommunity/searchAuthors")
+    Call<AuthorsResponse> searchAuthor(@Query("name") String name);
+
+    @POST("/index.php?route=api/mycommunity/likeAuthor")
+    Call<GeneralResponse> likeAuthor(@Field("author_id") String author_id);
+
+    @GET("/index.php?route=api/mycommunity/getLikedAuthors")
+    Call<AuthorsResponse> getLikedAuthor();
+
+    @GET("/index.php?route=api/mycommunity/searchPublishers")
+    Call<PublishersResponse> searchPublisher(@Query("name") String name);
+
+    @POST("/index.php?route=api/mycommunity/likePublisher")
+    Call<GeneralResponse> likePublisher(@Field("publisher_id") String publisher_id);
+
+    @GET("/index.php?route=api/mycommunity/getLikedPublishers")
+    Call<PublishersResponse> getLikedPublisher();
 }

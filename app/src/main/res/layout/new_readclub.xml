@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="5dp">
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/club_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp">
+
+        <EditText
+            android:id="@+id/edt__clubname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Club Name"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp" />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/club_desc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/club_name"
+        android:layout_centerHorizontal="true"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp">
+
+        <EditText
+            android:id="@+id/edt__clubdesc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Club Desc."
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp" />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <TextView
+        android:id="@+id/club_privacy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/club_desc"
+        android:layout_centerHorizontal="true"
+        android:text="Choose Club Status:"
+        android:textStyle="bold" />
+
+    <RadioGroup
+        android:id="@+id/status"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/club_privacy"
+        android:layout_centerHorizontal="true"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/pub"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Public" />
+
+        <RadioButton
+            android:id="@+id/priv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Private" />
+
+    </RadioGroup>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/club_loc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/status"
+        android:layout_centerHorizontal="true"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp">
+
+        <EditText
+            android:id="@+id/edt__clubloc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Club Location"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp" />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <Button
+        android:id="@+id/club_ok"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/club_loc"
+        android:layout_marginLeft="20dp"
+        android:background="@drawable/roundcolorbtn"
+        android:text="@string/btn_save" />
+
+    <Button
+        android:id="@+id/club_cnc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/club_loc"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/roundcolorbtn"
+        android:text="@string/btn_cncl" />
+</RelativeLayout>

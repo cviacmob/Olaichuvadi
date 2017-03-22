@@ -7,65 +7,74 @@ import android.widget.GridView;
 
 import com.cviac.olaichuvadi.R;
 import com.cviac.olaichuvadi.adapters.AuhtorsAdapter;
-import com.cviac.olaichuvadi.datamodels.AuthorsInfo;
+import com.cviac.olaichuvadi.datamodels.AuthorInfo;
+import com.cviac.olaichuvadi.datamodels.AuthorsResponse;
+import com.cviac.olaichuvadi.services.AddCookiesInterceptor;
+import com.cviac.olaichuvadi.services.OpencartAPIs;
+import com.cviac.olaichuvadi.services.ReceivedCookiesInterceptor;
+import com.squareup.okhttp.OkHttpClient;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
+
+import retrofit.Call;
+import retrofit.Callback;
+import retrofit.GsonConverterFactory;
+import retrofit.Response;
+import retrofit.Retrofit;
 
 public class MyComm_Authors extends AppCompatActivity {
 
     GridView gv;
-    private List<AuthorsInfo> authr;
+    AuhtorsAdapter adapter;
+    private List<AuthorInfo> authr;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_comm__authors);
 
-        loadauthors();
+        loadLikedAuthors();
 
         setTitle(R.string.tab_authors);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         gv = (GridView) findViewById(R.id.authgrd);
-        AuhtorsAdapter adapter = new AuhtorsAdapter(this, authr);
+        adapter = new AuhtorsAdapter(this, authr);
         gv.setAdapter(adapter);
     }
 
-    private void loadauthors() {
+    public void loadLikedAuthors() {
 
-        authr = new ArrayList<>();
+        OkHttpClient okHttpClient = new OkHttpClient();
+        okHttpClient.setConnectTimeout(120000, TimeUnit.MILLISECONDS);
+        okHttpClient.setReadTimeout(120000, TimeUnit.MILLISECONDS);
+        okHttpClient.interceptors().add(new AddCookiesInterceptor());
+        okHttpClient.interceptors().add(new ReceivedCookiesInterceptor());
 
-        AuthorsInfo ai1 = new AuthorsInfo("VAIRAMUTHU");
-        authr.add(ai1);
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(getString(R.string.baseurl))
+                .addConverterFactory(GsonConverterFactory.create())
+                .client(okHttpClient)
+                .build();
 
-        AuthorsInfo ai2 = new AuthorsInfo("SUJATHA");
-        authr.add(ai2);
+        OpencartAPIs api = retrofit.create(OpencartAPIs.class);
 
-        AuthorsInfo ai3 = new AuthorsInfo("VAALI");
-        authr.add(ai3);
+        Call<AuthorsResponse> call = api.getLikedAuthor();
+        call.enqueue(new Callback<AuthorsResponse>() {
 
-        AuthorsInfo ai4 = new AuthorsInfo("KALKI");
-        authr.add(ai4);
+            public void onResponse(Response<AuthorsResponse> response, Retrofit retrofit) {
+                AuthorsResponse rsp = response.body();
+                authr.clear();
+                authr.addAll(rsp.getAuthors());
+                adapter.notifyDataSetInvalidated();
+            }
 
-        AuthorsInfo ai5 = new AuthorsInfo("JAYA KANTHAN");
-        authr.add(ai5);
-
-        AuthorsInfo ai6 = new AuthorsInfo("VAIRAMUTHU");
-        authr.add(ai6);
-
-        AuthorsInfo ai7 = new AuthorsInfo("SUJATHA");
-        authr.add(ai7);
-
-        AuthorsInfo ai8 = new AuthorsInfo("VAALI");
-        authr.add(ai8);
-
-        AuthorsInfo ai9 = new AuthorsInfo("KALKI");
-        authr.add(ai9);
-
-        AuthorsInfo ai10 = new AuthorsInfo("JAYA KANTHAN");
-        authr.add(ai10);
-
+            @Override
+            public void onFailure(Throwable t) {
+                t.printStackTrace();
+            }
+        });
     }
 
     @Override

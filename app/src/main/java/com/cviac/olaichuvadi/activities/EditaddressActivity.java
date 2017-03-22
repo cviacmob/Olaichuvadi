@@ -47,8 +47,8 @@ public class EditaddressActivity extends AppCompatActivity {
         setContentView(R.layout.activity_editaddress);
         loadspinner();
 
-        countrieslist = new ArrayList<CountryInfo>();
-        stateslist = new ArrayList<ZoneInfo>();
+        countrieslist = new ArrayList<>();
+        stateslist = new ArrayList<>();
 
         first_name = (EditText) findViewById(R.id.fname_ed);
         last_name = (EditText) findViewById(R.id.lname_ed);

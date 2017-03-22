@@ -9,9 +9,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.cviac.olaichuvadi.R;
-import com.cviac.olaichuvadi.activities.MyComm_Authors;
-import com.cviac.olaichuvadi.datamodels.AuthorInfo;
+import com.cviac.olaichuvadi.activities.MyComm_Publ;
 import com.cviac.olaichuvadi.datamodels.GeneralResponse;
+import com.cviac.olaichuvadi.datamodels.PublisherInfo;
 import com.cviac.olaichuvadi.services.AddCookiesInterceptor;
 import com.cviac.olaichuvadi.services.OpencartAPIs;
 import com.cviac.olaichuvadi.services.ReceivedCookiesInterceptor;
@@ -27,28 +27,28 @@ import retrofit.GsonConverterFactory;
 import retrofit.Response;
 import retrofit.Retrofit;
 
-public class AuhtorsAdapter extends BaseAdapter {
-    private MyComm_Authors mContext;
-    private List<AuthorInfo> authr;
+public class PublishersAdapter extends BaseAdapter {
+    private MyComm_Publ mContext;
+    private List<PublisherInfo> publ;
 
-    public AuhtorsAdapter(MyComm_Authors mContext, List<AuthorInfo> authr) {
+    public PublishersAdapter(MyComm_Publ mContext, List<PublisherInfo> publ) {
         this.mContext = mContext;
-        this.authr = authr;
+        this.publ = publ;
     }
 
     @Override
     public int getCount() {
-        return authr.size();
+        return publ.size();
     }
 
     @Override
-    public Object getItem(int i) {
-        return i;
+    public Object getItem(int position) {
+        return position;
     }
 
     @Override
-    public long getItemId(int i) {
-        return i;
+    public long getItemId(int position) {
+        return position;
     }
 
     public static class ViewHolder {
@@ -57,32 +57,32 @@ public class AuhtorsAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int i, View view, ViewGroup viewGroup) {
-        View shr = view;
-        AuhtorsAdapter.ViewHolder holder;
-        final AuthorInfo cinfo = authr.get(i);
-        if (view == null) {
+    public View getView(int position, View convertView, ViewGroup parent) {
+        View pub = convertView;
+        ViewHolder holder;
+        final PublisherInfo pinfo = publ.get(position);
+        if (convertView == null) {
             LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            shr = inflater.inflate(R.layout.author_details, null);
-            holder = new AuhtorsAdapter.ViewHolder();
-            holder.iv = (ImageView) shr.findViewById(R.id.pub_img);
-            holder.iv2 = (ImageView) shr.findViewById(R.id.likpub);
-            holder.tv1 = (TextView) shr.findViewById(R.id.pub_tit);
-            holder.tv2 = (TextView) shr.findViewById(R.id.likedpub);
-            shr.setTag(holder);
+            pub = inflater.inflate(R.layout.activity_publishers_adapter, null);
+            holder = new PublishersAdapter.ViewHolder();
+            holder.iv = (ImageView) pub.findViewById(R.id.pub_img);
+            holder.iv2 = (ImageView) pub.findViewById(R.id.likpub);
+            holder.tv1 = (TextView) pub.findViewById(R.id.pub_tit);
+            holder.tv2 = (TextView) pub.findViewById(R.id.likedpub);
+            pub.setTag(holder);
         } else {
-            holder = (AuhtorsAdapter.ViewHolder) shr.getTag();
+            holder = (PublishersAdapter.ViewHolder) pub.getTag();
         }
-        holder.tv1.setText(cinfo.getAuthor_name());
-        holder.tv2.setText(cinfo.getLikes());
+        holder.tv1.setText(pinfo.getPublisher_name());
+        holder.tv2.setText(pinfo.getLikes());
 
         String url1 = mContext.getString(R.string.img_club);
-        String url2 = cinfo.getAuthor_image();
+        String url2 = pinfo.getPublisher_image();
         StringBuilder url3 = new StringBuilder();
         url3.append(url1 + url2);
         String url = url3.toString();
         if (!url.isEmpty()) {
-            Picasso.with(shr.getContext()).load(url).placeholder(R.mipmap.log).resize(500, 500).into(holder.iv);
+            Picasso.with(pub.getContext()).load(url).placeholder(R.mipmap.log).resize(500, 500).into(holder.iv);
         }
 
         holder.iv2.setOnClickListener(new View.OnClickListener() {
@@ -103,13 +103,13 @@ public class AuhtorsAdapter extends BaseAdapter {
 
                 OpencartAPIs api = retrofit.create(OpencartAPIs.class);
 
-                Call<GeneralResponse> call = api.likeAuthor(cinfo.getAuthor_id());
+                Call<GeneralResponse> call = api.likePublisher(pinfo.getPublisher_id());
                 call.enqueue(new Callback<GeneralResponse>() {
 
                     public void onResponse(Response<GeneralResponse> response, Retrofit retrofit) {
                         GeneralResponse rsp = response.body();
                         if (rsp.getCode() == 0) {
-                            mContext.loadLikedAuthors();
+                            mContext.loadLikedPublishers();
                         }
                     }
 
@@ -120,6 +120,6 @@ public class AuhtorsAdapter extends BaseAdapter {
                 });
             }
         });
-        return shr;
+        return pub;
     }
 }
