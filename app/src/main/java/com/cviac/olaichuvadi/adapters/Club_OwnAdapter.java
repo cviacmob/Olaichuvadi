@@ -61,7 +61,12 @@ public class Club_OwnAdapter extends BaseAdapter {
             holder = (Club_OwnAdapter.ViewHolder) clubs.getTag();
         }
         holder.tv1.setText(cinfo.getGroup_name());
-        String url = cinfo.getGroup_image();
+
+        String url1 = mContext.getString(R.string.img_club);
+        String url2 = cinfo.getGroup_image();
+        StringBuilder url3 = new StringBuilder();
+        url3.append(url1 + url2);
+        String url = url3.toString();
         if (!url.isEmpty()) {
             Picasso.with(clubs.getContext()).load(url).placeholder(R.mipmap.bookgrd).resize(500, 500).into(holder.iv);
         }

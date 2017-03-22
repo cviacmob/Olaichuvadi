@@ -60,10 +60,16 @@ public class Club_recAdapter extends BaseAdapter {
             holder = (Club_recAdapter.ViewHolder) shr.getTag();
         }
         holder.tv1.setText(cinfo.getGroup_name());
-        String url = cinfo.getGroup_image();
+
+        String url1 = mContext.getString(R.string.img_club);
+        String url2 = cinfo.getGroup_image();
+        StringBuilder url3 = new StringBuilder();
+        url3.append(url1 + url2);
+        String url = url3.toString();
         if (!url.isEmpty()) {
             Picasso.with(shr.getContext()).load(url).placeholder(R.mipmap.bookgrd).resize(500, 500).into(holder.iv);
         }
+
         return shr;
     }
 }
