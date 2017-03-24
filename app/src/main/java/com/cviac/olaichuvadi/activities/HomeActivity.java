@@ -62,7 +62,6 @@ import retrofit.Retrofit;
 
 public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, BaseSliderView.OnSliderClickListener, ViewPagerEx.OnPageChangeListener {
 
-    private Locale myLocale;
     private SliderLayout imageSlider;
     GridView gv;
     List<Product> rowListItem;
@@ -78,7 +77,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        rowListItem = new ArrayList<Product>();
+        rowListItem = new ArrayList<>();
 
         gv = (GridView) findViewById(R.id.prdts);
         gv.setFastScrollEnabled(true);
@@ -445,7 +444,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
     public void setLocale(String lang) {
 
-        myLocale = new Locale(lang);
+        Locale myLocale = new Locale(lang);
         Resources res = getResources();
         DisplayMetrics dm = res.getDisplayMetrics();
         Configuration conf = res.getConfiguration();
