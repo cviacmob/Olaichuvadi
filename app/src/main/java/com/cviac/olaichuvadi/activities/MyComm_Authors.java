@@ -14,6 +14,7 @@ import com.cviac.olaichuvadi.services.OpencartAPIs;
 import com.cviac.olaichuvadi.services.ReceivedCookiesInterceptor;
 import com.squareup.okhttp.OkHttpClient;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -34,14 +35,16 @@ public class MyComm_Authors extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_comm__authors);
 
-        loadLikedAuthors();
-
         setTitle(R.string.tab_authors);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        authr = new ArrayList<>();
 
         gv = (GridView) findViewById(R.id.authgrd);
         adapter = new AuhtorsAdapter(this, authr);
         gv.setAdapter(adapter);
+
+        loadLikedAuthors();
     }
 
     public void loadLikedAuthors() {

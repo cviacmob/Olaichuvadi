@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="5dp"
+    tools:context="com.cviac.olaichuvadi.adapters.MessagesAdapter">
+
+    <com.cviac.olaichuvadi.utilities.CircleImageView
+        android:id="@+id/user"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:src="@mipmap/profl" />
+
+    <TextView
+        android:id="@+id/username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/user"
+        android:paddingLeft="10dp"
+        android:text="User Name"
+        android:textSize="15sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/sym"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/username"
+        android:paddingLeft="10dp"
+        android:text="-->" />
+
+    <TextView
+        android:id="@+id/post_club_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/sym"
+        android:paddingLeft="10dp"
+        android:text="Club Name"
+        android:textSize="15sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/user"
+        android:paddingTop="5dp"
+        android:text="Your Messages Will be Displayed Here"
+        android:textSize="15sp"
+        android:textStyle="bold" />
+
+    <ImageView
+        android:id="@+id/sharedimg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/message"
+        android:layout_centerHorizontal="true"
+        android:padding="10dp" />
+
+    <ImageView
+        android:id="@+id/likpost"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/sharedimg"
+        android:padding="5dp"
+        android:src="@mipmap/like" />
+
+    <TextView
+        android:id="@+id/count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/sharedimg"
+        android:layout_toRightOf="@+id/likpost"
+        android:padding="5dp"
+        android:text="Count"
+        android:textSize="13sp"
+        android:textStyle="bold" />
+
+</RelativeLayout>

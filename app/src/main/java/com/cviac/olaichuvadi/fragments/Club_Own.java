@@ -1,23 +1,20 @@
 package com.cviac.olaichuvadi.fragments;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
+import android.widget.AdapterView;
 import android.widget.GridView;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.cviac.olaichuvadi.R;
 import com.cviac.olaichuvadi.activities.CreateClubActivity;
+import com.cviac.olaichuvadi.activities.ReadingClubDetailsActivity;
 import com.cviac.olaichuvadi.adapters.Club_OwnAdapter;
 import com.cviac.olaichuvadi.datamodels.ClubResponse;
 import com.cviac.olaichuvadi.datamodels.ReadingClubInfo;
@@ -58,12 +55,21 @@ public class Club_Own extends Fragment {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getActivity().getApplicationContext(), "FAB Button Clicked", Toast.LENGTH_SHORT).show();
                 Intent new_club = new Intent(getActivity().getApplicationContext(), CreateClubActivity.class);
                 startActivityForResult(new_club, 909);
             }
         });
         getmyClubs();
+
+        gv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                ReadingClubInfo rc_rec = club.get(position);
+                Intent details = new Intent(getActivity().getApplicationContext(), ReadingClubDetailsActivity.class);
+                details.putExtra("Club_Details", rc_rec);
+                startActivity(details);
+            }
+        });
         return view;
     }
 

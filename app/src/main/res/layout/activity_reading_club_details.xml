@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="5dp"
+    tools:context="com.cviac.olaichuvadi.activities.ReadingClubDetailsActivity">
+
+    <ImageView
+        android:id="@+id/club_pic"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_alignParentStart="true"
+        android:src="@mipmap/log" />
+
+    <TextView
+        android:id="@+id/rclub_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/club_pic"
+        android:maxLines="2"
+        android:paddingLeft="10dp"
+        android:text="Club Name"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/rclub_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rclub_name"
+        android:layout_toRightOf="@+id/club_pic"
+        android:paddingLeft="10dp"
+        android:text="Membership Status"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <ImageView
+        android:id="@+id/invite_club"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/club_pic"
+        android:layout_toRightOf="@+id/club_pic"
+        android:paddingLeft="10dp"
+        android:src="@mipmap/googleplay" />
+
+    <ImageView
+        android:id="@+id/editclub"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/club_pic"
+        android:layout_toLeftOf="@+id/deleteclub"
+        android:paddingRight="10dp"
+        android:src="@mipmap/pencilcircle" />
+
+    <ImageView
+        android:id="@+id/deleteclub"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/club_pic"
+        android:layout_alignParentEnd="true"
+        android:src="@mipmap/deletecircle" />
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/shareurmsg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/club_pic">
+
+        <EditText
+            android:id="@+id/writemsg"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:drawableRight="@mipmap/pencil"
+            android:hint="Share Your Message Here" />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <ListView
+        android:id="@+id/msgslist"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/shareurmsg"
+        android:choiceMode="singleChoice"
+        android:divider="#000000"
+        android:dividerHeight="2dp" />
+
+</RelativeLayout>

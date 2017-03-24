@@ -3,6 +3,7 @@ package com.cviac.olaichuvadi.datamodels;
 import java.io.Serializable;
 
 public class GetPostInfo implements Serializable {
+
     private String customer_id;
     private String group_id;
     private String post_id;
@@ -75,4 +76,5 @@ public class GetPostInfo implements Serializable {
     public void setStatus(String status) {
         this.status = status;
     }
+
 }

@@ -1,21 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="5dp">
-
-    <ImageView
-        android:id="@+id/book_img"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:src="@mipmap/logo" />
+    android:padding="5dp"
+    tools:context="com.cviac.olaichuvadi.adapters.SharedAdapter">
 
     <TextView
         android:id="@+id/shrdbook"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/book_img"
         android:layout_centerHorizontal="true" />
+
+    <ImageView
+        android:id="@+id/book_img"
+        android:layout_width="130dp"
+        android:layout_height="130dp"
+        android:layout_below="@+id/shrdbook"
+        android:layout_centerHorizontal="true"
+        android:src="@mipmap/log" />
 
 </RelativeLayout>

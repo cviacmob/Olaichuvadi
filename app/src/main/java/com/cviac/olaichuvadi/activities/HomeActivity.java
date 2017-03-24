@@ -47,7 +47,6 @@ import com.daimajia.slider.library.SliderLayout;
 import com.daimajia.slider.library.SliderTypes.BaseSliderView;
 import com.daimajia.slider.library.SliderTypes.TextSliderView;
 import com.daimajia.slider.library.Tricks.ViewPagerEx;
-import com.squareup.okhttp.Credentials;
 import com.squareup.okhttp.OkHttpClient;
 
 import java.util.ArrayList;
@@ -117,7 +116,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
         OpencartAPIs api = retrofit.create(OpencartAPIs.class);
 
-        final Call<CategoriesResponse> call = api.getCategories();
+        final Call<CategoriesResponse> call = api.getTopCategories();
         call.enqueue(new Callback<CategoriesResponse>() {
             @Override
             public void onResponse(Response<CategoriesResponse> response, Retrofit retrofit) {
@@ -145,14 +144,12 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             public void onFailure(Throwable t) {
             }
         });
-
         listenCartChange = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
                 getAndSetCartCount();
             }
         };
-
         registerReceiver(listenCartChange, new IntentFilter("notifyCartChange"));
     }
 
@@ -237,6 +234,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     }
 
     public void slider(String catId) {
+
         OkHttpClient okHttpClient = new OkHttpClient();
         okHttpClient.setConnectTimeout(120000, TimeUnit.MILLISECONDS);
         okHttpClient.setReadTimeout(120000, TimeUnit.MILLISECONDS);
@@ -247,8 +245,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(okHttpClient)
                 .build();
-
-        //String credentials = Credentials.basic("olaichuvadi", "cviac");
 
         OpencartAPIs api = retrofit.create(OpencartAPIs.class);
 
@@ -325,7 +321,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
         SearchView search = (SearchView) MenuItemCompat.getActionView(menu.findItem(R.id.action_search));
         SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-        search.setSearchableInfo(searchManager.getSearchableInfo(new ComponentName(this, SearchQueryActivity.class)));
+        search.setSearchableInfo(searchManager.getSearchableInfo(new ComponentName(this, SearchResultActivity.class)));
         search.setQueryHint(getResources().getString(R.string.search_hint));
         String query = search.getQuery().toString();
 
@@ -333,6 +329,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     }
 
     private void getAndSetCartCount() {
+
         OkHttpClient okHttpClient = new OkHttpClient();
         okHttpClient.setConnectTimeout(120000, TimeUnit.MILLISECONDS);
         okHttpClient.setReadTimeout(120000, TimeUnit.MILLISECONDS);
@@ -506,7 +503,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
         } else if (id == R.id.nav_com_publ) {
 
-            Intent libb = new Intent(HomeActivity.this, MyComm_Publ.class);
+            Intent libb = new Intent(HomeActivity.this, MyComm_Publishers.class);
             startActivity(libb);
 
         } else if (id == R.id.nav_cart) {

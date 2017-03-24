@@ -9,10 +9,22 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.cviac.olaichuvadi.R;
+import com.cviac.olaichuvadi.datamodels.GeneralResponse;
 import com.cviac.olaichuvadi.datamodels.ReadingClubInfo;
+import com.cviac.olaichuvadi.services.AddCookiesInterceptor;
+import com.cviac.olaichuvadi.services.OpencartAPIs;
+import com.cviac.olaichuvadi.services.ReceivedCookiesInterceptor;
+import com.squareup.okhttp.OkHttpClient;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
+
+import retrofit.Call;
+import retrofit.Callback;
+import retrofit.GsonConverterFactory;
+import retrofit.Response;
+import retrofit.Retrofit;
 
 public class Club_recAdapter extends BaseAdapter {
 
@@ -40,7 +52,7 @@ public class Club_recAdapter extends BaseAdapter {
     }
 
     public static class ViewHolder {
-        public TextView tv1;
+        public TextView tv1, tv2;
         public ImageView iv;
     }
 
@@ -48,12 +60,13 @@ public class Club_recAdapter extends BaseAdapter {
     public View getView(int i, View view, ViewGroup viewGroup) {
         View shr = view;
         Club_recAdapter.ViewHolder holder;
-        ReadingClubInfo cinfo = read.get(i);
+        final ReadingClubInfo cinfo = read.get(i);
         if (view == null) {
             LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             shr = inflater.inflate(R.layout.club_item, null);
             holder = new ViewHolder();
             holder.tv1 = (TextView) shr.findViewById(R.id.clubtitle);
+            holder.tv2 = (TextView) shr.findViewById(R.id.membership);
             holder.iv = (ImageView) shr.findViewById(R.id.club_img);
             shr.setTag(holder);
         } else {
@@ -69,6 +82,39 @@ public class Club_recAdapter extends BaseAdapter {
         if (!url.isEmpty()) {
             Picasso.with(shr.getContext()).load(url).placeholder(R.mipmap.bookgrd).resize(500, 500).into(holder.iv);
         }
+
+        holder.tv2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                OkHttpClient okHttpClient = new OkHttpClient();
+                okHttpClient.setConnectTimeout(120000, TimeUnit.MILLISECONDS);
+                okHttpClient.setReadTimeout(120000, TimeUnit.MILLISECONDS);
+                okHttpClient.interceptors().add(new AddCookiesInterceptor());
+                okHttpClient.interceptors().add(new ReceivedCookiesInterceptor());
+
+                Retrofit retrofit = new Retrofit.Builder()
+                        .baseUrl(mContext.getString(R.string.baseurl))
+                        .addConverterFactory(GsonConverterFactory.create())
+                        .client(okHttpClient)
+                        .build();
+
+                OpencartAPIs api = retrofit.create(OpencartAPIs.class);
+
+                Call<GeneralResponse> call = api.joinClub(cinfo.getGroup_id());
+                call.enqueue(new Callback<GeneralResponse>() {
+
+                    public void onResponse(Response<GeneralResponse> response, Retrofit retrofit) {
+                        GeneralResponse rsp = response.body();
+                    }
+
+                    @Override
+                    public void onFailure(Throwable t) {
+                        t.printStackTrace();
+                    }
+                });
+            }
+        });
 
         return shr;
     }

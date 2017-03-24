@@ -14,6 +14,7 @@ import com.cviac.olaichuvadi.services.OpencartAPIs;
 import com.cviac.olaichuvadi.services.ReceivedCookiesInterceptor;
 import com.squareup.okhttp.OkHttpClient;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -23,7 +24,7 @@ import retrofit.GsonConverterFactory;
 import retrofit.Response;
 import retrofit.Retrofit;
 
-public class MyComm_Publ extends AppCompatActivity {
+public class MyComm_Publishers extends AppCompatActivity {
 
     GridView gv;
     PublishersAdapter adapter;
@@ -34,14 +35,15 @@ public class MyComm_Publ extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_comm__publ);
 
-        loadLikedPublishers();
-
         setTitle(R.string.tab_pub);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        publ = new ArrayList<>();
         gv = (GridView) findViewById(R.id.pubgrd);
         adapter = new PublishersAdapter(this, publ);
         gv.setAdapter(adapter);
+
+        loadLikedPublishers();
     }
 
     public void loadLikedPublishers() {

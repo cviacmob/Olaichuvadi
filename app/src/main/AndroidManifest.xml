@@ -26,37 +26,9 @@
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.app.default_searchable"
-                android:value=".activities.SearchQueryActivity" />
+                android:value=".activities.SearchResultActivity" />
         </activity>
-        <activity android:name=".activities.SearchResultActivity" />
-        <activity android:name=".activities.CategoryList_Activity" />
-        <activity android:name=".activities.MyCartActivity" />
-        <activity android:name=".activities.MyAccountActivity" />
-        <activity android:name=".activities.LoginActivity" />
-        <activity android:name=".activities.RegistrationActivity" />
-        <activity android:name=".activities.EditaddressActivity" />
-        <activity android:name=".activities.Product_Details" />
-        <activity android:name=".activities.PaymentActivity" />
-        <activity
-            android:name=".activities.MyComm_Readingclub"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".activities.MyComm_Authors" />
-        <activity android:name=".activities.MyComm_Publ" />
-        <activity android:name=".activities.MyLib_Books" />
-        <activity android:name=".activities.MyLib_Purchased" />
-        <activity android:name=".activities.MyLib_Reviewed" />
-        <activity android:name=".activities.MyLib_Favourites" />
-        <activity android:name=".activities.MyComm_Shared" />
-
-        <meta-data
-            android:name="com.google.android.gms.version"
-            android:value="@integer/google_play_services_version" />
-
-        <activity android:name=".activities.WriteReviewActivity" />
-        <activity
-            android:name=".activities.SearchQueryActivity"
-            android:parentActivityName=".activities.HomeActivity">
-
+        <activity android:name=".activities.SearchResultActivity">
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -70,7 +42,32 @@
                 <action android:name="android.intent.action.SEARCH" />
             </intent-filter>
         </activity>
-        <activity android:name=".adapters.PublishersAdapter"></activity>
+        <activity android:name=".activities.CategoryList_Activity" />
+        <activity android:name=".activities.MyCartActivity" />
+        <activity android:name=".activities.MyAccountActivity" />
+        <activity android:name=".activities.LoginActivity" />
+        <activity android:name=".activities.RegistrationActivity" />
+        <activity android:name=".activities.EditaddressActivity" />
+        <activity android:name=".activities.Product_Details" />
+        <activity android:name=".activities.PaymentActivity" />
+        <activity
+            android:name=".activities.MyComm_Readingclub"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".activities.MyComm_Authors" />
+        <activity android:name=".activities.MyComm_Publishers" />
+        <activity android:name=".activities.MyLib_Books" />
+        <activity android:name=".activities.MyLib_Purchased" />
+        <activity android:name=".activities.MyLib_Reviewed" />
+        <activity android:name=".activities.MyLib_Favourites" />
+        <activity android:name=".activities.MyComm_Shared" />
+
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+
+        <activity android:name=".activities.WriteReviewActivity" />
+        <activity android:name=".activities.ReadingClubDetailsActivity" />
+        <activity android:name=".activities.InviteMembersActivity"></activity>
     </application>
 
 </manifest>

@@ -8,6 +8,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.TextView;
 
 import com.cviac.olaichuvadi.R;
 import com.cviac.olaichuvadi.adapters.ProductsAdapter;
@@ -34,6 +35,7 @@ public class SearchResultActivity extends AppCompatActivity {
     List<Product> rowListItem;
     ProductsAdapter adapter;
     String query = "";
+    TextView tv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,19 +44,71 @@ public class SearchResultActivity extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        Intent i = getIntent();
-        String catid = i.getStringExtra("categoryid");
-        String catname = i.getStringExtra("categoryname");
-
-        setTitle(catname);
-
         gv = (GridView) findViewById(R.id.prdts1);
         gv.setFastScrollEnabled(true);
         rowListItem = new ArrayList<>();
         adapter = new ProductsAdapter(SearchResultActivity.this, rowListItem);
         gv.setAdapter(adapter);
 
-        getProducts(catid);
+        Intent i = getIntent();
+
+        if (Intent.ACTION_SEARCH.equals(i.getAction())) {
+            query = i.getStringExtra(SearchManager.QUERY);
+            setTitle(query);
+            searchProducts(query);
+        } else {
+            String catid = i.getStringExtra("categoryid");
+            String catname = i.getStringExtra("categoryname");
+            setTitle(catname);
+            getProducts(catid);
+        }
+    }
+
+    private void searchProducts(String query) {
+
+        OkHttpClient okHttpClient = new OkHttpClient();
+        okHttpClient.setConnectTimeout(120000, TimeUnit.MILLISECONDS);
+        okHttpClient.setReadTimeout(120000, TimeUnit.MILLISECONDS);
+        okHttpClient.interceptors().add(new AddCookiesInterceptor());
+        okHttpClient.interceptors().add(new ReceivedCookiesInterceptor());
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(getString(R.string.baseurl))
+                .addConverterFactory(GsonConverterFactory.create())
+                .client(okHttpClient)
+                .build();
+
+        OpencartAPIs api = retrofit.create(OpencartAPIs.class);
+
+        final Call<CategoryProductsResponse> call = api.search(query);
+
+        call.enqueue(new Callback<CategoryProductsResponse>() {
+            @Override
+            public void onResponse(Response<CategoryProductsResponse> response, Retrofit retrofit) {
+                CategoryProductsResponse rsp = response.body();
+                if (rsp.getProducts().size() > 0) {
+                    rowListItem.clear();
+                    rowListItem.addAll(rsp.getProducts());
+                    adapter.notifyDataSetInvalidated();
+                } else if (rsp.getProducts().size() == 0) {
+                    tv.setText("No Prodcuts matches the Criteria");
+                }
+            }
+
+            @Override
+            public void onFailure(Throwable t) {
+                rowListItem = null;
+            }
+        });
+
+        gv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int pos, long l) {
+                Product pr = rowListItem.get(pos);
+                Intent prd = new Intent(SearchResultActivity.this, Product_Details.class);
+                prd.putExtra("productobj", pr);
+                startActivity(prd);
+            }
+        });
     }
 
     public void getProducts(String catId) {
@@ -78,9 +132,13 @@ public class SearchResultActivity extends AppCompatActivity {
             @Override
             public void onResponse(Response<CategoryProductsResponse> response, Retrofit retrofit) {
                 CategoryProductsResponse rsp = response.body();
-                rowListItem.clear();
-                rowListItem.addAll(rsp.getProducts());
-                adapter.notifyDataSetInvalidated();
+                if (rsp.getProducts().size() > 0) {
+                    rowListItem.clear();
+                    rowListItem.addAll(rsp.getProducts());
+                    adapter.notifyDataSetInvalidated();
+                } else if (rsp.getProducts().size() == 0) {
+                    tv.setText("No Prodcuts matches the Criteria");
+                }
             }
 
             @Override

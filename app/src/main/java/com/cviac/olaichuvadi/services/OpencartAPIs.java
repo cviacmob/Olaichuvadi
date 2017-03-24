@@ -11,7 +11,7 @@ import com.cviac.olaichuvadi.datamodels.GeneralResponse;
 import com.cviac.olaichuvadi.datamodels.GetCartItemsResponse;
 import com.cviac.olaichuvadi.datamodels.LoginResponse;
 import com.cviac.olaichuvadi.datamodels.PaymentMethodsResponse;
-import com.cviac.olaichuvadi.datamodels.GetGetPostMessagesResponse;
+import com.cviac.olaichuvadi.datamodels.GetPostMessagesResponse;
 import com.cviac.olaichuvadi.datamodels.Productdetailresponse;
 import com.cviac.olaichuvadi.datamodels.PublishersResponse;
 import com.cviac.olaichuvadi.datamodels.ShippingMethodsResponse;
@@ -46,11 +46,14 @@ public interface OpencartAPIs {
     @GET("/index.php?route=api/category")
     Call<CategoriesResponse> getCategories();
 
+    @GET("/index.php?route=api/category/top")
+    Call<CategoriesResponse> getTopCategories();
+
     @GET("/index.php?route=api/category/getproducts")
     Call<CategoryProductsResponse> getProducts(@Query("categoryid") String categoryid);
 
     @GET("/index.php?route=api/search")
-    Call<CategoryProductsResponse> search(@Query("key") String key);
+    Call<CategoryProductsResponse> search(@Query("search") String search);
 
     @GET("/index.php?route=api/category/getproductdetails")
     Call<Productdetailresponse> getProductdetails(@Query("productid") String categoryid);
@@ -188,7 +191,7 @@ public interface OpencartAPIs {
     Call<GeneralResponse> joinClub(@Field("group_id") String group_id);
 
     @GET("/index.php?route=api/mycommunity/getPostMessages")
-    Call<GetGetPostMessagesResponse> getPost(@Query("group_id") String group_id);
+    Call<GetPostMessagesResponse> getPost(@Query("group_id") String group_id);
 
     @POST("/index.php?route=api/mycommunity/inviteMembers")
     Call<GeneralResponse> inviteMembers(@Query("group_id") String group_id,
@@ -211,4 +214,5 @@ public interface OpencartAPIs {
 
     @GET("/index.php?route=api/mycommunity/getLikedPublishers")
     Call<PublishersResponse> getLikedPublisher();
+
 }

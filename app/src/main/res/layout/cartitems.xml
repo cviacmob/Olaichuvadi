@@ -9,7 +9,7 @@
         android:id="@+id/crtimg"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:src="@mipmap/ic" />
+        android:src="@mipmap/log" />
 
     <TextView
         android:id="@+id/crttit"

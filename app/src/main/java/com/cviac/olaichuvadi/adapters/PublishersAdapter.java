@@ -9,7 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.cviac.olaichuvadi.R;
-import com.cviac.olaichuvadi.activities.MyComm_Publ;
+import com.cviac.olaichuvadi.activities.MyComm_Publishers;
 import com.cviac.olaichuvadi.datamodels.GeneralResponse;
 import com.cviac.olaichuvadi.datamodels.PublisherInfo;
 import com.cviac.olaichuvadi.services.AddCookiesInterceptor;
@@ -28,10 +28,10 @@ import retrofit.Response;
 import retrofit.Retrofit;
 
 public class PublishersAdapter extends BaseAdapter {
-    private MyComm_Publ mContext;
+    private MyComm_Publishers mContext;
     private List<PublisherInfo> publ;
 
-    public PublishersAdapter(MyComm_Publ mContext, List<PublisherInfo> publ) {
+    public PublishersAdapter(MyComm_Publishers mContext, List<PublisherInfo> publ) {
         this.mContext = mContext;
         this.publ = publ;
     }

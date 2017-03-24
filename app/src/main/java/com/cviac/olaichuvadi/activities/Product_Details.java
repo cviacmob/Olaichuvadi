@@ -58,9 +58,7 @@ public class Product_Details extends AppCompatActivity {
 
         Intent i = getIntent();
         Product probj = (Product) i.getSerializableExtra("productobj");
-        String tit = probj.getName();
-
-        setTitle(tit);
+        setTitle(probj.getName());
 
         tv = (TextView) findViewById(R.id.tit);
         iv = (ImageView) findViewById(R.id.prd_img);
