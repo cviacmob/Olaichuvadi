@@ -12,10 +12,8 @@ import android.widget.TextView;
 
 import com.cviac.olaichuvadi.R;
 import com.cviac.olaichuvadi.activities.MyCartActivity;
-import com.cviac.olaichuvadi.activities.PaymentActivity;
 import com.cviac.olaichuvadi.datamodels.AddToCartResponse;
 import com.cviac.olaichuvadi.datamodels.ProductCartInfo;
-import com.cviac.olaichuvadi.datamodels.ProductDetail;
 import com.cviac.olaichuvadi.services.AddCookiesInterceptor;
 import com.cviac.olaichuvadi.services.OpencartAPIs;
 import com.cviac.olaichuvadi.services.ReceivedCookiesInterceptor;

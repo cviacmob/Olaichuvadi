@@ -40,7 +40,7 @@ public class CategoryList_Activity extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        categoryList = new ArrayList<Category>();
+        categoryList = new ArrayList<>();
 
         lv = (ExpandableListView) findViewById(R.id.catlist);
         adapter = new CategoryAdapter(this, categoryList);
@@ -74,14 +74,12 @@ public class CategoryList_Activity extends AppCompatActivity {
                 categoryList = null;
             }
         });
-
         lv.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
             @Override
             public boolean onGroupClick(ExpandableListView parent, View v, int groupPosition, long id) {
                 List<Category> childs = categoryList.get(groupPosition).getCategories();
 
                 if (childs != null && childs.size() > 0) {
-
                 } else {
                     Category ct = categoryList.get(groupPosition);
                     Intent cat = new Intent(CategoryList_Activity.this, SearchResultActivity.class);
@@ -92,7 +90,6 @@ public class CategoryList_Activity extends AppCompatActivity {
                 return false;
             }
         });
-
         lv.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
             @Override
             public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {

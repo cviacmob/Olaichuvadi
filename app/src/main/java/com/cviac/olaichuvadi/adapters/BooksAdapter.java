@@ -7,18 +7,17 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.cviac.olaichuvadi.R;
-import com.cviac.olaichuvadi.datamodels.BooksInfo;
+import com.cviac.olaichuvadi.datamodels.ViewAddedBooksInfo;
 
 import java.util.List;
 
 public class BooksAdapter extends BaseAdapter {
     private Context mContext;
-    private List<BooksInfo> book;
+    private List<ViewAddedBooksInfo> book;
 
-    public BooksAdapter(Context mContext, List<BooksInfo> book) {
+    public BooksAdapter(Context mContext, List<ViewAddedBooksInfo> book) {
         this.mContext = mContext;
         this.book = book;
     }
@@ -47,7 +46,7 @@ public class BooksAdapter extends BaseAdapter {
     public View getView(int i, View view, ViewGroup viewGroup) {
         View shr = view;
         BooksAdapter.ViewHolder holder;
-        BooksInfo cinfo = book.get(i);
+        ViewAddedBooksInfo cinfo = book.get(i);
         if (view == null) {
             LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             shr = inflater.inflate(R.layout.book_item, null);
@@ -59,19 +58,6 @@ public class BooksAdapter extends BaseAdapter {
         } else {
             holder = (BooksAdapter.ViewHolder) shr.getTag();
         }
-        holder.tv1.setText(cinfo.getTit());
-        holder.iv1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(mContext, "Review Clicked", Toast.LENGTH_LONG).show();
-            }
-        });
-        holder.iv2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(mContext, "Favourites Clicked", Toast.LENGTH_LONG).show();
-            }
-        });
         return shr;
     }
 }

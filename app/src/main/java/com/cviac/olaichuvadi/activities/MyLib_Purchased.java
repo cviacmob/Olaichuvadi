@@ -7,15 +7,27 @@ import android.widget.GridView;
 
 import com.cviac.olaichuvadi.R;
 import com.cviac.olaichuvadi.adapters.PurchasedAdapter;
-import com.cviac.olaichuvadi.datamodels.BooksInfo;
-import com.cviac.olaichuvadi.datamodels.PurchasedInfo;
+import com.cviac.olaichuvadi.datamodels.PurchasedBooksInfo;
+import com.cviac.olaichuvadi.datamodels.PurchasedBooksResponse;
+import com.cviac.olaichuvadi.services.AddCookiesInterceptor;
+import com.cviac.olaichuvadi.services.OpencartAPIs;
+import com.cviac.olaichuvadi.services.ReceivedCookiesInterceptor;
+import com.cviac.olaichuvadi.utilities.Prefs;
+import com.squareup.okhttp.OkHttpClient;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
+
+import retrofit.Call;
+import retrofit.Callback;
+import retrofit.GsonConverterFactory;
+import retrofit.Response;
+import retrofit.Retrofit;
 
 public class MyLib_Purchased extends AppCompatActivity {
 
-    List<PurchasedInfo> lib_pbooks;
+    List<PurchasedBooksInfo> lib_pbooks;
     GridView gv;
     PurchasedAdapter adapter;
 
@@ -24,37 +36,50 @@ public class MyLib_Purchased extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_lib__purchased);
 
-        getPurchased();
-
         setTitle(R.string.tab_purch);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        gv = (GridView) findViewById(R.id.purchgrd);
-        gv.setFastScrollEnabled(true);
-        adapter = new PurchasedAdapter(MyLib_Purchased.this, lib_pbooks);
-        gv.setAdapter(adapter);
-    }
-
-    private void getPurchased() {
-
         lib_pbooks = new ArrayList<>();
 
-        PurchasedInfo p1 = new PurchasedInfo("Book 1");
-        lib_pbooks.add(p1);
-        PurchasedInfo p2 = new PurchasedInfo("Book 2");
-        lib_pbooks.add(p2);
-        PurchasedInfo p3 = new PurchasedInfo("Book 3");
-        lib_pbooks.add(p3);
-        PurchasedInfo p4 = new PurchasedInfo("Book 4");
-        lib_pbooks.add(p4);
-        PurchasedInfo p5 = new PurchasedInfo("Book 5");
-        lib_pbooks.add(p5);
-        PurchasedInfo p6 = new PurchasedInfo("Book 6");
-        lib_pbooks.add(p6);
-        PurchasedInfo p7 = new PurchasedInfo("Book 7");
-        lib_pbooks.add(p7);
-        PurchasedInfo p8 = new PurchasedInfo("Book 8");
-        lib_pbooks.add(p8);
+        gv = (GridView) findViewById(R.id.purchgrd);
+        adapter = new PurchasedAdapter(MyLib_Purchased.this, lib_pbooks);
+        gv.setAdapter(adapter);
+
+        getPurchasedBooks();
+    }
+
+    private void getPurchasedBooks() {
+
+        OkHttpClient okHttpClient = new OkHttpClient();
+        okHttpClient.setConnectTimeout(120000, TimeUnit.MILLISECONDS);
+        okHttpClient.setReadTimeout(120000, TimeUnit.MILLISECONDS);
+        okHttpClient.interceptors().add(new AddCookiesInterceptor());
+        okHttpClient.interceptors().add(new ReceivedCookiesInterceptor());
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(getString(R.string.baseurl))
+                .addConverterFactory(GsonConverterFactory.create())
+                .client(okHttpClient)
+                .build();
+
+        OpencartAPIs api = retrofit.create(OpencartAPIs.class);
+
+        int c_id = Prefs.getInt("customer_id", -1);
+        Call<PurchasedBooksResponse> call = api.viewPurchasedbooks(c_id + "");
+        call.enqueue(new Callback<PurchasedBooksResponse>() {
+
+            public void onResponse(Response<PurchasedBooksResponse> response, Retrofit retrofit) {
+                PurchasedBooksResponse rsp = response.body();
+                lib_pbooks.clear();
+                lib_pbooks.addAll(rsp.getPosts());
+                adapter.notifyDataSetInvalidated();
+            }
+
+            @Override
+            public void onFailure(Throwable t) {
+                t.printStackTrace();
+            }
+        });
     }
 
     @Override

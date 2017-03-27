@@ -1,6 +1,7 @@
 package com.cviac.olaichuvadi.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.cviac.olaichuvadi.R;
+import com.cviac.olaichuvadi.activities.ReadingClubDetailsActivity;
 import com.cviac.olaichuvadi.datamodels.GeneralResponse;
 import com.cviac.olaichuvadi.datamodels.ReadingClubInfo;
 import com.cviac.olaichuvadi.services.AddCookiesInterceptor;
@@ -82,7 +84,6 @@ public class Club_recAdapter extends BaseAdapter {
         if (!url.isEmpty()) {
             Picasso.with(shr.getContext()).load(url).placeholder(R.mipmap.bookgrd).resize(500, 500).into(holder.iv);
         }
-
         holder.tv2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -113,6 +114,14 @@ public class Club_recAdapter extends BaseAdapter {
                         t.printStackTrace();
                     }
                 });
+            }
+        });
+        holder.iv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent details = new Intent(mContext, ReadingClubDetailsActivity.class);
+                details.putExtra("Club_Details", cinfo);
+                mContext.startActivity(details);
             }
         });
 

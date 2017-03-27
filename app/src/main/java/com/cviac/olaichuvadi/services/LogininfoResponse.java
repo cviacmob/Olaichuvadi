@@ -2,12 +2,12 @@ package com.cviac.olaichuvadi.services;
 
 public class LogininfoResponse {
 
-    int code;
-    String desc;
-    String email;
-    int customer_id;
-    String firstname;
-    String telephone;
+    private int code;
+    private String desc;
+    private String email;
+    private int customer_id;
+    private String firstname;
+    private String telephone;
 
     public LogininfoResponse() {
     }

@@ -42,7 +42,6 @@ public class MyAccountActivity extends AppCompatActivity {
         setContentView(R.layout.activity_my_account);
 
         setTitle(getString(R.string.My_Account));
-        loadAddresses();
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -61,6 +60,8 @@ public class MyAccountActivity extends AppCompatActivity {
         addhis = new ArrayList<>();
         adapter1 = new AddressAdapter(MyAccountActivity.this, addhis);
         lv.setAdapter(adapter1);
+
+        loadAddresses();
 
         fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {

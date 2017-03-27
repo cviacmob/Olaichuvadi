@@ -6,8 +6,6 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
-    <string name="section_format">Hello World from section: %1$d</string>
-
     <string name="Categories">பிரிவுகள்</string>
     <string name="My_Library">என் நூலகம்</string>
     <string name="My_Community">என் சமூகம்</string>
@@ -63,7 +61,6 @@
     <string name="mylib_books">என் நூலகத்திலுள்ள புத்தகங்கள் :</string>
     <string name="tab_shared">பகிர்வு புத்தகங்கள்</string>
     <string name="baseurl">http://www.olaichuvadi.cviac.com</string>
-    <string name="baseurl_local">http://192.168.1.61</string>
     <string name="search_hint">Search Books</string>
 
     <string name="img_club">http://www.olaichuvadi.cviac.com/image/</string>

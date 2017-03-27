@@ -1,17 +1,14 @@
 package com.cviac.olaichuvadi.fragments;
 
-import android.content.Intent;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.GridView;
 
 import com.cviac.olaichuvadi.R;
-import com.cviac.olaichuvadi.activities.ReadingClubDetailsActivity;
 import com.cviac.olaichuvadi.adapters.Club_recAdapter;
 import com.cviac.olaichuvadi.datamodels.ClubResponse;
 import com.cviac.olaichuvadi.datamodels.ReadingClubInfo;
@@ -48,16 +45,6 @@ public class Club_Recommended extends Fragment {
         gv.setAdapter(adapter);
 
         getRecommendedClubs();
-
-        gv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                ReadingClubInfo rc_rec = club.get(position);
-                Intent details = new Intent(getActivity().getApplicationContext(), ReadingClubDetailsActivity.class);
-                details.putExtra("Club_Details", rc_rec);
-                startActivity(details);
-            }
-        });
         return view;
     }
 

@@ -13,7 +13,6 @@ import com.cviac.olaichuvadi.R;
 import com.cviac.olaichuvadi.services.OpencartAPIs;
 import com.cviac.olaichuvadi.services.ReginfoResponse;
 import com.cviac.olaichuvadi.utilities.OlaichuvadiApp;
-import com.cviac.olaichuvadi.utilities.Prefs;
 import com.squareup.okhttp.OkHttpClient;
 
 import java.util.concurrent.TimeUnit;

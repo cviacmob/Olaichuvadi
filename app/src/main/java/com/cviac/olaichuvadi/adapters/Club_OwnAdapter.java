@@ -1,6 +1,7 @@
 package com.cviac.olaichuvadi.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,7 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.cviac.olaichuvadi.R;
-import com.cviac.olaichuvadi.datamodels.Club_recInfo;
+import com.cviac.olaichuvadi.activities.ReadingClubDetailsActivity;
 import com.cviac.olaichuvadi.datamodels.ReadingClubInfo;
 import com.squareup.picasso.Picasso;
 
@@ -49,7 +50,7 @@ public class Club_OwnAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         View clubs = convertView;
         Club_OwnAdapter.ViewHolder holder;
-        ReadingClubInfo cinfo = club.get(position);
+        final ReadingClubInfo cinfo = club.get(position);
         if (convertView == null) {
             LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             clubs = inflater.inflate(R.layout.activity_club__own_adapter, null);
@@ -70,6 +71,14 @@ public class Club_OwnAdapter extends BaseAdapter {
         if (!url.isEmpty()) {
             Picasso.with(clubs.getContext()).load(url).placeholder(R.mipmap.bookgrd).resize(500, 500).into(holder.iv);
         }
+        holder.iv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent details = new Intent(mContext, ReadingClubDetailsActivity.class);
+                details.putExtra("Club_Details", cinfo);
+                mContext.startActivity(details);
+            }
+        });
         return clubs;
     }
 }

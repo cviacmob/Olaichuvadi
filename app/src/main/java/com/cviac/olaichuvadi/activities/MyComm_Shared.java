@@ -9,7 +9,6 @@ import com.cviac.olaichuvadi.R;
 import com.cviac.olaichuvadi.adapters.SharedAdapter;
 import com.cviac.olaichuvadi.datamodels.SharedInfo;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class MyComm_Shared extends AppCompatActivity {

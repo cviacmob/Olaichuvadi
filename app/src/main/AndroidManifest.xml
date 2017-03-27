@@ -29,6 +29,7 @@
                 android:value=".activities.SearchResultActivity" />
         </activity>
         <activity android:name=".activities.SearchResultActivity">
+
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -67,7 +68,8 @@
 
         <activity android:name=".activities.WriteReviewActivity" />
         <activity android:name=".activities.ReadingClubDetailsActivity" />
-        <activity android:name=".activities.InviteMembersActivity"></activity>
+        <activity android:name=".activities.InviteMembersActivity" />
+        <activity android:name=".activities.AddBooksLibrary"></activity>
     </application>
 
 </manifest>

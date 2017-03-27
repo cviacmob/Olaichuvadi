@@ -11,8 +11,6 @@ import android.widget.TextView;
 import com.cviac.olaichuvadi.R;
 import com.cviac.olaichuvadi.datamodels.FavouritesInfo;
 
-import org.w3c.dom.Text;
-
 import java.util.List;
 
 public class FavouritesAdapter extends BaseAdapter {

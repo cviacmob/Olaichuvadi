@@ -62,10 +62,12 @@ public class ReadingClubDetailsActivity extends AppCompatActivity {
         adapter = new MessagesAdapter(ReadingClubDetailsActivity.this, posts);
         lv.setAdapter(adapter);
 
+        if (rc_info.getStatus() == "member") {
+
+        }
         getPostMessages();
 
         tv1.setText(rc_info.getGroup_name());
-
         String grpimg = rc_info.getGroup_image();
         StringBuilder url3 = new StringBuilder();
         url3.append(club + grpimg);
@@ -114,6 +116,5 @@ public class ReadingClubDetailsActivity extends AppCompatActivity {
                 t.printStackTrace();
             }
         });
-
     }
 }

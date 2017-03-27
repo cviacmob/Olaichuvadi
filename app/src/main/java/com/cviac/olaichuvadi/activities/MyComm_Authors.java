@@ -39,7 +39,6 @@ public class MyComm_Authors extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         authr = new ArrayList<>();
-
         gv = (GridView) findViewById(R.id.authgrd);
         adapter = new AuhtorsAdapter(this, authr);
         gv.setAdapter(adapter);

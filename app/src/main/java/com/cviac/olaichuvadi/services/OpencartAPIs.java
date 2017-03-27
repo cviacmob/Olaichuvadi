@@ -8,13 +8,19 @@ import com.cviac.olaichuvadi.datamodels.CategoryProductsResponse;
 import com.cviac.olaichuvadi.datamodels.ClubResponse;
 import com.cviac.olaichuvadi.datamodels.CountryInfo;
 import com.cviac.olaichuvadi.datamodels.GeneralResponse;
+import com.cviac.olaichuvadi.datamodels.GetBooksResponse;
 import com.cviac.olaichuvadi.datamodels.GetCartItemsResponse;
 import com.cviac.olaichuvadi.datamodels.LoginResponse;
+import com.cviac.olaichuvadi.datamodels.MyCommResponse;
 import com.cviac.olaichuvadi.datamodels.PaymentMethodsResponse;
 import com.cviac.olaichuvadi.datamodels.GetPostMessagesResponse;
 import com.cviac.olaichuvadi.datamodels.Productdetailresponse;
 import com.cviac.olaichuvadi.datamodels.PublishersResponse;
+import com.cviac.olaichuvadi.datamodels.PurchasedBooksResponse;
 import com.cviac.olaichuvadi.datamodels.ShippingMethodsResponse;
+import com.cviac.olaichuvadi.datamodels.ViewAddedBooksResponse;
+import com.cviac.olaichuvadi.datamodels.ViewFavResponse;
+import com.cviac.olaichuvadi.datamodels.ViewReviewResponse;
 import com.cviac.olaichuvadi.datamodels.ZoneInfo;
 import com.squareup.okhttp.ResponseBody;
 
@@ -181,18 +187,21 @@ public interface OpencartAPIs {
     @GET("/index.php?route=api/mycommunity/getMyClubs")
     Call<ClubResponse> getMyClubs();
 
+    @FormUrlEncoded
     @POST("/index.php?route=api/mycommunity/createClub")
     Call<GeneralResponse> newClub(@Field("club_name") String club_name,
                                   @Field("club_description") String club_description,
                                   @Field("status") String status,
                                   @Field("location") String location);
 
+    @FormUrlEncoded
     @POST("/index.php?route=api/mycommunity/joinClub")
     Call<GeneralResponse> joinClub(@Field("group_id") String group_id);
 
     @GET("/index.php?route=api/mycommunity/getPostMessages")
     Call<GetPostMessagesResponse> getPost(@Query("group_id") String group_id);
 
+    @FormUrlEncoded
     @POST("/index.php?route=api/mycommunity/inviteMembers")
     Call<GeneralResponse> inviteMembers(@Query("group_id") String group_id,
                                         @Field("email") String email);
@@ -200,6 +209,7 @@ public interface OpencartAPIs {
     @GET("/index.php?route=api/mycommunity/searchAuthors")
     Call<AuthorsResponse> searchAuthor(@Query("name") String name);
 
+    @FormUrlEncoded
     @POST("/index.php?route=api/mycommunity/likeAuthor")
     Call<GeneralResponse> likeAuthor(@Field("author_id") String author_id);
 
@@ -209,10 +219,46 @@ public interface OpencartAPIs {
     @GET("/index.php?route=api/mycommunity/searchPublishers")
     Call<PublishersResponse> searchPublisher(@Query("name") String name);
 
+    @FormUrlEncoded
     @POST("/index.php?route=api/mycommunity/likePublisher")
     Call<GeneralResponse> likePublisher(@Field("publisher_id") String publisher_id);
 
     @GET("/index.php?route=api/mycommunity/getLikedPublishers")
     Call<PublishersResponse> getLikedPublisher();
+
+    //My Library APIs
+    @GET("/index.php?route=api/mylibrary/getBooksByIsbn")
+    Call<GetBooksResponse> getBooksbyISBN(@Query("isbn") String isbn);
+
+    @FormUrlEncoded
+    @POST("/index.php?route=api/mylibrary/addToMyLibrary")
+    Call<MyCommResponse> addtoLibrary(@Field("isbn") String isbn,
+                                      @Field("customer_id") String customer_id,
+                                      @Field("sellprice") String sellprice,
+                                      @Field("shareprice") String shareprice);
+
+    @GET("/index.php?route=api/mylibrary/viewAddedbooks")
+    Call<ViewAddedBooksResponse> viewAddedBooks(@Query("customer_id") String customer_id);
+
+    @GET("/index.php?route=api/mylibrary/viewPurchasedbooks")
+    Call<PurchasedBooksResponse> viewPurchasedbooks(@Query("customer_id") String customer_id);
+
+    @FormUrlEncoded
+    @POST("/index.php?route=api/mylibrary/addReview")
+    Call<MyCommResponse> addReview(@Field("customer_id") String customer_id,
+                                   @Field("product_id") String product_id,
+                                   @Field("review_text") String review_text,
+                                   @Field("rating") String rating);
+
+    @GET("/index.php?route=api/mylibrary/viewReview")
+    Call<ViewReviewResponse> viewReview(@Query("customer_id") String customer_id);
+
+    @FormUrlEncoded
+    @POST("/index.php?route=api/mylibrary/addFavourite")
+    Call<MyCommResponse> addFavourite(@Field("customer_id") String customer_id,
+                                      @Field("product_id") String product_id);
+
+    @GET("/index.php?route=api/mylibrary/viewFavourite")
+    Call<ViewFavResponse> viewFavourite(@Query("customer_id") String customer_id);
 
 }

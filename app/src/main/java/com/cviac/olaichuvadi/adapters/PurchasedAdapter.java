@@ -1,27 +1,24 @@
 package com.cviac.olaichuvadi.adapters;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.cviac.olaichuvadi.R;
-import com.cviac.olaichuvadi.activities.WriteReviewActivity;
-import com.cviac.olaichuvadi.datamodels.PurchasedInfo;
+import com.cviac.olaichuvadi.datamodels.PurchasedBooksInfo;
 
 import java.util.List;
 
 public class PurchasedAdapter extends BaseAdapter {
 
     private Context mContext;
-    private List<PurchasedInfo> lib_pur;
+    private List<PurchasedBooksInfo> lib_pur;
 
-    public PurchasedAdapter(Context mContext, List<PurchasedInfo> lib_pur) {
+    public PurchasedAdapter(Context mContext, List<PurchasedBooksInfo> lib_pur) {
         this.mContext = mContext;
         this.lib_pur = lib_pur;
     }
@@ -50,7 +47,7 @@ public class PurchasedAdapter extends BaseAdapter {
     public View getView(int i, View view, ViewGroup viewGroup) {
         View purch = view;
         ViewHolder holder;
-        PurchasedInfo puinfo = lib_pur.get(i);
+        PurchasedBooksInfo puinfo = lib_pur.get(i);
         if (view == null) {
             LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             purch = inflater.inflate(R.layout.purchaseditem, null);
@@ -63,21 +60,6 @@ public class PurchasedAdapter extends BaseAdapter {
 
             holder = (ViewHolder) purch.getTag();
         }
-        holder.tv.setText(puinfo.getBook_title());
-        holder.fav.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(mContext, "Favourites Clicked", Toast.LENGTH_LONG).show();
-            }
-        });
-        holder.rev.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(mContext, "Review Clicked", Toast.LENGTH_LONG).show();
-                Intent i = new Intent(mContext, WriteReviewActivity.class);
-                mContext.startActivity(i);
-            }
-        });
         return purch;
     }
 }
