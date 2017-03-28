@@ -1,38 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:padding="5dp">
 
     <ImageView
         android:id="@+id/rev_img"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:src="@mipmap/log" />
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:scaleType="fitXY"
+        android:src="@mipmap/log"
+        />
 
     <TextView
         android:id="@+id/rev_tt"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/rev_img"
-        android:layout_centerHorizontal="true"
-        android:text="Title" />
-
-    <TextView
-        android:id="@+id/rev_auth"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/rev_tt"
-        android:layout_centerHorizontal="true"
-        android:text="Author" />
-
-    <TextView
-        android:id="@+id/revv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/rev_auth"
-        android:layout_centerHorizontal="true"
-        android:text="View Review"
-        android:textStyle="bold" />
+        android:maxLines="2"
+        android:text="Book Title"
+        android:gravity="center"
+        android:background="#B33b3b3b"
+        android:textColor="#ffffff"
+        android:textStyle="bold"
+        android:layout_alignParentBottom="true"
+        />
 
 </RelativeLayout>

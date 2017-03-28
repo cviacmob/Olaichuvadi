@@ -72,7 +72,6 @@ public class CreateClubActivity extends AppCompatActivity {
                     rg.requestFocus();
                     Toast.makeText(CreateClubActivity.this, "Choose your Club Status", Toast.LENGTH_LONG).show();
                 }
-
                 newClub(Rname, Rdesc, Rstatus, Rloc);
             }
         });
@@ -101,7 +100,7 @@ public class CreateClubActivity extends AppCompatActivity {
                 GeneralResponse rsp = response.body();
                 if (rsp.getCode() == 0) {
                     Intent new_club = new Intent();
-                    setResult(909);
+                    setResult(909, new_club);
                     finish();
                 }
             }

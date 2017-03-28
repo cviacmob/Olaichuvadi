@@ -73,6 +73,7 @@ public class Club_Own extends Fragment {
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(okHttpClient)
                 .build();
+
         OpencartAPIs api = retrofit.create(OpencartAPIs.class);
 
         final Call<ClubResponse> call = api.getMyClubs();

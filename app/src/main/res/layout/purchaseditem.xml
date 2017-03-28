@@ -1,42 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="10dp">
 
     <ImageView
         android:id="@+id/lib_pur_img"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:src="@mipmap/log" />
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:src="@mipmap/log"
+        android:scaleType="fitXY"
+        />
 
     <TextView
         android:id="@+id/purchtit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:background="#B33b3b3b"
+        android:maxLines="2"
+        android:textColor="#ffffff"
+        android:textStyle="bold"
+        android:text="Book Title"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+
+    <ImageView
+        android:id="@+id/imageView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/lib_pur_img"
-        android:layout_centerHorizontal="true"
-        android:text="Book Title" />
+        app:srcCompat="@mipmap/libfavs"
+        android:background="@drawable/square"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
-    <RelativeLayout
-        android:id="@+id/btn_lay"
+    <ImageView
+        android:id="@+id/imageView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/purchtit"
-        android:layout_centerHorizontal="true">
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        app:srcCompat="@mipmap/pencil" />
 
-        <ImageView
-            android:id="@+id/p_revbtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@mipmap/pencil" />
-
-        <ImageView
-            android:id="@+id/p_favbtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/p_revbtn"
-            android:src="@mipmap/star" />
-    </RelativeLayout>
 </RelativeLayout>

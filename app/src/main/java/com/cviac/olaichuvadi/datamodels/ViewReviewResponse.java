@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 
 public class ViewReviewResponse implements Serializable {
+
     private String result;
     private List<ViewReviewInfo> data;
 

@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.cviac.olaichuvadi.R;
 import com.cviac.olaichuvadi.datamodels.PurchasedBooksInfo;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -40,7 +41,7 @@ public class PurchasedAdapter extends BaseAdapter {
 
     public static class ViewHolder {
         public TextView tv;
-        public ImageView rev, fav;
+        public ImageView iv, rev, fav;
     }
 
     @Override
@@ -53,13 +54,34 @@ public class PurchasedAdapter extends BaseAdapter {
             purch = inflater.inflate(R.layout.purchaseditem, null);
             holder = new ViewHolder();
             holder.tv = (TextView) purch.findViewById(R.id.purchtit);
-            holder.rev = (ImageView) purch.findViewById(R.id.p_revbtn);
-            holder.fav = (ImageView) purch.findViewById(R.id.p_favbtn);
+            holder.iv = (ImageView) purch.findViewById(R.id.lib_pur_img);
+//            holder.rev = (ImageView) purch.findViewById(R.id.p_revbtn);
+//            holder.fav = (ImageView) purch.findViewById(R.id.p_favbtn);
             purch.setTag(holder);
         } else {
-
             holder = (ViewHolder) purch.getTag();
         }
+        holder.tv.setText(puinfo.getName());
+        String url1 = mContext.getString(R.string.img_club);
+        String url2 = puinfo.getImage();
+        StringBuilder url3 = new StringBuilder();
+        url3.append(url1 + url2);
+        String url = url3.toString();
+        if (!url.isEmpty()) {
+            Picasso.with(purch.getContext()).load(url).placeholder(R.mipmap.log).resize(500, 500).into(holder.iv);
+        }
+ /*       holder.rev.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+        holder.fav.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });*/
         return purch;
     }
 }

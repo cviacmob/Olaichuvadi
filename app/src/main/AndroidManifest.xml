@@ -61,15 +61,13 @@
         <activity android:name=".activities.MyLib_Reviewed" />
         <activity android:name=".activities.MyLib_Favourites" />
         <activity android:name=".activities.MyComm_Shared" />
-
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
-
         <activity android:name=".activities.WriteReviewActivity" />
         <activity android:name=".activities.ReadingClubDetailsActivity" />
         <activity android:name=".activities.InviteMembersActivity" />
-        <activity android:name=".activities.AddBooksLibrary"></activity>
+        <activity android:name=".activities.AddBooksLibrary" />
     </application>
 
 </manifest>

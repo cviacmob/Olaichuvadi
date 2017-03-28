@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.cviac.olaichuvadi.R;
 import com.cviac.olaichuvadi.datamodels.ViewAddedBooksInfo;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -39,7 +40,7 @@ public class BooksAdapter extends BaseAdapter {
 
     public static class ViewHolder {
         public TextView tv1;
-        public ImageView iv1, iv2;
+        public ImageView iv;
     }
 
     @Override
@@ -52,11 +53,19 @@ public class BooksAdapter extends BaseAdapter {
             shr = inflater.inflate(R.layout.book_item, null);
             holder = new BooksAdapter.ViewHolder();
             holder.tv1 = (TextView) shr.findViewById(R.id.lib_book_tit);
-            holder.iv1 = (ImageView) shr.findViewById(R.id.revbtn);
-            holder.iv2 = (ImageView) shr.findViewById(R.id.favbtn);
+            holder.iv = (ImageView) shr.findViewById(R.id.book_image);
             shr.setTag(holder);
         } else {
             holder = (BooksAdapter.ViewHolder) shr.getTag();
+        }
+        holder.tv1.setText(cinfo.getTitle());
+        String url1 = mContext.getString(R.string.img_club);
+        String url2 = cinfo.getImage();
+        StringBuilder url3 = new StringBuilder();
+        url3.append(url1 + url2);
+        String url = url3.toString();
+        if (!url.isEmpty()) {
+            Picasso.with(shr.getContext()).load(url).placeholder(R.mipmap.log).resize(500, 500).into(holder.iv);
         }
         return shr;
     }

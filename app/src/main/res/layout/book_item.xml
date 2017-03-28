@@ -6,37 +6,23 @@
 
     <ImageView
         android:id="@+id/book_image"
-        android:layout_width="130dp"
-        android:layout_height="130dp"
-        android:layout_centerHorizontal="true"
-        android:src="@mipmap/log" />
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:scaleType="fitXY"
+        android:src="@mipmap/log"
+         />
 
     <TextView
         android:id="@+id/lib_book_tit"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/book_image"
-        android:layout_centerHorizontal="true"
-        android:text="Book Title" />
+        android:maxLines="2"
+        android:text="Book Title"
+        android:gravity="center"
+        android:background="#B33b3b3b"
+        android:textColor="#ffffff"
+        android:textStyle="bold"
+        android:layout_alignParentBottom="true"
+         />
 
-    <RelativeLayout
-        android:id="@+id/btn_lay"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/lib_book_tit"
-        android:layout_centerHorizontal="true">
-
-        <ImageView
-            android:id="@+id/revbtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@mipmap/pencil" />
-
-        <ImageView
-            android:id="@+id/favbtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/revbtn"
-            android:src="@mipmap/star" />
-    </RelativeLayout>
 </RelativeLayout>

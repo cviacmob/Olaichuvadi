@@ -19,9 +19,6 @@ public class ProductCartInfo implements Serializable {
     public ProductCartInfo() {
     }
 
-    public ProductCartInfo(int ic, String s, String s1, String s2) {
-    }
-
     public String getImage() {
         return image;
     }

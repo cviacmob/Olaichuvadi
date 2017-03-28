@@ -6,53 +6,79 @@ import android.view.MenuItem;
 import android.widget.GridView;
 
 import com.cviac.olaichuvadi.R;
-import com.cviac.olaichuvadi.adapters.FavouritesAdapter;
-import com.cviac.olaichuvadi.datamodels.FavouritesInfo;
+import com.cviac.olaichuvadi.adapters.ReviewedAdapter;
+import com.cviac.olaichuvadi.datamodels.PurchasedBooksResponse;
+import com.cviac.olaichuvadi.datamodels.ViewReviewInfo;
+import com.cviac.olaichuvadi.datamodels.ViewReviewResponse;
+import com.cviac.olaichuvadi.services.AddCookiesInterceptor;
+import com.cviac.olaichuvadi.services.OpencartAPIs;
+import com.cviac.olaichuvadi.services.ReceivedCookiesInterceptor;
+import com.cviac.olaichuvadi.utilities.Prefs;
+import com.squareup.okhttp.OkHttpClient;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
+
+import retrofit.Call;
+import retrofit.Callback;
+import retrofit.GsonConverterFactory;
+import retrofit.Response;
+import retrofit.Retrofit;
 
 public class MyLib_Reviewed extends AppCompatActivity {
     GridView gv;
-    FavouritesAdapter adapter;
-    List<FavouritesInfo> fav;
+    ReviewedAdapter adapter;
+    List<ViewReviewInfo> rev;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_lib__reviewed);
 
-        loadbooks();
-
         setTitle(R.string.tab_rev);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        rev = new ArrayList<>();
         gv = (GridView) findViewById(R.id.revgrid);
-        adapter = new FavouritesAdapter(MyLib_Reviewed.this, fav);
+        adapter = new ReviewedAdapter(MyLib_Reviewed.this, rev);
         gv.setAdapter(adapter);
+
+        reviewedbooks();
     }
 
-    private void loadbooks() {
+    private void reviewedbooks() {
 
-        fav = new ArrayList<>();
+        OkHttpClient okHttpClient = new OkHttpClient();
+        okHttpClient.setConnectTimeout(120000, TimeUnit.MILLISECONDS);
+        okHttpClient.setReadTimeout(120000, TimeUnit.MILLISECONDS);
+        okHttpClient.interceptors().add(new AddCookiesInterceptor());
+        okHttpClient.interceptors().add(new ReceivedCookiesInterceptor());
 
-        FavouritesInfo f1 = new FavouritesInfo("Book-1");
-        fav.add(f1);
-        FavouritesInfo f2 = new FavouritesInfo("Book-2");
-        fav.add(f2);
-        FavouritesInfo f3 = new FavouritesInfo("Book-3");
-        fav.add(f3);
-        FavouritesInfo f4 = new FavouritesInfo("Book-4");
-        fav.add(f4);
-        FavouritesInfo f5 = new FavouritesInfo("Book-5");
-        fav.add(f5);
-        FavouritesInfo f6 = new FavouritesInfo("Book-6");
-        fav.add(f6);
-        FavouritesInfo f7 = new FavouritesInfo("Book-7");
-        fav.add(f7);
-        FavouritesInfo f8 = new FavouritesInfo("Book-8");
-        fav.add(f8);
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(getString(R.string.baseurl))
+                .addConverterFactory(GsonConverterFactory.create())
+                .client(okHttpClient)
+                .build();
 
+        OpencartAPIs api = retrofit.create(OpencartAPIs.class);
+
+        int c_id = Prefs.getInt("customer_id", -1);
+        Call<ViewReviewResponse> call = api.viewReview(c_id + "");
+        call.enqueue(new Callback<ViewReviewResponse>() {
+
+            public void onResponse(Response<ViewReviewResponse> response, Retrofit retrofit) {
+                ViewReviewResponse rsp = response.body();
+                rev.clear();
+                rev.addAll(rsp.getData());
+                adapter.notifyDataSetInvalidated();
+            }
+
+            @Override
+            public void onFailure(Throwable t) {
+                t.printStackTrace();
+            }
+        });
     }
 
     @Override
